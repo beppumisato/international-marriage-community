@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 全タブの背景色 */
+
 body {
   background-color: white;
+}
+
+/* ログイン画面 */
+
+.mail {
+  position: relative; /*親要素にrelative*/
+}
+.mail p {
+  position: absolute; /*重ねたい子要素にabsolute*/
+  left: 10%;
 }
