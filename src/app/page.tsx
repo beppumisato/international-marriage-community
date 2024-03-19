@@ -3,13 +3,13 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div>
-      <Link
-        href={`/login/`}
-        className='m-3 p-3 text-white flex justify-end underline'
-      >
-        新規会員登録 / ログイン
-      </Link>
+    <div className='bg-rose-200'>
+      <div className='flex justify-end p-6 items-center gap-2'>
+        <Link href={`/login/`} className='text-white underline'>
+          新規会員登録 / ログイン
+        </Link>
+        <img src='top/airplan_1.png' width={30}></img>
+      </div>
 
       {/* メインの世界地図とキャ土フレーズ */}
       <div className='bg-white flex justify-center w-full'>
