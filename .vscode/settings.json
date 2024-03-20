@@ -2,7 +2,7 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#ffd900", // タイトルバーの背景色
+    "titleBar.activeBackground": "#f994f9", // タイトルバーの背景色
     "titleBar.activeForeground": "#000000" // タイトルバーの文字色
   }
 }
