@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className='bg-rose-200'>
+    <div className='bg-rose-200 font-kosugi'>
       <div className='flex justify-end items-center gap-2 p-6'>
         <Link href={`/login/`} className='text-white underline text-[20px]'>
           新規会員登録 / ログイン

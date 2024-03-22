@@ -22,7 +22,7 @@ function GetLogin() {
 
   return (
     <>
-      <div>
+      <div className='font-kosugi'>
         {/* Topへ戻るリンク */}
         <div className='flex'>
           <Link
