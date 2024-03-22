@@ -37,60 +37,73 @@ export default function LoginPage() {
         </div>
 
         {/* ログイン機能 */}
-        <section className='p-6 pt-8'>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='flex flex-col'>
-              <label htmlFor='email' className='text-white text-[20px]'>
-                メールアドレス
-              </label>
-              <input
-                className='text-[12px] h-6 pl-3'
-                id='email'
-                type='email'
-                placeholder='メールアドレスを入力してください'
-                {...register('email')}
-              />
-              <p>{errors.email?.message as React.ReactNode}</p>
-            </div>
-            <div className='flex flex-col'>
-              <label htmlFor='password' className='text-white text-[20px] mt-5'>
-                パスワード
-              </label>
-              <input
-                className='text-[12px] h-6 pl-3'
-                id='password'
-                type='password'
-                placeholder='パスワードを入力して下さい'
-                {...register('password')}
-              />
-              <p>{errors.password?.message as React.ReactNode}</p>
-            </div>
+        <section className='p-0'>
+          <div className='flex justify-end mt-0'>
+            <img src='/login/top.png' width={150}></img>
+          </div>
+          <div className='pl-6 pr-6'>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className='flex flex-col'>
+                <label htmlFor='email' className='text-white text-[16px]'>
+                  メールアドレス
+                </label>
+                <input
+                  className='text-[12px] h-6 pl-3'
+                  id='email'
+                  type='email'
+                  placeholder='メールアドレスを入力してください'
+                  {...register('email')}
+                />
+                <p>{errors.email?.message as React.ReactNode}</p>
+              </div>
+              <div className='flex flex-col'>
+                <label
+                  htmlFor='password'
+                  className='text-white text-[16px] mt-5'
+                >
+                  パスワード
+                </label>
+                <input
+                  className='text-[12px] h-6 pl-3'
+                  id='password'
+                  type='password'
+                  placeholder='パスワードを入力して下さい'
+                  {...register('password')}
+                />
+                <p>{errors.password?.message as React.ReactNode}</p>
+              </div>
 
-            {/* ログインボタンの実装 */}
-            <div className='flex justify-center m-5'>
-              <button
-                type='submit'
-                className='text-[15px] border-4 border-white text-white bg-rose-400 hover:bg-rose-500 p-1.5 w-32'
+              {/* ログインボタンの実装 */}
+              <div className='flex justify-center m-3'>
+                <button
+                  type='submit'
+                  className='text-[15px] border-4 border-white text-white bg-rose-400 hover:bg-rose-500 p-1 w-24'
+                >
+                  ログイン
+                </button>
+              </div>
+            </form>
+
+            {/* 新規会員登録フォームへ */}
+            <div className='flex flex-col text-white text-[15px]'>
+              <div className='flex justify-center mt-1'>
+                初めてご利用になる方
+              </div>
+              <div className='flex justify-center'>
+                ご利用になるには会員登録が必要です
+              </div>
+            </div>
+            <div className='flex justify-center mt-1.5'>
+              <Link
+                href={'/registration/'}
+                className='text-[15px] border-4 border-white text-white bg-rose-400 hover:bg-rose-500 p-1 w-24 text-center'
               >
-                ログイン
-              </button>
-            </div>
-          </form>
-
-          {/* 新規会員登録フォームへ */}
-          <div className='flex flex-col text-white text-[20px]'>
-            <div className='flex justify-center mt-5'>初めてご利用になる方</div>
-            <div className='flex justify-center'>
-              ご利用になるには会員登録が必要です
+                新規会員登録
+              </Link>
             </div>
           </div>
-          <div className='flex justify-center m-5'>
-            <Link
-              href={'/registration/'}
-              className='text-[15px] border-4 border-white text-white bg-rose-400 hover:bg-rose-500 p-1.5 w-32 text-center'
-            >
-              新規会員登録
-            </Link>
+          <div className='flex justify-start mt-3'>
+            <img src='/login/bottom.png' width={150}></img>
           </div>
         </section>
       </div>
