@@ -85,10 +85,11 @@ function GetLogin() {
             </div>
           </div>
           <div className='flex justify-center m-5'>
-            <Link href={'/registration/'}>
-              <button className='text-[15px] border-4 border-white text-white bg-rose-400 hover:bg-rose-500 p-1.5 w-32'>
-                新規会員登録
-              </button>
+            <Link
+              href={'/registration/'}
+              className='text-[15px] border-4 border-white text-white bg-rose-400 hover:bg-rose-500 p-1.5 w-32 text-center'
+            >
+              新規会員登録
             </Link>
           </div>
         </section>
