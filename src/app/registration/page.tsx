@@ -10,7 +10,7 @@ interface LoginForm {
   username: string;
 }
 
-function PostLogin() {
+export default function RegistrationPage() {
   // useForm関数を呼び出して、各種設定を行う
   const {
     register, // inputタグとバリデーションルールを紐付けるための関数
@@ -110,5 +110,3 @@ function PostLogin() {
     </>
   );
 }
-
-export default PostLogin;

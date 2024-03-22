@@ -9,7 +9,7 @@ interface LoginForm {
   password: string;
 }
 
-function GetLogin() {
+export default function LoginPage() {
   // useForm関数を呼び出して、各種設定を行う
   const {
     register, // inputタグとバリデーションルールを紐付けるための関数
@@ -97,5 +97,3 @@ function GetLogin() {
     </>
   );
 }
-
-export default GetLogin;
