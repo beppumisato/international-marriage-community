@@ -1,16 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
-import type { AppProps } from 'next/app';
 
-export default function MyPage({ Component, pageProps }: AppProps) {
+export default function MyPage() {
   return (
     <div className='font-kosugi'>
-      <div className='flex m-4 text-[20px]'>
+      <div className='flex m-4 text-[26px]'>
         <Link href={`/`} className='text-rose-400'>
           Top
         </Link>
         <div className='text-rose-400'>　/ プロフィール</div>
-        <div className='ml-auto mr-5 flex'>
+        <div className='ml-auto flex'>
           <Link href={`/post/`} className='text-rose-400 underline'>
             投稿作成
           </Link>
@@ -18,9 +17,9 @@ export default function MyPage({ Component, pageProps }: AppProps) {
         </div>
       </div>
 
-      <div className='ml-2 mr-2'>
+      <div className='p-4'>
         <div className='bg-slate-300 w-full h-24 pt-16 pl-3'>
-          <div className='bg-slate-300 border-white border-2 rounded-full w-14 h-14'></div>
+          <div className='border-rose-100 border-2 rounded-full w-14 h-14'></div>
         </div>
         <div className='flex justify-end m-2 text-center'>
           <Link
@@ -42,6 +41,12 @@ export default function MyPage({ Component, pageProps }: AppProps) {
         <div className='text-[18px] border-rose-400 border-2 rounded-md h-12 w-full mt-2 p-2'>
           いつ結婚したのか、現在どこで暮らしているのか、興味あることや趣味など自由に書いて自己紹介しよう。
         </div>
+      </div>
+      <div className='flex justify-end mt-20 mr-1 mb-1'>
+        <img
+          className=' bg-rose-100 rounded-full bg-opacity-50 w-6 h-6 p-1'
+          src='/icon/airplan_2.png'
+        ></img>
       </div>
     </div>
   );
