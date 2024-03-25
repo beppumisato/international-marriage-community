@@ -9,12 +9,12 @@ export default function EditPage() {
         <div className='ml-60'>投稿編集</div>
       </div>
       <div className='flex justify-center'>
-        <div className='p-2 m-4 w-4/5 h-10 rounded-md border-2 border-rose-400 text-slate-300 text-[20px]'>
+        <div className='p-2 m-4 w-4/5 h-10 rounded-md border-2 border-rose-200 text-slate-300 text-[20px]'>
           タイトルの編集
         </div>
       </div>
       <div className='flex justify-center'>
-        <div className='p-2 m-4 w-4/5 h-40 rounded-md border-2 border-rose-400 text-slate-300 text-[20px]'>
+        <div className='p-2 m-4 w-4/5 h-40 rounded-md border-2 border-rose-200 text-slate-300 text-[20px]'>
           記事の編集
         </div>
       </div>

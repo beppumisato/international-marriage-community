@@ -16,20 +16,20 @@ export default function EditPage() {
         </div>
         <div className='text-rose-400 text-[20px]'>
           <div className='mt-4 font-bold'>ニックネーム</div>
-          <div className='border-2 border-rose-400 rounded-md p-2'>
+          <div className='border-2 border-rose-200 rounded-md p-2 text-black'>
             デミちゃん
           </div>
           <div className='mt-6 font-bold'>あなたとお相手の国籍</div>
           <div className='flex gap-x-2'>
-            <div className='border-2 border-rose-400 rounded-md w-1/2 p-2'>
+            <div className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'>
               あなた：
             </div>
-            <div className='border-2 border-rose-400 rounded-md w-1/2 p-2'>
+            <div className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'>
               お相手：
             </div>
           </div>
           <div className='mt-6 font-bold'>自己紹介</div>
-          <div className='border-2 border-rose-400 rounded-md h-32 p-2'>
+          <div className='border-2 border-rose-200 rounded-md h-32 p-2 text-black'>
             トルコ人と国際結婚した日本人です。
           </div>
           <div className='flex justify-center m-5'>
