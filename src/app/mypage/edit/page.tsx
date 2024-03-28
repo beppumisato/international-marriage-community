@@ -21,17 +21,19 @@ export default function EditPage() {
           </div>
           <div className='mt-6 font-bold'>あなたとお相手の国籍</div>
           <div className='flex gap-x-2'>
-            <div className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'>
-              あなた：
-            </div>
-            <div className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'>
-              お相手：
-            </div>
+            <input
+              placeholder='あなたの国籍'
+              type='text'
+              className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'
+            />
+            <input
+              placeholder='お相手の国籍'
+              type='text'
+              className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'
+            />
           </div>
           <div className='mt-6 font-bold'>自己紹介</div>
-          <div className='border-2 border-rose-200 rounded-md h-32 p-2 text-black'>
-            トルコ人と国際結婚した日本人です。
-          </div>
+          <textarea className='border-2 border-rose-200 rounded-md h-32 w-full p-2 text-black' />
           <div className='flex justify-center m-5'>
             <button
               type='submit'
