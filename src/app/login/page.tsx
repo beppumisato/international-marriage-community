@@ -18,7 +18,14 @@ export default function LoginPage() {
   } = useForm<LoginForm>({ mode: 'onChange' }); // mode: "onChange"で入力時バリデーション
 
   // フォームのsubmitイベントで呼ばれる関数
-  const onSubmit = (data: LoginForm) => console.log(data);
+  const onSubmit = async (fomData: LoginForm) => {
+    // TODO: id固定なのでメアド・パスワードから取得するようにする
+    const response = await fetch(`http://localhost:3000/api/user/4`);
+    const data = await response.json();
+    // ログに結果を出す
+    console.log('User >> ', data.user);
+    return data.user;
+  };
 
   return (
     <>
