@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 
 export default function MyPage() {
+  const nickName = 'ニックネームAAAA';
+
   return (
     <div className='font-kosugi'>
       <div className='flex m-4 text-[26px]'>
@@ -30,7 +32,7 @@ export default function MyPage() {
           </Link>
         </div>
         <div className='flex'>
-          <div className='text-[28px]'>ニックネーム</div>
+          <div className='text-[28px]'>{nickName}</div>
           <Link href={`/message/`}>
             <img className='ml-1' src='/icon/message.png/' width={60}></img>
           </Link>
