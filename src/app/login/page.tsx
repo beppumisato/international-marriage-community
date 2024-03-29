@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 // ログインフォームのデータ型を定義
@@ -9,7 +10,17 @@ interface LoginForm {
   password: string;
 }
 
+const fetchUserData = async () => {
+  // TODO: id固定なのでメアド・パスワードから取得するようにする
+  const response = await fetch(`http://localhost:3000/api/user/4`);
+  const data = await response.json();
+
+  return data.user;
+};
+
 export default function LoginPage() {
+  const router = useRouter();
+
   // useForm関数を呼び出して、各種設定を行う
   const {
     register, // inputタグとバリデーションルールを紐付けるための関数
@@ -19,12 +30,12 @@ export default function LoginPage() {
 
   // フォームのsubmitイベントで呼ばれる関数
   const onSubmit = async (fomData: LoginForm) => {
-    // TODO: id固定なのでメアド・パスワードから取得するようにする
-    const response = await fetch(`http://localhost:3000/api/user/4`);
-    const data = await response.json();
+    const user = await fetchUserData();
     // ログに結果を出す
-    console.log('User >> ', data.user);
-    return data.user;
+    console.log('User >> ', user);
+
+    // マイページに遷移する
+    router.push('/mypage');
   };
 
   return (
