@@ -1,8 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
+import { userState } from '../hooks/user';
 
 export default function MyPage() {
-  const nickName = 'ニックネームAAAA';
+  const { user } = userState();
+  const nickName = user.nickName;
 
   return (
     <div className='font-kosugi'>
