@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { useUserState } from '../hooks/user';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
@@ -20,6 +21,7 @@ const fetchUserData = async () => {
 
 export default function LoginPage() {
   const router = useRouter();
+  const { saveUser } = useUserState();
 
   // useForm関数を呼び出して、各種設定を行う
   const {
@@ -31,8 +33,8 @@ export default function LoginPage() {
   // フォームのsubmitイベントで呼ばれる関数
   const onSubmit = async (fomData: LoginForm) => {
     const user = await fetchUserData();
-    // ログに結果を出す
-    console.log('User >> ', user);
+    // Userをセットする
+    saveUser(user);
 
     // マイページに遷移する
     router.push('/mypage');
