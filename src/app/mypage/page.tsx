@@ -1,10 +1,12 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { userState } from '../hooks/user';
+import { useUserState } from '../hooks/user';
 
 export default function MyPage() {
-  const { user } = userState();
-  const nickName = user.nickName;
+  const { user } = useUserState();
+  const nickName = user?.nickname ?? 'データなし';
 
   return (
     <div className='font-kosugi'>
