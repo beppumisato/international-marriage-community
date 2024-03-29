@@ -12,7 +12,7 @@ export async function main() {
   }
 }
 
-//プロフィール作成用API
+//プロフィール作成用API=>新規会員登録画面で呼ぶ
 export const POST = async (req: Request, res: NextResponse) => {
   try {
     const {

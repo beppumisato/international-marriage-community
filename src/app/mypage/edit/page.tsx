@@ -1,7 +1,12 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { useUserState } from '@/app/hooks/user';
 
 export default function EditPage() {
+  const { user } = useUserState();
+
   return (
     <div className='font-kosugi'>
       <div className='flex text-rose-400 bg-rose-200 h-8 text-[24px] mb-4 p-2'>
@@ -17,7 +22,7 @@ export default function EditPage() {
         <div className='text-rose-400 text-[20px]'>
           <div className='mt-4 font-bold'>ニックネーム</div>
           <div className='border-2 border-rose-200 rounded-md p-2 text-black'>
-            デミちゃん
+            {user?.nickname}
           </div>
           <div className='mt-6 font-bold'>あなたとお相手の国籍</div>
           <div className='flex gap-x-2'>

@@ -1,7 +1,13 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { useUserState } from '../hooks/user';
 
 export default function MyPage() {
+  const { user } = useUserState();
+  const nickName = user?.nickname ?? 'Misato';
+
   return (
     <div className='font-kosugi'>
       <div className='flex m-4 text-[26px]'>
@@ -30,7 +36,7 @@ export default function MyPage() {
           </Link>
         </div>
         <div className='flex'>
-          <div className='text-[28px]'>ニックネーム</div>
+          <div className='text-[28px]'>{nickName}</div>
           <Link href={`/message/`}>
             <img className='ml-1' src='/icon/message.png/' width={60}></img>
           </Link>
