@@ -1,7 +1,12 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { useUserState } from '../hooks/user';
 
 export default function MyPage() {
+  const { user } = useUserState();
+
   return (
     <div className='font-kosugi'>
       <div className='flex m-4 text-[26px]'>
@@ -30,16 +35,16 @@ export default function MyPage() {
           </Link>
         </div>
         <div className='flex'>
-          <div className='text-[28px]'>ニックネーム</div>
+          <div className='text-[28px]'>{user?.nickname}</div>
           <Link href={`/message/`}>
             <img className='ml-1' src='/icon/message.png/' width={60}></img>
           </Link>
         </div>
         <div className='border-rose-200 border-2 h-5 w-24 rounded-md text-[18px] mt-1 text-center p-1'>
-          国籍
+          {user?.myNationality}&{user?.partnerNationality}
         </div>
-        <div className='text-[18px] border-rose-200 border-2 rounded-md h-12 w-full mt-1 p-2'>
-          いつ結婚したのか、現在どこで暮らしているのか、興味あることや趣味など自由に書いて自己紹介しよう。
+        <div className='text-[18px] border-rose-200 border-2 rounded-md h-auto w-auto mt-1 p-2'>
+          {user?.introduction}
         </div>
       </div>
       <div className='text-center text-[20px] text-rose-400 border-b border-rose-200'>

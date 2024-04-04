@@ -9,14 +9,18 @@ export default function PostPage() {
         <div className='ml-60'>新規投稿</div>
       </div>
       <div className='flex justify-center'>
-        <div className='p-2 m-4 w-4/5 h-10 rounded-md border-2 border-rose-400 text-slate-300 text-[20px]'>
-          ここにタイトルを入力
-        </div>
+        <input
+          placeholder='タイトルを入力する'
+          type='text'
+          className='p-2 m-4 w-4/5 h-10 rounded-md border-2 border-rose-400 text-slate-300 text-[20px]'
+        />
       </div>
       <div className='flex justify-center'>
-        <div className='p-2 m-4 w-4/5 h-40 rounded-md border-2 border-rose-400 text-slate-300 text-[20px]'>
-          記事をを入力
-        </div>
+        <input
+          placeholder='詳細記事を入力'
+          type='text'
+          className='p-2 m-4 w-4/5 h-40 rounded-md border-2 border-rose-400 text-slate-300 text-[20px]'
+        />
       </div>
       <div className='flex justify-center'>
         <button

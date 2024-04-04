@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { useUserState } from '../hooks/user';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
@@ -9,7 +11,18 @@ interface LoginForm {
   password: string;
 }
 
+const fetchUserData = async () => {
+  // TODO: id固定なのでメアド・パスワードから取得するようにする
+  const response = await fetch(`http://localhost:3000/api/user/4`);
+  const data = await response.json();
+
+  return data.user;
+};
+
 export default function LoginPage() {
+  const router = useRouter();
+  const { saveUser } = useUserState();
+
   // useForm関数を呼び出して、各種設定を行う
   const {
     register, // inputタグとバリデーションルールを紐付けるための関数
@@ -18,7 +31,14 @@ export default function LoginPage() {
   } = useForm<LoginForm>({ mode: 'onChange' }); // mode: "onChange"で入力時バリデーション
 
   // フォームのsubmitイベントで呼ばれる関数
-  const onSubmit = (data: LoginForm) => console.log(data);
+  const onSubmit = async (data: LoginForm) => {
+    const user = await fetchUserData();
+    //Userをリセットする
+    saveUser(user);
+
+    //マイページに遷移する
+    router.push('/mypage');
+  };
 
   return (
     <>
