@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useUserState } from '@/app/hooks/user';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 
 // プロフィールフォームのデータ型を定義
 interface ProfileForm {
@@ -35,10 +36,13 @@ const putUser = async (
       introduction,
     }),
   });
+  const data = await response.json();
+  return data.user;
 };
 
 export default function EditPage() {
-  const { user } = useUserState();
+  const router = useRouter();
+  const { user, saveUser } = useUserState();
 
   // useForm関数を呼び出して、各種設定を行う
   const {
@@ -49,7 +53,7 @@ export default function EditPage() {
 
   const onSubmit = async (data: ProfileForm) => {
     console.log(data);
-    await putUser(
+    const user = await putUser(
       '',
       '',
       data.nickname,
@@ -57,6 +61,10 @@ export default function EditPage() {
       data.partnerNationality,
       data.introduction,
     );
+    saveUser(user);
+
+    //マイページに遷移する
+    router.push('/mypage');
   };
 
   return (
