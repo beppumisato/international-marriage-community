@@ -32,16 +32,22 @@ export const PUT = async (req: Request, res: NextResponse) => {
       introduction,
     } = await req.json();
 
+    const data = {
+      headerImageUrl: headerImageUrl,
+      iconImageUrl: iconImageUrl,
+      nickname: nickname,
+      myNationality: myNationality,
+      partnerNationality: partnerNationality,
+      introduction: introduction,
+    };
+    for (let k in data) {
+      if (data[k] === '') {
+        delete data[k];
+      }
+    }
     await main();
     const user = await prisma.user.update({
-      data: {
-        headerImageUrl,
-        iconImageUrl,
-        nickname,
-        myNationality,
-        partnerNationality,
-        introduction,
-      },
+      data: data,
       where: { id },
     });
     return NextResponse.json({ message: 'Success', user }, { status: 200 });

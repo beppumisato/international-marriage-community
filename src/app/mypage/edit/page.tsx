@@ -13,6 +13,30 @@ interface ProfileForm {
   introduction: string;
 }
 
+const putUser = async (
+  headerImageUrl: string,
+  iconImageUrl: string,
+  nickname: string,
+  myNationality: string,
+  partnerNationality: string,
+  introduction: string,
+) => {
+  const response = await fetch(`http://localhost:3000/api/user/4`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      headerImageUrl,
+      iconImageUrl,
+      nickname,
+      myNationality,
+      partnerNationality,
+      introduction,
+    }),
+  });
+};
+
 export default function EditPage() {
   const { user } = useUserState();
 
@@ -25,6 +49,14 @@ export default function EditPage() {
 
   const onSubmit = async (data: ProfileForm) => {
     console.log(data);
+    await putUser(
+      '',
+      '',
+      data.nickname,
+      data.myNationality,
+      data.partnerNationality,
+      data.introduction,
+    );
   };
 
   return (
