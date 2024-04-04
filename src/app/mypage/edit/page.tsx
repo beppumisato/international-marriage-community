@@ -48,12 +48,14 @@ export default function EditPage() {
             <div className='mt-6 font-bold'>あなたとお相手の国籍</div>
             <div className='flex gap-x-2'>
               <input
+                defaultValue={user?.myNationality}
                 {...register('myNationality')}
                 placeholder='あなたの国籍'
                 type='text'
                 className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'
               />
               <input
+                defaultValue={user?.partnerNationality}
                 {...register('partnerNationality')}
                 placeholder='お相手の国籍'
                 type='text'
@@ -62,6 +64,7 @@ export default function EditPage() {
             </div>
             <div className='mt-6 font-bold'>自己紹介</div>
             <textarea
+              defaultValue={user?.introduction}
               {...register('introduction')}
               className='border-2 border-rose-200 rounded-md h-32 w-full p-2 text-black'
             />
