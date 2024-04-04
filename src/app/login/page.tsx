@@ -11,7 +11,7 @@ interface LoginForm {
   password: string;
 }
 
-const fetcUserData = async () => {
+const fetchUserData = async () => {
   // TODO: id固定なのでメアド・パスワードから取得するようにする
   const response = await fetch(`http://localhost:3000/api/user/4`);
   const data = await response.json();
@@ -32,7 +32,7 @@ export default function LoginPage() {
 
   // フォームのsubmitイベントで呼ばれる関数
   const onSubmit = async (data: LoginForm) => {
-    const user = await fetcUserData();
+    const user = await fetchUserData();
     //Userをリセットする
     saveUser(user);
 
