@@ -42,9 +42,12 @@ export default function EditPage() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='text-rose-400 text-[20px]'>
             <div className='mt-4 font-bold'>ニックネーム</div>
-            <div className='border-2 border-rose-200 rounded-md p-2 text-black'>
-              {user?.nickname}
-            </div>
+            <input
+              defaultValue={user?.nickname}
+              {...register('nickname')}
+              type='text'
+              className='border-2 border-rose-200 rounded-md p-2 text-black'
+            />
             <div className='mt-6 font-bold'>あなたとお相手の国籍</div>
             <div className='flex gap-x-2'>
               <input
