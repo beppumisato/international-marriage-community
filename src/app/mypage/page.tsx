@@ -40,8 +40,19 @@ export default function MyPage() {
             <img className='ml-1' src='/icon/message.png/' width={60}></img>
           </Link>
         </div>
-        <div className='border-rose-200 border-2 h-5 w-24 rounded-md text-[18px] mt-1 text-center p-1'>
-          {user?.myNationality}&{user?.partnerNationality}
+        <div className='flex mt-1'>
+          <div className='border-rose-200 border-2 h-5 w-16 rounded-md text-[18px] text-center p-1'>
+            <div className='flex'>
+              <img src='/icon/pink.png' className='mr-2' width={30}></img>
+              {user?.myNationality}
+            </div>
+          </div>
+          <div className='border-rose-200 border-2 h-5 w-16 rounded-md text-[18px] text-center p-1 ml-1'>
+            <div className='flex'>
+              <img src='/icon/blue.png' className='mr-2' width={30}></img>
+              {user?.partnerNationality}
+            </div>
+          </div>
         </div>
         <div className='text-[18px] border-rose-200 border-2 rounded-md h-auto w-auto mt-1 p-2'>
           {user?.introduction}
