@@ -8,7 +8,7 @@ import ImageForm from '@/app/components/mypage/edit/ImageForm';
 export default function EditPage() {
   return (
     <div className='font-kosugi'>
-      <Header />
+      <Header title='プロフィール編集' url='/mypage/' />
       <div className='p-4'>
         <ImageForm />
         <ProfileForm />
