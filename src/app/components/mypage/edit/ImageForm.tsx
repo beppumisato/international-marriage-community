@@ -1,49 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function ImageForm() {
-  const [urlList, setUrlList] = useState<string[]>([]);
-  const [loadingState, setLoadingState] = useState('hidden');
-  //画像表示のメインの実装
-  const listAllImage = async () => {
-    const tempUrlList: string[] = [];
-    setLoadingState('flex justify-center');
-    const { data, error } = await supabase.storage
-      .from('private-image-bucket')
-      .list('img', {
-        limit: 100,
-        offset: 0,
-        sortBy: { column: 'created_at', order: 'desc' },
-      });
-    if (error) {
-      console.log(error);
-      return;
-    }
-    const fileList = data;
-
-    for (let index = 0; index < fileList.length; index++) {
-      if (fileList[index].name != '.emptyFolderPlaceholder') {
-        const filePath = `img/${fileList[index].name}`;
-        const { data, error } = await supabase.storage
-          .from('private-image-bucket')
-          .createSignedUrl(filePath, 300);
-        if (error) {
-          console.log(error);
-          return;
-        }
-        tempUrlList.push(data.signedUrl);
-      }
-    }
-    setUrlList(tempUrlList);
-    setLoadingState('hidden');
-  };
-
-  useEffect(() => {
-    (async () => {
-      await listAllImage(); //アップロード成功後に画像表示のリロード
-    })();
-  }, []);
-
-  //handleChangeFile(e)`の実行
+  // handleChangeFile(e)`の実行
   const [file, setFile] = useState<File>();
   const handleChangeFile = (e: any) => {
     if (e.target.files.length !== 0) {
@@ -51,32 +9,8 @@ export default function ImageForm() {
     }
   };
 
-  //onSubmit`の実行
-  const onSubmit = async (event: any) => {
-    event.preventDefault();
-
-    if (file!!.type.match('image.*')) {
-      const fileExtension = file!!.name.split('.').pop();
-      const { error } =
-        //SupabaseのStorageへのアップロード
-        await supabase.storage
-          .from('private-image-bucket')
-          .upload(`img/${uuidv4()}.${fileExtension}`, file!!);
-
-      if (error) {
-        alert('エラーが発生しました：' + error.message);
-        return;
-      }
-      setFile(undefined);
-
-      await listAllImage();
-    } else {
-      alert('画像ファイル以外はアップロード出来ません。');
-    }
-  };
-
   return (
-    <form onSubmit={onSubmit}>
+    <>
       <div className='relative bg-slate-300 w-full h-24 p-2'>
         <label className='file__label'>
           <input
@@ -111,6 +45,6 @@ export default function ImageForm() {
           ></img>
         </label>
       </div>
-    </form>
+    </>
   );
 }
