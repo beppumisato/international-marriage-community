@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import MainFrom from '../components/mypage/MainForm';
+import ProfileDisplay from '../components/mypage/ProfileDisplay';
 
 export default function MyPage() {
   return (
@@ -19,7 +19,7 @@ export default function MyPage() {
           <img className='ml-1' src='/icon/pen.png' width={20}></img>
         </div>
       </div>
-      <MainFrom />
+      <ProfileDisplay />
       <div className='text-center text-[20px] text-rose-400 border-b border-rose-200'>
         <ul className='flex justify-center gap-x-32'>
           <a

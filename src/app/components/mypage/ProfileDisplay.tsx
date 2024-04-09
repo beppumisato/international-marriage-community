@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useUserState } from '@/app/hooks/user';
 
-export default function MainFrome() {
+export default function ProfileDisplay() {
   const { user } = useUserState();
 
   return (
