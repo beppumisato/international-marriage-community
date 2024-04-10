@@ -2,10 +2,18 @@ import { useState } from 'react';
 
 export default function ImageForm() {
   // handleChangeFile(e)`の実行
-  const [file, setFile] = useState<File>();
-  const handleChangeFile = (e: any) => {
+  const [headerImage, setHeaderImage] = useState<File>();
+  const handleChangeHeaderImage = (e: any) => {
     if (e.target.files.length !== 0) {
-      setFile(e.target.files[0]);
+      setHeaderImage(e.target.files[0]);
+    }
+  };
+
+  // handleChangeFile(e)`の実行
+  const [iconImage, setIconImage] = useState<File>();
+  const handleChangeIconImage = (e: any) => {
+    if (e.target.files.length !== 0) {
+      setIconImage(e.target.files[0]);
     }
   };
 
@@ -18,7 +26,7 @@ export default function ImageForm() {
             id='formFile'
             accept='image/*'
             onChange={(e) => {
-              handleChangeFile(e);
+              handleChangeHeaderImage(e);
             }}
           />
           <img
@@ -35,7 +43,7 @@ export default function ImageForm() {
             id='formFile'
             accept='image/*'
             onChange={(e) => {
-              handleChangeFile(e);
+              handleChangeIconImage(e);
             }}
           />
           <img
