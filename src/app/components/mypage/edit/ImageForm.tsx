@@ -8,8 +8,6 @@ export default function ImageForm() {
       setHeaderImage(e.target.files[0]);
     }
   };
-
-  // handleChangeFile(e)`の実行
   const [iconImage, setIconImage] = useState<File>();
   const handleChangeIconImage = (e: any) => {
     if (e.target.files.length !== 0) {
