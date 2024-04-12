@@ -50,21 +50,29 @@ export default function EditPage() {
 
   // useForm関数を呼び出して、各種設定を行う
   const {
-    register, // inputタグとバリデーションルールを紐付けるための関数
-    handleSubmit, // フォームのsubmitイベント時に呼ばれる関数
+    register,
+    handleSubmit,
     formState: { errors },
   } = useForm<ProfileFormType>({ mode: 'onChange' });
 
   const [headerImage, setHeaderImage] = useState<File>();
+  const [iconImage, setIconImage] = useState<File>();
+
   const onSubmit = async (data: ProfileFormType) => {
     let headerImageUrl = '';
     if (headerImage) {
       const filePath = `header-image/${headerImage.name}`;
       headerImageUrl = (await uploadImage(headerImage, filePath)) ?? '';
     }
+    let iconImageUrl = '';
+    if (iconImage) {
+      const filePath = `icon-image/${iconImage.name}`;
+      iconImageUrl = (await uploadImage(iconImage, filePath)) ?? '';
+    }
+
     const user = await putUser(
       headerImageUrl,
-      '',
+      iconImageUrl,
       data.nickname,
       data.myNationality,
       data.partnerNationality,
@@ -84,6 +92,8 @@ export default function EditPage() {
           <ImageForm
             headerImage={headerImage}
             setHeaderImage={setHeaderImage}
+            iconImage={iconImage}
+            setIconImage={setIconImage}
           />
           <ProfileForm register={register} />
         </form>

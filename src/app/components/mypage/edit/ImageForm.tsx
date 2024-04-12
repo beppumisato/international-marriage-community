@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { uploadImage } from '../../../../../utils/supabase/supabase';
 import { useUserState } from '@/app/hooks/user';
 
 interface Props {
   headerImage: File | undefined;
   setHeaderImage: React.Dispatch<React.SetStateAction<File | undefined>>;
+  iconImage: File | undefined;
+  setIconImage: React.Dispatch<React.SetStateAction<File | undefined>>;
 }
 
 export default function ImageForm(props: Props) {
@@ -17,14 +17,10 @@ export default function ImageForm(props: Props) {
       props.setHeaderImage(file);
     }
   };
-
-  const [iconImage, setIconImage] = useState<File>();
   const handleChangeIconImage = async (e: any) => {
     if (e.target.files.length !== 0) {
       const file = e.target.files[0];
-      setIconImage(file);
-      const filePath = `icon-image/${file.name}`;
-      await uploadImage(file, filePath);
+      props.setIconImage(file);
     }
   };
 
@@ -56,7 +52,7 @@ export default function ImageForm(props: Props) {
       </div>
       <div
         style={{
-          backgroundImage: `url(${iconImage ? window.URL.createObjectURL(iconImage) : ''})`,
+          backgroundImage: `url(${props.iconImage ? window.URL.createObjectURL(props.iconImage) : user?.iconImageUrl})`,
           backgroundSize: 'contain',
         }}
         className='absolute left-60 top-20 border-rose-200 border-2 rounded-full w-14 h-14'
