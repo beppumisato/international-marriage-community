@@ -11,7 +11,7 @@ export default function ProfileDisplay() {
     <div className='font-kosugi'>
       <div className='p-4'>
         <div
-          className='bg-slate-300 w-full h-24 pt-16 pl-3'
+          className='bg-slate-300 w-full h-32 pt-16 pl-3'
           style={{
             backgroundImage: `url(${user?.headerImageUrl})`,
           }}

@@ -32,7 +32,7 @@ export default function ImageForm(props: Props) {
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
         }}
-        className='relative bg-slate-300 w-full h-24 p-2'
+        className='relative bg-slate-300 w-full h-32 p-2'
       >
         <label className='file__label'>
           <input
@@ -55,7 +55,7 @@ export default function ImageForm(props: Props) {
           backgroundImage: `url(${props.iconImage ? window.URL.createObjectURL(props.iconImage) : user?.iconImageUrl})`,
           backgroundSize: 'contain',
         }}
-        className='absolute left-60 top-20 border-rose-200 border-2 rounded-full w-14 h-14'
+        className='absolute left-60 top-24 border-rose-200 border-2 rounded-full w-14 h-14'
       >
         <label className='file__label'>
           <input
