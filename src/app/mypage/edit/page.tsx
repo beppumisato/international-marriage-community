@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useUserState } from '@/app/hooks/user';
 import { useRouter } from 'next/navigation';
 
@@ -8,6 +8,7 @@ import Header from '@/app/components/common/Header';
 import ProfileForm from '@/app/components/mypage/edit/ProfileForm';
 import ImageForm from '@/app/components/mypage/edit/ImageForm';
 import { useForm } from 'react-hook-form';
+import { uploadImage } from '../../../../utils/supabase/supabase';
 
 // プロフィールフォームのデータ型を定義
 export interface ProfileFormType {
@@ -51,13 +52,18 @@ export default function EditPage() {
   const {
     register, // inputタグとバリデーションルールを紐付けるための関数
     handleSubmit, // フォームのsubmitイベント時に呼ばれる関数
-    formState: { errors }, // バリデーションエラーの情報が格納
-  } = useForm<ProfileFormType>({ mode: 'onChange' }); // mode: "onChange"で入力時バリデーション
+    formState: { errors },
+  } = useForm<ProfileFormType>({ mode: 'onChange' });
 
+  const [headerImage, setHeaderImage] = useState<File>();
   const onSubmit = async (data: ProfileFormType) => {
-    console.log(data);
+    let headerImageUrl = '';
+    if (headerImage) {
+      const filePath = `header-image/${headerImage.name}`;
+      headerImageUrl = (await uploadImage(headerImage, filePath)) ?? '';
+    }
     const user = await putUser(
-      '',
+      headerImageUrl,
       '',
       data.nickname,
       data.myNationality,
@@ -75,7 +81,10 @@ export default function EditPage() {
       <Header title='プロフィール編集' url='/mypage/' />
       <div className='p-4'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <ImageForm />
+          <ImageForm
+            headerImage={headerImage}
+            setHeaderImage={setHeaderImage}
+          />
           <ProfileForm register={register} />
         </form>
       </div>

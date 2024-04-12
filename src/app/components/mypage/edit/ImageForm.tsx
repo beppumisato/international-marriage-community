@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { uploadImage } from '../../../../../utils/supabase/supabase';
 
-export default function ImageForm() {
-  // handleChangeFile(e)`の実行
-  const [headerImage, setHeaderImage] = useState<File>();
+interface Props {
+  headerImage: File | undefined;
+  setHeaderImage: React.Dispatch<React.SetStateAction<File | undefined>>;
+}
+
+export default function ImageForm(props: Props) {
+  // ファイルから選択した画像の表示
   const handleChangeHeaderImage = async (e: any) => {
     if (e.target.files.length !== 0) {
       const file = e.target.files[0];
-      setHeaderImage(file);
-      const filePath = `header-image/${file.name}`;
-      const imgUrl = await uploadImage(file, filePath);
+      props.setHeaderImage(file);
     }
   };
 
@@ -27,7 +29,7 @@ export default function ImageForm() {
     <>
       <div
         style={{
-          backgroundImage: `url(${headerImage ? window.URL.createObjectURL(headerImage) : ''})`,
+          backgroundImage: `url(${props.headerImage ? window.URL.createObjectURL(props.headerImage) : ''})`,
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
         }}
