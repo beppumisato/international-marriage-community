@@ -8,7 +8,7 @@ const supabase = createClient(
 export const uploadImage = async (file: File, filePath: string) => {
   await supabase.storage.from('public-image-bucket').upload(filePath, file);
 
-  //画像の表示
+  //storageに保存されている画像の表示
   const { data } = supabase.storage
     .from('public-image-bucket')
     .getPublicUrl(filePath);
