@@ -10,7 +10,12 @@ export default function ProfileDisplay() {
   return (
     <div className='font-kosugi'>
       <div className='p-4'>
-        <div className='bg-slate-300 w-full h-24 pt-16 pl-3'>
+        <div
+          className='bg-slate-300 w-full h-24 pt-16 pl-3'
+          style={{
+            backgroundImage: `url(${user?.headerImageUrl})`,
+          }}
+        >
           <div className='border-rose-100 border-2 rounded-full w-14 h-14'></div>
         </div>
         <div className='flex justify-end m-2 text-center'>

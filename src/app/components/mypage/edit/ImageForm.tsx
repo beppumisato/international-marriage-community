@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { uploadImage } from '../../../../../utils/supabase/supabase';
+import { useUserState } from '@/app/hooks/user';
 
 interface Props {
   headerImage: File | undefined;
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export default function ImageForm(props: Props) {
+  const { user } = useUserState();
+
   // ファイルから選択した画像の表示
   const handleChangeHeaderImage = async (e: any) => {
     if (e.target.files.length !== 0) {
@@ -29,7 +32,7 @@ export default function ImageForm(props: Props) {
     <>
       <div
         style={{
-          backgroundImage: `url(${props.headerImage ? window.URL.createObjectURL(props.headerImage) : ''})`,
+          backgroundImage: `url(${props.headerImage ? window.URL.createObjectURL(props.headerImage) : user?.headerImageUrl})`,
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
         }}
