@@ -39,7 +39,13 @@ export default function ImageForm() {
           ></img>
         </label>
       </div>
-      <div className='absolute left-60 top-20 border-rose-200 border-2 rounded-full w-14 h-14'>
+      <div
+        style={{
+          backgroundImage: `url(${iconImage ? window.URL.createObjectURL(iconImage) : ''})`,
+          backgroundSize: 'contain',
+        }}
+        className='absolute left-60 top-20 border-rose-200 border-2 rounded-full w-14 h-14'
+      >
         <label className='file__label'>
           <input
             type='file'
