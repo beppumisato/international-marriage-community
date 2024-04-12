@@ -17,7 +17,12 @@ export default function ImageForm() {
 
   return (
     <>
-      <div className='relative bg-slate-300 w-full h-24 p-2'>
+      <div
+        style={{
+          backgroundImage: `url(${headerImage ? window.URL.createObjectURL(headerImage) : ''})`,
+        }}
+        className='relative bg-slate-300 w-full h-24 p-2'
+      >
         <label className='file__label'>
           <input
             type='file'
