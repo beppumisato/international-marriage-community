@@ -16,7 +16,12 @@ export default function ProfileDisplay() {
             backgroundImage: `url(${user?.headerImageUrl})`,
           }}
         >
-          <div className='border-rose-100 border-2 rounded-full w-14 h-14'></div>
+          <div
+            className='border-rose-100 border-2 rounded-full w-14 h-14'
+            style={{
+              backgroundImage: `url(${user?.iconImageUrl})`,
+            }}
+          ></div>
         </div>
         <div className='flex justify-end m-2 text-center'>
           <Link
