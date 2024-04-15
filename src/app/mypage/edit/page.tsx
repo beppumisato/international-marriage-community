@@ -74,11 +74,24 @@ export default function EditPage() {
         <div className='ml-56'>プロフィール編集</div>
       </div>
       <div className='p-4'>
-        <div className='flex'>
-          <div className='bg-slate-300 w-full h-24 flex justify-center'>
-            <div className='border-rose-200 border-2 rounded-full w-14 h-14 mt-5'></div>
-          </div>
+        <div className='relative bg-slate-300 w-full h-24 p-2'>
+          <button type='submit'>
+            <img
+              className='absolute right-0 bottom-0'
+              src='/icon/camera.png'
+              width={80}
+            ></img>
+          </button>
+          <div className='absolute left-60 top-4 border-rose-200 border-2 rounded-full w-14 h-14'></div>
+          <button type='submit'>
+            <img
+              className='absolute right-60 top-12'
+              src='/icon/camera.png'
+              width={80}
+            ></img>
+          </button>
         </div>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='text-rose-400 text-[20px]'>
             <div className='mt-4 font-bold'>ニックネーム</div>
@@ -88,19 +101,19 @@ export default function EditPage() {
               type='text'
               className='border-2 border-rose-200 rounded-md p-2 text-black'
             />
-            <div className='mt-6 font-bold'>あなたとお相手の国籍</div>
+            <div className='mt-6 font-bold'>国籍</div>
             <div className='flex gap-x-2'>
               <input
                 defaultValue={user?.myNationality}
                 {...register('myNationality')}
-                placeholder='あなたの国籍'
+                placeholder='妻の国籍'
                 type='text'
                 className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'
               />
               <input
                 defaultValue={user?.partnerNationality}
                 {...register('partnerNationality')}
-                placeholder='お相手の国籍'
+                placeholder='夫の国籍'
                 type='text'
                 className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'
               />
