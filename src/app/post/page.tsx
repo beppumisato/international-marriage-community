@@ -1,13 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import Header from '../components/common/Header';
 
 export default function PostPage() {
   return (
     <div className='font-kosugi'>
-      <div className='flex text-rose-400 bg-rose-200 h-6 text-[24px] mb-4 p-2'>
-        <Link href={`/mypage/`}>＜</Link>
-        <div className='ml-60'>新規投稿</div>
-      </div>
+      <Header title='新規投稿' url='/mypage/' />
+
       <div className='flex justify-center'>
         <input
           placeholder='タイトルを入力する'

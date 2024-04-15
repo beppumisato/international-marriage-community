@@ -1,13 +1,16 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { useUserState } from '@/app/hooks/user';
-import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
+import Header from '@/app/components/common/Header';
+import ProfileForm from '@/app/components/mypage/edit/ProfileForm';
+import ImageForm from '@/app/components/mypage/edit/ImageForm';
+import { useForm } from 'react-hook-form';
+
 // プロフィールフォームのデータ型を定義
-interface ProfileForm {
+export interface ProfileFormType {
   nickname: string;
   myNationality: string;
   partnerNationality: string;
@@ -42,16 +45,16 @@ const putUser = async (
 
 export default function EditPage() {
   const router = useRouter();
-  const { user, saveUser } = useUserState();
+  const { saveUser } = useUserState();
 
   // useForm関数を呼び出して、各種設定を行う
   const {
     register, // inputタグとバリデーションルールを紐付けるための関数
     handleSubmit, // フォームのsubmitイベント時に呼ばれる関数
     formState: { errors }, // バリデーションエラーの情報が格納
-  } = useForm<ProfileForm>({ mode: 'onChange' }); // mode: "onChange"で入力時バリデーション
+  } = useForm<ProfileFormType>({ mode: 'onChange' }); // mode: "onChange"で入力時バリデーション
 
-  const onSubmit = async (data: ProfileForm) => {
+  const onSubmit = async (data: ProfileFormType) => {
     console.log(data);
     const user = await putUser(
       '',
@@ -69,70 +72,11 @@ export default function EditPage() {
 
   return (
     <div className='font-kosugi'>
-      <div className='flex text-rose-400 bg-rose-200 h-8 text-[24px] mb-4 p-2'>
-        <Link href={`/mypage/`}>＜</Link>
-        <div className='ml-56'>プロフィール編集</div>
-      </div>
+      <Header title='プロフィール編集' url='/mypage/' />
       <div className='p-4'>
-        <div className='relative bg-slate-300 w-full h-24 p-2'>
-          <button type='submit'>
-            <img
-              className='absolute right-0 bottom-0'
-              src='/icon/camera.png'
-              width={80}
-            ></img>
-          </button>
-          <div className='absolute left-60 top-4 border-rose-200 border-2 rounded-full w-14 h-14'></div>
-          <button type='submit'>
-            <img
-              className='absolute right-60 top-12'
-              src='/icon/camera.png'
-              width={80}
-            ></img>
-          </button>
-        </div>
-
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='text-rose-400 text-[20px]'>
-            <div className='mt-4 font-bold'>ニックネーム</div>
-            <input
-              defaultValue={user?.nickname}
-              {...register('nickname')}
-              type='text'
-              className='border-2 border-rose-200 rounded-md p-2 text-black'
-            />
-            <div className='mt-6 font-bold'>国籍</div>
-            <div className='flex gap-x-2'>
-              <input
-                defaultValue={user?.myNationality}
-                {...register('myNationality')}
-                placeholder='妻の国籍'
-                type='text'
-                className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'
-              />
-              <input
-                defaultValue={user?.partnerNationality}
-                {...register('partnerNationality')}
-                placeholder='夫の国籍'
-                type='text'
-                className='border-2 border-rose-200 rounded-md w-1/2 p-2 text-black'
-              />
-            </div>
-            <div className='mt-6 font-bold'>自己紹介</div>
-            <textarea
-              defaultValue={user?.introduction}
-              {...register('introduction')}
-              className='border-2 border-rose-200 rounded-md h-32 w-full p-2 text-black'
-            />
-            <div className='flex justify-center m-5'>
-              <button
-                type='submit'
-                className='bg-rose-400 text-white rounded-md hover:bg-rose-500 w-16 h-6'
-              >
-                保存
-              </button>
-            </div>
-          </div>
+          <ImageForm />
+          <ProfileForm register={register} />
         </form>
       </div>
     </div>
