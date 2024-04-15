@@ -1,13 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
+import Header from '../components/common/Header';
 
 export default function MessagePage() {
   return (
     <div className='font-kosugi'>
-      <div className='flex text-rose-400 bg-rose-200 h-6 text-[24px] mb-4 p-2'>
-        <Link href={`/mypage/`}>＜</Link>
-        <div className='ml-56'>メッセージ</div>
-      </div>
+      <Header title='メッセージ' url='/mypage/' />
 
       <div className='flex-col ml-20 mr-20'>
         {/* 左側メッセージ */}
@@ -28,7 +26,7 @@ export default function MessagePage() {
           </div>
           <div className='border-2 border-rose-100 rounded-full w-8 h-8'>
             <div className='text-[8px] text-center text-rose-400 mt-8'>
-              相手の名前
+              自分の名前
             </div>
           </div>
         </div>
