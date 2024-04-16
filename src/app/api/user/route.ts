@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import { jwtDecode } from 'jwt-decode';
+import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
@@ -12,30 +14,29 @@ export async function main() {
   }
 }
 
-//プロフィール作成用API=>新規会員登録画面で呼ぶ
-export const POST = async (req: Request, res: NextResponse) => {
+export const GET = async (req: Request, res: NextResponse) => {
   try {
-    const {
-      headerImageUrl,
-      iconImageUrl,
-      nickname,
-      myNationality,
-      partnerNationality,
-      introduction,
-    } = await req.json();
+    const headersList = headers();
+    const authorization = headersList.get('authorization');
+    const decoded = jwtDecode(authorization ?? '');
+    const sub = decoded.sub;
 
-    await main();
-    const user = await prisma.user.create({
-      data: {
-        headerImageUrl,
-        iconImageUrl,
-        nickname,
-        myNationality,
-        partnerNationality,
-        introduction,
-      },
-    });
-    return NextResponse.json({ message: 'Success', user }, { status: 201 });
+    if (!sub) {
+      return NextResponse.json(
+        { message: 'Invalid authorization' },
+        { status: 401 },
+      );
+    }
+
+    // TODO: userない場合は作成する
+
+    // await main();
+    // const user = await prisma.user.create({
+    //   data: {
+    //     nickname: nickname,
+    //   },
+    // });
+    return NextResponse.json({ message: 'Success', user: {} }, { status: 200 });
   } catch (err) {
     return NextResponse.json({ message: 'Error', err }, { status: 500 });
   } finally {
