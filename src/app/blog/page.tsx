@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/common/Header';
 
-export default function PostPage() {
+export default function BlogPage() {
   return (
     <div className='font-kosugi'>
       <Header title='新規投稿' url='/mypage/' />
