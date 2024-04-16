@@ -13,7 +13,7 @@ export default function MyPage() {
         </Link>
         <div className='text-rose-400'>　/ プロフィール</div>
         <div className='ml-auto flex'>
-          <Link href={`/post/`} className='text-rose-400 underline'>
+          <Link href={`/blog/`} className='text-rose-400 underline'>
             投稿作成
           </Link>
           <img className='ml-1' src='/icon/pen.png' width={20}></img>
