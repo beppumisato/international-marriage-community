@@ -28,15 +28,29 @@ export const GET = async (req: Request, res: NextResponse) => {
       );
     }
 
-    // TODO: userない場合は作成する
+    await main();
 
-    // await main();
-    // const user = await prisma.user.create({
-    //   data: {
-    //     nickname: nickname,
-    //   },
-    // });
-    return NextResponse.json({ message: 'Success', user: {} }, { status: 200 });
+    const existUser = await prisma.user.findFirst({
+      where: { cognitoSub: sub },
+    });
+
+    if (existUser) {
+      return NextResponse.json(
+        { message: 'Success', user: existUser },
+        { status: 200 },
+      );
+    } else {
+      const user = await prisma.user.create({
+        data: {
+          nickname: 'デフォルト',
+          cognitoSub: sub,
+        },
+      });
+      return NextResponse.json(
+        { message: 'Success', user: user },
+        { status: 201 },
+      );
+    }
   } catch (err) {
     return NextResponse.json({ message: 'Error', err }, { status: 500 });
   } finally {
