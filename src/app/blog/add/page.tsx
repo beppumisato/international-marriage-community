@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Header from '../components/common/Header';
-import { title } from 'process';
+import Header from '../../components/common/Header';
 import { useRouter } from 'next/navigation';
 
 const postBlog = async (
@@ -31,7 +30,7 @@ export default function BlogPage() {
 
     await postBlog(titleRef.current?.value, descriptionRef.current?.value);
 
-    router.push('/mypage');
+    router.push('/timeline/allblog');
   };
 
   return (
