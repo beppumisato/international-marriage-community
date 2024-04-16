@@ -41,6 +41,21 @@ export class Cognito {
     });
   };
 
+  public resendVerifyCode = async (email: string) => {
+    const cognitoUser = new CognitoUser({
+      Username: email,
+      Pool: this.userPool,
+    });
+
+    return await new Promise((resolve, reject) => {
+      cognitoUser.resendConfirmationCode((err, result) => {
+        if (err) {
+          reject(err);
+        }
+      });
+    });
+  };
+
   public signIn = async (email: string, password: string) => {
     const cognitoUser = new CognitoUser({
       Username: email,
