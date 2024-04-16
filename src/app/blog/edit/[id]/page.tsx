@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { Anybody } from 'next/font/google';
 
 const editBlog = async (
   title: string | undefined,
@@ -26,6 +27,17 @@ const getBlogById = async (id: number) => {
   return data.post;
 };
 
+const deleteBlog = async (id: number) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return res.json();
+};
+
 export default function EditPage({ params }: { params: { id: number } }) {
   const router = useRouter();
   const titleRef = useRef<HTMLInputElement | null>(null);
@@ -43,6 +55,10 @@ export default function EditPage({ params }: { params: { id: number } }) {
     router.push('/timeline/allblog');
   };
 
+  const handleDelete = async () => {
+    await deleteBlog(params.id);
+  };
+
   useEffect(() => {
     getBlogById(params.id)
       .then((data) => {
@@ -58,7 +74,7 @@ export default function EditPage({ params }: { params: { id: number } }) {
   return (
     <div className='font-kosugi'>
       <div className='flex text-rose-400 bg-rose-200 h-6 text-[24px] mb-4 p-2'>
-        <Link href={`/mypage/`}>＜</Link>
+        <Link href={`/timeline/allblog/`}>＜</Link>
         <div className='ml-60'>投稿編集</div>
       </div>
 
@@ -79,7 +95,10 @@ export default function EditPage({ params }: { params: { id: number } }) {
           />
         </div>
         <div className='flex justify-center'>
-          <button className='text-[24px] bg-sky-400 text-white rounded-md hover:bg-sky-500 w-12 h-6 m-2'>
+          <button
+            onClick={handleDelete}
+            className='text-[24px] bg-sky-400 text-white rounded-md hover:bg-sky-500 w-12 h-6 m-2'
+          >
             削除
           </button>
 
