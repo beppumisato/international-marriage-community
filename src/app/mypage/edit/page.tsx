@@ -9,6 +9,7 @@ import ProfileForm from '@/app/components/mypage/edit/ProfileForm';
 import ImageForm from '@/app/components/mypage/edit/ImageForm';
 import { useForm } from 'react-hook-form';
 import { uploadImage } from '../../../../utils/supabase/supabase';
+import { putUser } from '@/app/repositories/user';
 
 // プロフィールフォームのデータ型を定義
 export interface ProfileFormType {
@@ -17,32 +18,6 @@ export interface ProfileFormType {
   partnerNationality: string;
   introduction: string;
 }
-
-const putUser = async (
-  headerImageUrl: string,
-  iconImageUrl: string,
-  nickname: string,
-  myNationality: string,
-  partnerNationality: string,
-  introduction: string,
-) => {
-  const response = await fetch(`http://localhost:3000/api/user/4`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      headerImageUrl,
-      iconImageUrl,
-      nickname,
-      myNationality,
-      partnerNationality,
-      introduction,
-    }),
-  });
-  const data = await response.json();
-  return data.user;
-};
 
 export default function EditPage() {
   const router = useRouter();
