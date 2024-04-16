@@ -14,10 +14,10 @@ import { Cognito } from '../../../utils/cognito';
 import { fetchUserData } from '../repositories/user';
 
 export const CurrentUserContext = createContext<{
-  currentUser: User | null;
+  user: User | null;
   setCurrentUser: Dispatch<SetStateAction<User | null>>;
 }>({
-  currentUser: null,
+  user: null,
   setCurrentUser: () => {},
 });
 
@@ -70,7 +70,7 @@ export default function CurrentUserProvider(props: Props) {
   return (
     <CurrentUserContext.Provider
       value={{
-        currentUser: user,
+        user: user,
         setCurrentUser: setUser,
       }}
     >
