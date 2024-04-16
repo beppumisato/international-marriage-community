@@ -18,13 +18,14 @@ model User {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  deletedAt　DateTime?
+  deletedAt DateTime?
   headerImageUrl String @default("")
   iconImageUrl String @default("")
   nickname String
   myNationality String @default("")
   partnerNationality String @default("")
   introduction String @default("")
+  cognitoSub String @default("")
 }
 
 //投稿機能のデータ構造
@@ -32,7 +33,7 @@ model Post {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  deletedAt　DateTime?
+  deletedAt DateTime?
   title String
   description String
 }
