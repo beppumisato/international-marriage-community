@@ -2,13 +2,14 @@
 
 import { useForm } from 'react-hook-form';
 import { Cognito } from '../../../../utils/cognito';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface CodeForm {
   code: string;
 }
 
 export default function RegistrationConfirmationPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   const {
@@ -23,6 +24,9 @@ export default function RegistrationConfirmationPage() {
     const email = searchParams.get('email');
     if (email) {
       await cognito.verifyAccount(email, data.code);
+
+      // 認証後、改めてログインが必要なのでログイン画面へ
+      router.push('/login');
     }
   };
 
