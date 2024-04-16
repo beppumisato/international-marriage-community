@@ -26,7 +26,7 @@ export default function AllBlogPage() {
     <div className='font-kosugi'>
       {posts.map((post) => (
         <div key={post.id} className='p-4'>
-          <div className='mb-2 bg-slate-300 w-full h-20 pt-2 pl-3'>
+          <div>
             <div className='flex'>
               <div
                 className='border-rose-100 border-2 rounded-full w-12 h-12'
@@ -35,7 +35,7 @@ export default function AllBlogPage() {
                 }}
               ></div>
               <div className='ml-4'>
-                <div className='text-[18px] text-slate-500 pb-2'>
+                <div className='text-[18px] text-slate-500 pb-1'>
                   {new Date(post.createdAt).toDateString()}
                 </div>
                 <h1 className='text-[24px] underline'>{post.title}</h1>
