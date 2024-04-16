@@ -2,6 +2,7 @@
 
 import { useUserState } from '@/app/hooks/user';
 import { Post } from '@prisma/client';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 async function fetchAllBlogs() {
@@ -25,24 +26,30 @@ export default function AllBlogPage() {
   return (
     <div className='font-kosugi'>
       {posts.map((post) => (
-        <div key={post.id} className='p-4'>
+        <div key={post.id} className='p-2 pt-0 m-2 mt-0'>
           <div>
             <div className='flex'>
               <div
-                className='border-rose-100 border-2 rounded-full w-12 h-12'
+                className='border-rose-100 border-2 rounded-full w-10 h-10'
                 style={{
                   backgroundImage: `url(${user?.iconImageUrl})`,
                 }}
               ></div>
-              <div className='ml-4'>
-                <div className='text-[18px] text-slate-500 pb-1'>
+              <div className='absolute left-24'>
+                <div className='text-[16px] text-slate-500'>
                   {new Date(post.createdAt).toDateString()}
                 </div>
-                <h1 className='text-[24px] underline'>{post.title}</h1>
-                <h2 className='text-[20px]'>{post.description}</h2>
+                <h1 className='mt-2 text-[20px]'>{post.title}</h1>
+                <h2 className='mt-1 text-[18px]'>{post.description}</h2>
               </div>
             </div>
-            <div className='mt-1 ml-3 text-[18px]'>{user?.nickname}</div>
+            <div className='absolute left-6 text-[18px]'>{user?.nickname}</div>
+            <Link
+              href={`/edit/`}
+              className='flex justify-end text-rose-300 text-[24px]'
+            >
+              ...
+            </Link>
           </div>
           <div className='border-b border-rose-200'></div>
         </div>
