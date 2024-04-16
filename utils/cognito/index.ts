@@ -52,6 +52,7 @@ export class Cognito {
         if (err) {
           reject(err);
         }
+        resolve('ok');
       });
     });
   };
@@ -120,6 +121,7 @@ export class Cognito {
         if (err) {
           reject(err);
         }
+        resolve('ok');
       });
     });
   };
