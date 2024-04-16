@@ -1,10 +1,10 @@
 'use client';
 
-import { useUserState } from '@/app/hooks/user';
-import React from 'react';
+import { useContext } from 'react';
+import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 
 export default function AllPage() {
-  const { user } = useUserState();
+  const { user } = useContext(CurrentUserContext);
 
   return (
     <div className='font-kosugi'>

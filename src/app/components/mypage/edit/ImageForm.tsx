@@ -1,4 +1,5 @@
-import { useUserState } from '@/app/hooks/user';
+import { useContext } from 'react';
+import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 
 interface Props {
   headerImage: File | undefined;
@@ -8,7 +9,7 @@ interface Props {
 }
 
 export default function ImageForm(props: Props) {
-  const { user } = useUserState();
+  const { user } = useContext(CurrentUserContext);
 
   // ファイルから選択した画像の表示
   const handleChangeHeaderImage = async (e: any) => {

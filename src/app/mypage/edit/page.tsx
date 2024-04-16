@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useUserState } from '@/app/hooks/user';
+import { useContext, useState } from 'react';
+import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 import { useRouter } from 'next/navigation';
 
 import Header from '@/app/components/common/Header';
@@ -46,7 +46,7 @@ const putUser = async (
 
 export default function EditPage() {
   const router = useRouter();
-  const { saveUser } = useUserState();
+  const { setUser } = useContext(CurrentUserContext);
 
   // useForm関数を呼び出して、各種設定を行う
   const {
@@ -78,7 +78,7 @@ export default function EditPage() {
       data.partnerNationality,
       data.introduction,
     );
-    saveUser(user);
+    setUser(user);
 
     //マイページに遷移する
     router.push('/mypage');

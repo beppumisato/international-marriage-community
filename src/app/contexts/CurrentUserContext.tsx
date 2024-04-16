@@ -15,10 +15,10 @@ import { fetchUserData } from '../repositories/user';
 
 export const CurrentUserContext = createContext<{
   user: User | null;
-  setCurrentUser: Dispatch<SetStateAction<User | null>>;
+  setUser: Dispatch<SetStateAction<User | null>>;
 }>({
   user: null,
-  setCurrentUser: () => {},
+  setUser: () => {},
 });
 
 type Props = Required<{
@@ -71,7 +71,7 @@ export default function CurrentUserProvider(props: Props) {
     <CurrentUserContext.Provider
       value={{
         user: user,
-        setCurrentUser: setUser,
+        setUser: setUser,
       }}
     >
       {props.children}
