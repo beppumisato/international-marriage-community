@@ -4,6 +4,13 @@ import React from 'react';
 import Link from 'next/link';
 import ProfileDisplay from '../components/mypage/ProfileDisplay';
 
+const returnTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
+
 export default function MyPage() {
   return (
     <div className='font-kosugi'>
@@ -13,7 +20,7 @@ export default function MyPage() {
         </Link>
         <div className='text-rose-400'>　/ プロフィール</div>
         <div className='ml-auto flex'>
-          <Link href={`/post/`} className='text-rose-400 underline'>
+          <Link href={`/blog/`} className='text-rose-400 underline'>
             投稿作成
           </Link>
           <img className='ml-1' src='/icon/pen.png' width={20}></img>
@@ -46,6 +53,7 @@ export default function MyPage() {
         <img
           className=' bg-rose-100 rounded-full bg-opacity-50 w-6 h-6 p-1'
           src='/icon/airplan_2.png'
+          onClick={returnTop}
         ></img>
       </div>
     </div>
