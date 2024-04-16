@@ -31,7 +31,7 @@ export default function LoginPage() {
       if (err!.toString().includes('UserNotConfirmedException')) {
         // 初回登録後に認証をしていない場合
         // 認証が必要なので、認証コードを送信して入力画面に遷移する
-        cognito.resendVerifyCode(data.email);
+        await cognito.resendVerifyCode(data.email);
         router.push(`registration/confirmation?email=${data.email}`);
       }
     }
