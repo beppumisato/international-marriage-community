@@ -20,7 +20,7 @@ export class Cognito {
    * ログイン済みで有効なセッションがある場合のみセッションを返す（それ以外はnull）
    * @returns CognitoUserSession | null
    */
-  public getSession = async () => {
+  public getSession = async (): Promise<CognitoUserSession | null> => {
     const cognitoUser = this.getCurrentUser();
     if (!cognitoUser) return null;
 
