@@ -1,16 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import { jwtDecode } from 'jwt-decode';
-import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { getCurrentUser, getSub } from '../common';
 
 const prisma = new PrismaClient();
-
-const getSub = () => {
-  const headersList = headers();
-  const authorization = headersList.get('authorization');
-  const decoded = jwtDecode(authorization ?? '');
-  return decoded.sub;
-};
 
 export async function main() {
   try {
@@ -33,9 +25,7 @@ export const GET = async (req: Request, res: NextResponse) => {
 
     await main();
 
-    const existUser = await prisma.user.findFirst({
-      where: { cognitoSub: sub },
-    });
+    const existUser = await getCurrentUser();
 
     if (existUser) {
       return NextResponse.json(
@@ -64,13 +54,6 @@ export const GET = async (req: Request, res: NextResponse) => {
 //プロフィール編集用API
 export const PUT = async (req: Request, res: NextResponse) => {
   try {
-    const sub = getSub();
-    if (!sub) {
-      return NextResponse.json(
-        { message: 'Invalid authorization' },
-        { status: 401 },
-      );
-    }
     const {
       headerImageUrl,
       iconImageUrl,
@@ -95,9 +78,7 @@ export const PUT = async (req: Request, res: NextResponse) => {
     }
     await main();
 
-    const currentUser = await prisma.user.findFirst({
-      where: { cognitoSub: sub },
-    });
+    const currentUser = await getCurrentUser();
 
     if (!currentUser) {
       return NextResponse.json({ message: 'Not Found' }, { status: 404 });
