@@ -94,6 +94,21 @@ export class Cognito {
     });
   };
 
+  public verifyAccount = async (email: string, code: string) => {
+    const cognitoUser = new CognitoUser({
+      Username: email,
+      Pool: this.userPool,
+    });
+
+    return await new Promise((resolve, reject) => {
+      cognitoUser.confirmRegistration(code, true, (err, result) => {
+        if (err) {
+          reject(err);
+        }
+      });
+    });
+  };
+
   private getCurrentUser = () => {
     return this.userPool.getCurrentUser();
   };

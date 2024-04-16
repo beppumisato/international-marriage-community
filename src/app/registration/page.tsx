@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { Cognito } from '../../../utils/cognito';
+import { useRouter } from 'next/navigation';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
@@ -11,6 +13,8 @@ interface LoginForm {
 }
 
 export default function RegistrationPage() {
+  const router = useRouter();
+
   // useForm関数を呼び出して、各種設定を行う
   const {
     register, // inputタグとバリデーションルールを紐付けるための関数
@@ -19,7 +23,14 @@ export default function RegistrationPage() {
   } = useForm<LoginForm>({ mode: 'onChange' }); // mode: "onChange"で入力時バリデーション
 
   // フォームのsubmitイベントで呼ばれる関数
-  const onSubmit = (data: LoginForm) => console.log(data);
+  const onSubmit = async (data: LoginForm) => {
+    const cognito = new Cognito();
+    await cognito.signUp(data.email, data.password);
+
+    // 登録後、メールアドレスに認証コードが届く
+    // 認証が必要なので、認証コード入力画面に遷移する
+    router.push(`registration/confirmation?email=${data.email}`);
+  };
 
   return (
     <>
@@ -68,7 +79,7 @@ export default function RegistrationPage() {
                   <input
                     className='text-[12px] h-6 pl-3'
                     id='password'
-                    type='password'
+                    // type='password' // マスクされるとわかりづらいので一旦解除
                     placeholder='パスワードを入力して下さい'
                     {...register('password')}
                   />
