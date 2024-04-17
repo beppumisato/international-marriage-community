@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { Cognito } from '../../../utils/cognito';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
@@ -14,6 +16,8 @@ interface LoginForm {
 
 export default function RegistrationPage() {
   const router = useRouter();
+  const navigate = useNavigate();
+  const [errorMsg, setErrorMsg] = useState('');
 
   // useForm関数を呼び出して、各種設定を行う
   const {
@@ -30,6 +34,24 @@ export default function RegistrationPage() {
     // 登録後、メールアドレスに認証コードが届く
     // 認証が必要なので、認証コード入力画面に遷移する
     router.push(`registration/confirmation?email=${data.email}`);
+
+    if (data.email === 'email' && data.password === 'password') {
+      //仮ID・パスワード
+      loginSuccess();
+    } else {
+      loginErrorMsg();
+    }
+  };
+
+  //ログインに成功した場合、次のページへ遷移
+  const loginSuccess = () => {
+    navigate('/');
+  };
+
+  //ログインに失敗した場合のエラーメッセージをセット
+  const loginErrorMsg = () => {
+    //setErrorMsg()でerrorMsgの値を更新
+    setErrorMsg('ユーザーIDもしくはパスワードが間違っています。');
   };
 
   return (
