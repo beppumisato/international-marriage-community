@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { Cognito } from '../../../utils/cognito';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { tree } from 'next/dist/build/templates/app-page';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
@@ -16,8 +15,6 @@ interface LoginForm {
 
 export default function RegistrationPage() {
   const router = useRouter();
-  const navigate = useNavigate();
-  const [errorMsg, setErrorMsg] = useState('');
 
   // useForm関数を呼び出して、各種設定を行う
   const {
@@ -34,24 +31,6 @@ export default function RegistrationPage() {
     // 登録後、メールアドレスに認証コードが届く
     // 認証が必要なので、認証コード入力画面に遷移する
     router.push(`registration/confirmation?email=${data.email}`);
-
-    if (data.email === 'email' && data.password === 'password') {
-      //仮ID・パスワード
-      loginSuccess();
-    } else {
-      loginErrorMsg();
-    }
-  };
-
-  //ログインに成功した場合、次のページへ遷移
-  const loginSuccess = () => {
-    navigate('/');
-  };
-
-  //ログインに失敗した場合のエラーメッセージをセット
-  const loginErrorMsg = () => {
-    //setErrorMsg()でerrorMsgの値を更新
-    setErrorMsg('ユーザーIDもしくはパスワードが間違っています。');
   };
 
   return (
@@ -87,10 +66,16 @@ export default function RegistrationPage() {
                     id='email'
                     type='email'
                     placeholder='メールアドレスを入力してください'
-                    {...register('email')}
+                    {...register('email', { required: true })}
                   />
-                  <p>{errors.email?.message as React.ReactNode}</p>
+                  {errors.email && (
+                    <span className='text-[14px] text-red-500'>
+                      ※正しいメールアドレスを入力してください
+                    </span>
+                  )}
+                  {/* <p>{errors.email?.message as React.ReactNode}</p> */}
                 </div>
+
                 <div className='flex flex-col'>
                   <label
                     htmlFor='password'
@@ -103,9 +88,19 @@ export default function RegistrationPage() {
                     id='password'
                     // type='password' // マスクされるとわかりづらいので一旦解除
                     placeholder='パスワードを入力して下さい'
-                    {...register('password')}
+                    {...register('password', {
+                      pattern: {
+                        value: /^([a-zA-Z0-9]{8,})$/,
+                        message: '半角英数字、8文字以上で作成してください',
+                      },
+                    })}
                   />
-                  <p>{errors.username?.message as React.ReactNode}</p>
+                  {errors.password && (
+                    <span className='text-[14px] text-red-500'>
+                      ※半角英数字、8文字以上で作成してください
+                    </span>
+                  )}
+                  {/* <p>{errors.username?.message as React.ReactNode}</p> */}
                 </div>
                 <div className='flex flex-col'>
                   <label
