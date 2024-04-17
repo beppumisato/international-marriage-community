@@ -15,6 +15,7 @@ async function fetchAllBlogs() {
 }
 
 export default function AllBlogPage() {
+  // TODO: userの取得先を変える
   const { user } = useUserState();
   const [posts, setPosts] = useState<Post[]>([]);
 
