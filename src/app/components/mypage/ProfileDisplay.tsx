@@ -9,21 +9,14 @@ export default function ProfileDisplay() {
 
   return (
     <div className='font-kosugi'>
-      <div className='p-4'>
-        <div
-          className='bg-slate-300 w-full h-32 pt-16 pl-3'
-          style={{
-            backgroundImage: `url(${user?.headerImageUrl})`,
-          }}
-        >
-          <div
-            className='border-rose-100 border-2 rounded-full w-14 h-14'
-            style={{
-              backgroundImage: `url(${user?.iconImageUrl})`,
-            }}
-          ></div>
-        </div>
-        <div className='flex justify-end m-2 text-center'>
+      <div className='p-2'>
+        <img className='relative w-full h-24' src={user?.headerImageUrl}></img>
+        <img
+          className='absolute rounded-full max-w-full h-auto align-middle border-2 border-rose-200 top-32 left-4'
+          width={100}
+          src={user?.iconImageUrl}
+        ></img>
+        <div className='flex justify-end m-1 text-center'>
           <Link
             href={`/mypage/edit/`}
             className='w-20 h-5 border-rose-200 border-2 rounded-md text-rose-400 text-[20px] pt-1'
