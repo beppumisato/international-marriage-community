@@ -1,9 +1,9 @@
 'use client';
 
-import { useUserState } from '@/app/hooks/user';
+import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 import { Post } from '@prisma/client';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 async function fetchAllBlogs() {
   const res = await fetch(`http://localhost:3000/api/blog`, {
@@ -15,8 +15,7 @@ async function fetchAllBlogs() {
 }
 
 export default function AllBlogPage() {
-  // TODO: userの取得先を変える
-  const { user } = useUserState();
+  const { user } = useContext(CurrentUserContext);
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
