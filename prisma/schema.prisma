@@ -26,6 +26,7 @@ model User {
   partnerNationality String @default("")
   introduction String @default("")
   cognitoSub String @default("")
+  posts Post[]
 }
 
 //投稿機能のデータ構造
@@ -36,4 +37,6 @@ model Post {
   deletedAt DateTime?
   title String
   description String
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int // relation scalar field  (used in the `@relation` attribute above)
 }
