@@ -29,7 +29,7 @@ export default function BlogPage() {
 
     await postBlog(titleRef.current?.value, descriptionRef.current?.value);
 
-    // router.push('/timeline/allblog');
+    router.push('/timeline/allblog');
   };
 
   return (
