@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useUserState } from '@/app/hooks/user';
+import { useContext, useState } from 'react';
+import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 import { useRouter } from 'next/navigation';
 
 import Header from '@/app/components/common/Header';
@@ -9,6 +9,7 @@ import ProfileForm from '@/app/components/mypage/edit/ProfileForm';
 import ImageForm from '@/app/components/mypage/edit/ImageForm';
 import { useForm } from 'react-hook-form';
 import { uploadImage } from '../../../../utils/supabase/supabase';
+import { putUser } from '@/app/repositories/user';
 
 // プロフィールフォームのデータ型を定義
 export interface ProfileFormType {
@@ -18,35 +19,9 @@ export interface ProfileFormType {
   introduction: string;
 }
 
-const putUser = async (
-  headerImageUrl: string,
-  iconImageUrl: string,
-  nickname: string,
-  myNationality: string,
-  partnerNationality: string,
-  introduction: string,
-) => {
-  const response = await fetch(`http://localhost:3000/api/user/4`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      headerImageUrl,
-      iconImageUrl,
-      nickname,
-      myNationality,
-      partnerNationality,
-      introduction,
-    }),
-  });
-  const data = await response.json();
-  return data.user;
-};
-
 export default function EditPage() {
   const router = useRouter();
-  const { saveUser } = useUserState();
+  const { setUser } = useContext(CurrentUserContext);
 
   // useForm関数を呼び出して、各種設定を行う
   const {
@@ -78,7 +53,7 @@ export default function EditPage() {
       data.partnerNationality,
       data.introduction,
     );
-    saveUser(user);
+    setUser(user);
 
     //マイページに遷移する
     router.push('/mypage');

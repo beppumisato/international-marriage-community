@@ -13,16 +13,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// プロフィール画面データ構造
+//mypage/プロフィール欄のデータ構造
 model User {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  deletedAt　DateTime?
+  deletedAt DateTime?
   headerImageUrl String @default("")
   iconImageUrl String @default("")
   nickname String
   myNationality String @default("")
   partnerNationality String @default("")
   introduction String @default("")
+  cognitoSub String @default("")
+  posts Post[]
+}
+
+//投稿機能のデータ構造
+model Post {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  deletedAt DateTime?
+  title String
+  description String
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int // relation scalar field  (used in the `@relation` attribute above)
 }

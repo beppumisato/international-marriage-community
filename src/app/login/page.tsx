@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { useUserState } from '../hooks/user';
+import { Cognito } from '../../../utils/cognito';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
@@ -11,33 +11,35 @@ interface LoginForm {
   password: string;
 }
 
-const fetchUserData = async () => {
-  // TODO: id固定なのでメアド・パスワードから取得するようにする
-  const response = await fetch(`http://localhost:3000/api/user/4`);
-  const data = await response.json();
-
-  return data.user;
-};
-
 export default function LoginPage() {
   const router = useRouter();
-  const { saveUser } = useUserState();
 
   // useForm関数を呼び出して、各種設定を行う
   const {
     register, // inputタグとバリデーションルールを紐付けるための関数
     handleSubmit, // フォームのsubmitイベント時に呼ばれる関数
+    getValues,
     formState: { errors }, // バリデーションエラーの情報が格納
   } = useForm<LoginForm>({ mode: 'onChange' }); // mode: "onChange"で入力時バリデーション
 
   // フォームのsubmitイベントで呼ばれる関数
   const onSubmit = async (data: LoginForm) => {
-    const user = await fetchUserData();
-    //Userをリセットする
-    saveUser(user);
-
-    //マイページに遷移する
-    router.push('/mypage');
+    const cognito = new Cognito();
+    try {
+      await cognito.signIn(data.email, data.password);
+      router.push('/mypage');
+    } catch (err) {
+      if (err!.toString().includes('UserNotConfirmedException')) {
+        // 初回登録後に認証をしていない場合
+        // 認証が必要なので、認証コードを送信して入力画面に遷移する
+        await cognito.resendVerifyCode(data.email);
+        router.push(`registration/confirmation?email=${data.email}`);
+      } else {
+        alert(
+          'ログインに失敗しました。メールアドレスとパスワードをご確認ください。',
+        );
+      }
+    }
   };
 
   return (
@@ -73,10 +75,18 @@ export default function LoginPage() {
                     id='email'
                     type='email'
                     placeholder='メールアドレスを入力してください'
-                    {...register('email')}
+                    {...register('email', {
+                      validate: (value) => value === getValues('email'),
+                    })}
                   />
-                  <p>{errors.email?.message as React.ReactNode}</p>
+                  {/* <p>{errors.email?.message as React.ReactNode}</p> */}
                 </div>
+                {errors.email && (
+                  <span className='text-[14px] text-red-500'>
+                    メールアドレスが正しくありません
+                  </span>
+                )}
+
                 <div className='flex flex-col'>
                   <label
                     htmlFor='password'
@@ -87,12 +97,17 @@ export default function LoginPage() {
                   <input
                     className='text-[12px] h-6 pl-3'
                     id='password'
-                    type='password'
+                    // type='password' // マスクされるとわかりづらいので一旦解除
                     placeholder='パスワードを入力して下さい'
-                    {...register('password')}
+                    {...register('password', { minLength: 8 })}
                   />
-                  <p>{errors.password?.message as React.ReactNode}</p>
+                  {/* <p>{errors.password?.message as React.ReactNode}</p> */}
                 </div>
+                {errors.password && (
+                  <span className='text-[14px] text-red-500'>
+                    ※パスワードが正しくありません
+                  </span>
+                )}
 
                 {/* ログインボタンの実装 */}
                 <div className='flex justify-center m-3'>

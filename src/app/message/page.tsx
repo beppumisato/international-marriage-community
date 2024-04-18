@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import Header from '../components/common/Header';
 
 export default function MessagePage() {
