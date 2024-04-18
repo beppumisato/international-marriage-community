@@ -1,9 +1,8 @@
 'use client';
 
-import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
-import { Post } from '@prisma/client';
+import { Post, User } from '@prisma/client';
 import Link from 'next/link';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 async function fetchAllBlogs() {
   const res = await fetch(`http://localhost:3000/api/blog`, {
@@ -14,9 +13,10 @@ async function fetchAllBlogs() {
   return data.posts;
 }
 
+type Blog = Post & { author: User };
+
 export default function AllBlogPage() {
-  const { user } = useContext(CurrentUserContext);
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Blog[]>([]);
 
   useEffect(() => {
     fetchAllBlogs().then((posts) => {
@@ -39,7 +39,7 @@ export default function AllBlogPage() {
                   <div
                     className='border-rose-100 border-2 rounded-full w-10 h-10'
                     style={{
-                      backgroundImage: `url(${user?.iconImageUrl})`,
+                      backgroundImage: `url(${post.author.iconImageUrl})`,
                     }}
                   ></div>
                   <div className='absolute left-24'>
@@ -51,7 +51,7 @@ export default function AllBlogPage() {
                   </div>
                 </div>
                 <div className='absolute left-6 text-[18px]'>
-                  {user?.nickname}
+                  {post.author.nickname}
                 </div>
                 <div className='flex justify-end'>
                   <Link
