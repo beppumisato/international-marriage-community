@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import Header from '../../components/common/Header';
 import { useRouter } from 'next/navigation';
+import { apiHeaders } from '../../../../utils/api';
 
 const postBlog = async (
   title: string | undefined,
@@ -10,9 +11,7 @@ const postBlog = async (
 ) => {
   const res = await fetch(`http://localhost:3000/api/blog`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: await apiHeaders(),
     body: JSON.stringify({ title, description }),
   });
 
@@ -30,7 +29,7 @@ export default function BlogPage() {
 
     await postBlog(titleRef.current?.value, descriptionRef.current?.value);
 
-    router.push('/timeline/allblog');
+    // router.push('/timeline/allblog');
   };
 
   return (

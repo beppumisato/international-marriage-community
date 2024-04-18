@@ -1,25 +1,11 @@
-import { Cognito } from '../../../../utils/cognito';
+import { apiHeaders } from '../../../../utils/api';
 
 const url = 'http://localhost:3000/api/user';
-
-const headers = async () => {
-  const cognito = new Cognito();
-  const session = await cognito.getSession();
-
-  if (!session) {
-    throw new Error();
-  }
-
-  return {
-    'Content-Type': 'application/json',
-    authorization: session.getAccessToken().getJwtToken(),
-  };
-};
 
 export const fetchUserData = async () => {
   const response = await fetch(`${url}`, {
     method: 'GET',
-    headers: await headers(),
+    headers: await apiHeaders(),
   });
 
   const data = await response.json();
@@ -36,7 +22,7 @@ export const putUser = async (
 ) => {
   const response = await fetch(`${url}`, {
     method: 'PUT',
-    headers: await headers(),
+    headers: await apiHeaders(),
     body: JSON.stringify({
       headerImageUrl,
       iconImageUrl,

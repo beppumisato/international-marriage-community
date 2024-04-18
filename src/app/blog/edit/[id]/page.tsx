@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Anybody } from 'next/font/google';
+import { apiHeaders } from '../../../../../utils/api';
 
 const editBlog = async (
   title: string | undefined,
@@ -12,9 +13,7 @@ const editBlog = async (
 ) => {
   const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: await apiHeaders(),
     body: JSON.stringify({ title, description, id }),
   });
 
@@ -30,9 +29,7 @@ const getBlogById = async (id: number) => {
 const deleteBlog = async (id: number) => {
   const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
     method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: await apiHeaders(),
   });
 
   return res.json();
