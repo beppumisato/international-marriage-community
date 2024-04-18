@@ -26,11 +26,17 @@ export default function RegistrationPage() {
   // フォームのsubmitイベントで呼ばれる関数
   const onSubmit = async (data: LoginForm) => {
     const cognito = new Cognito();
-    await cognito.signUp(data.email, data.password);
+    try {
+      await cognito.signUp(data.email, data.password);
 
-    // 登録後、メールアドレスに認証コードが届く
-    // 認証が必要なので、認証コード入力画面に遷移する
-    router.push(`registration/confirmation?email=${data.email}`);
+      // 登録後、メールアドレスに認証コードが届く
+      // 認証が必要なので、認証コード入力画面に遷移する
+      router.push(`registration/confirmation?email=${data.email}`);
+    } catch (err) {
+      alert(
+        '新規登録に失敗しました。既にユーザーが登録されている可能性があります。再度、ログイン画面でログインしてみてください。',
+      );
+    }
   };
 
   return (

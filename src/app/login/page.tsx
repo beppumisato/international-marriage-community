@@ -34,6 +34,10 @@ export default function LoginPage() {
         // 認証が必要なので、認証コードを送信して入力画面に遷移する
         await cognito.resendVerifyCode(data.email);
         router.push(`registration/confirmation?email=${data.email}`);
+      } else {
+        alert(
+          'ログインに失敗しました。メールアドレスとパスワードをご確認ください。',
+        );
       }
     }
   };
