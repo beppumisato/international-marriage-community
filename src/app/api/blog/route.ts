@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
+import { getCurrentUser } from '../common';
 
 const prisma = new PrismaClient();
 
@@ -30,7 +31,17 @@ export const POST = async (req: Request, res: NextResponse) => {
     const { title, description } = await req.json();
 
     await main();
-    const post = await prisma.post.create({ data: { title, description } });
+
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+      return NextResponse.json({ message: 'Error' }, { status: 400 });
+    }
+    const authorId = currentUser.id;
+
+    const post = await prisma.post.create({
+      data: { title, description, authorId },
+    });
     return NextResponse.json({ message: 'Success', post }, { status: 201 });
   } catch (err) {
     return NextResponse.json({ message: 'Error', err }, { status: 500 });
