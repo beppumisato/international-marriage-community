@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { Cognito } from '../../../utils/cognito';
 
@@ -18,6 +18,7 @@ export default function LoginPage() {
   const {
     register, // inputタグとバリデーションルールを紐付けるための関数
     handleSubmit, // フォームのsubmitイベント時に呼ばれる関数
+    getValues,
     formState: { errors }, // バリデーションエラーの情報が格納
   } = useForm<LoginForm>({ mode: 'onChange' }); // mode: "onChange"で入力時バリデーション
 
@@ -33,6 +34,10 @@ export default function LoginPage() {
         // 認証が必要なので、認証コードを送信して入力画面に遷移する
         await cognito.resendVerifyCode(data.email);
         router.push(`registration/confirmation?email=${data.email}`);
+      } else {
+        alert(
+          'ログインに失敗しました。メールアドレスとパスワードをご確認ください。',
+        );
       }
     }
   };
@@ -70,10 +75,18 @@ export default function LoginPage() {
                     id='email'
                     type='email'
                     placeholder='メールアドレスを入力してください'
-                    {...register('email')}
+                    {...register('email', {
+                      validate: (value) => value === getValues('email'),
+                    })}
                   />
-                  <p>{errors.email?.message as React.ReactNode}</p>
+                  {/* <p>{errors.email?.message as React.ReactNode}</p> */}
                 </div>
+                {errors.email && (
+                  <span className='text-[14px] text-red-500'>
+                    メールアドレスが正しくありません
+                  </span>
+                )}
+
                 <div className='flex flex-col'>
                   <label
                     htmlFor='password'
@@ -86,10 +99,15 @@ export default function LoginPage() {
                     id='password'
                     // type='password' // マスクされるとわかりづらいので一旦解除
                     placeholder='パスワードを入力して下さい'
-                    {...register('password')}
+                    {...register('password', { minLength: 8 })}
                   />
-                  <p>{errors.password?.message as React.ReactNode}</p>
+                  {/* <p>{errors.password?.message as React.ReactNode}</p> */}
                 </div>
+                {errors.password && (
+                  <span className='text-[14px] text-red-500'>
+                    ※パスワードが正しくありません
+                  </span>
+                )}
 
                 {/* ログインボタンの実装 */}
                 <div className='flex justify-center m-3'>
