@@ -36,18 +36,17 @@ export default function AllBlogPage() {
             <div key={post.id} className='p-2 pt-0 m-2 mt-0'>
               <div>
                 <div className='flex'>
-                  <div
-                    className='border-rose-100 border-2 rounded-full w-10 h-10'
-                    style={{
-                      backgroundImage: `url(${post.author.iconImageUrl})`,
-                    }}
-                  ></div>
+                  <img
+                    width={50}
+                    className='rounded-full max-w-full h-auto align-middle border-none'
+                    src={post.author.iconImageUrl}
+                  ></img>
                   <div className='absolute left-24'>
-                    <div className='text-[16px] text-slate-500'>
+                    <div className='text-[14px] text-slate-500'>
                       {new Date(post.createdAt).toDateString()}
                     </div>
-                    <h1 className='mt-2 text-[20px]'>{post.title}</h1>
-                    <h2 className='mt-1 text-[18px]'>{post.description}</h2>
+                    <h1 className='text-[20px]'>{post.title}</h1>
+                    <h2 className='text-[18px]'>{post.description}</h2>
                   </div>
                 </div>
                 <div className='absolute left-6 text-[18px]'>
