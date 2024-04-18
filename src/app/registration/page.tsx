@@ -2,6 +2,9 @@
 
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { Cognito } from '../../../utils/cognito';
+import { useRouter } from 'next/navigation';
+import { tree } from 'next/dist/build/templates/app-page';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
@@ -11,6 +14,8 @@ interface LoginForm {
 }
 
 export default function RegistrationPage() {
+  const router = useRouter();
+
   // useForm関数を呼び出して、各種設定を行う
   const {
     register, // inputタグとバリデーションルールを紐付けるための関数
@@ -19,7 +24,20 @@ export default function RegistrationPage() {
   } = useForm<LoginForm>({ mode: 'onChange' }); // mode: "onChange"で入力時バリデーション
 
   // フォームのsubmitイベントで呼ばれる関数
-  const onSubmit = (data: LoginForm) => console.log(data);
+  const onSubmit = async (data: LoginForm) => {
+    const cognito = new Cognito();
+    try {
+      await cognito.signUp(data.email, data.password);
+
+      // 登録後、メールアドレスに認証コードが届く
+      // 認証が必要なので、認証コード入力画面に遷移する
+      router.push(`registration/confirmation?email=${data.email}`);
+    } catch (err) {
+      alert(
+        '新規登録に失敗しました。既にユーザーが登録されている可能性があります。再度、ログイン画面でログインしてみてください。',
+      );
+    }
+  };
 
   return (
     <>
@@ -54,10 +72,16 @@ export default function RegistrationPage() {
                     id='email'
                     type='email'
                     placeholder='メールアドレスを入力してください'
-                    {...register('email')}
+                    {...register('email', { required: true })}
                   />
-                  <p>{errors.email?.message as React.ReactNode}</p>
+                  {errors.email && (
+                    <span className='text-[14px] text-red-500'>
+                      ※正しいメールアドレスを入力してください
+                    </span>
+                  )}
+                  {/* <p>{errors.email?.message as React.ReactNode}</p> */}
                 </div>
+
                 <div className='flex flex-col'>
                   <label
                     htmlFor='password'
@@ -68,11 +92,21 @@ export default function RegistrationPage() {
                   <input
                     className='text-[12px] h-6 pl-3'
                     id='password'
-                    type='password'
+                    // type='password' // マスクされるとわかりづらいので一旦解除
                     placeholder='パスワードを入力して下さい'
-                    {...register('password')}
+                    {...register('password', {
+                      pattern: {
+                        value: /^([a-zA-Z0-9]{8,})$/,
+                        message: '',
+                      },
+                    })}
                   />
-                  <p>{errors.username?.message as React.ReactNode}</p>
+                  {errors.password && (
+                    <span className='text-[14px] text-red-500'>
+                      ※半角英数字、8文字以上で作成してください
+                    </span>
+                  )}
+                  {/* <p>{errors.username?.message as React.ReactNode}</p> */}
                 </div>
                 <div className='flex flex-col'>
                   <label

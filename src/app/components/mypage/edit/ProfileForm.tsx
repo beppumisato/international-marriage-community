@@ -1,4 +1,5 @@
-import { useUserState } from '@/app/hooks/user';
+import { useContext } from 'react';
+import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 import { ProfileFormType } from '@/app/mypage/edit/page';
 import { UseFormRegister } from 'react-hook-form';
 
@@ -7,7 +8,7 @@ interface Props {
 }
 
 export default function ProfileForm(props: Props) {
-  const { user } = useUserState();
+  const { user } = useContext(CurrentUserContext);
 
   return (
     <div className='text-rose-400 text-[20px]'>

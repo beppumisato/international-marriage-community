@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
+import { useContext } from 'react';
 import Link from 'next/link';
-import { useUserState } from '@/app/hooks/user';
+import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 
 export default function ProfileDisplay() {
-  const { user } = useUserState();
+  const { user } = useContext(CurrentUserContext);
 
   return (
     <div className='font-kosugi'>

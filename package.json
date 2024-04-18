@@ -11,16 +11,20 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
+    "@hookform/error-message": "^2.0.1",
     "@material/tabs": "^2.3.0",
     "@mui/material": "^5.15.14",
     "@prisma/client": "^5.12.1",
     "@supabase/supabase-js": "^2.42.0",
+    "amazon-cognito-identity-js": "^6.3.12",
+    "jwt-decode": "^4.0.0",
     "next": "^14.1.4",
     "prettier": "^3.2.5",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
     "react-image-crop": "^11.0.5",
+    "react-router-dom": "^6.22.3",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
