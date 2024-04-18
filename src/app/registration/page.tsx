@@ -91,7 +91,7 @@ export default function RegistrationPage() {
                     {...register('password', {
                       pattern: {
                         value: /^([a-zA-Z0-9]{8,})$/,
-                        message: '半角英数字、8文字以上で作成してください',
+                        message: '',
                       },
                     })}
                   />
