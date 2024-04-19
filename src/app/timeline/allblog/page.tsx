@@ -28,6 +28,13 @@ export default function AllBlogPage() {
     e.preventDefault();
   };
 
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -68,6 +75,7 @@ export default function AllBlogPage() {
             <img
               className=' bg-rose-100 rounded-full bg-opacity-50 w-6 h-6 p-1'
               src='/icon/airplan_2.png'
+              onClick={returnTop}
             ></img>
           </div>
         </div>
