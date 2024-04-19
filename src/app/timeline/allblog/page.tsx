@@ -1,5 +1,6 @@
 'use client';
 
+import Header from '@/app/components/common/Header';
 import { Post, User } from '@prisma/client';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -37,6 +38,15 @@ export default function AllBlogPage() {
 
   return (
     <>
+      <div className='flex relative text-rose-400 bg-rose-200 h-8 text-[24px] mb-4 p-2 font-kosugi'>
+        <Link href={'/'}>＜</Link>
+        <div className='ml-56'>タイムライン</div>
+      </div>
+      <div className='absolute right-8 top-2'>
+        <Link href={`/blog/add/`}>
+          <img src='/icon/pen.png' width={40}></img>
+        </Link>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className='font-kosugi p-2'>
           {posts.map((post) => (
@@ -71,7 +81,7 @@ export default function AllBlogPage() {
               <div className='border-b border-rose-200'></div>
             </div>
           ))}
-          <div className='flex justify-end mt-20 mr-1 mb-1'>
+          <div className='flex justify-end'>
             <img
               className=' bg-rose-100 rounded-full bg-opacity-50 w-6 h-6 p-1'
               src='/icon/airplan_2.png'
