@@ -14,3 +14,23 @@ body {
 input[type='file'] {
   display: none;
 }
+
+/* サイドバーのスタイル指定 */
+.sidebar {
+  width: 600px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background-color: rgb(155, 135, 173);
+}
+/* サイドバー表示時 */
+.sidebar-show {
+  right: 0;
+  transition: 0.5s;
+}
+
+/* サイドバー非表示時 */
+.sidebar-hidden {
+  right: -600px;
+  transition: 0.5s;
+}
