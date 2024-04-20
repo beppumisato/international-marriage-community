@@ -4,7 +4,7 @@ import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-export default function MenuTabHeader() {
+export default function MenuTab() {
   // 表示/非表示を切り替える状態変数
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -16,7 +16,7 @@ export default function MenuTabHeader() {
   return (
     <div>
       {/* コンテント */}
-      <div className='content'>
+      <div className='bg-rose-200'>
         <IconButton
           size='large'
           edge='start'
@@ -24,20 +24,10 @@ export default function MenuTabHeader() {
           aria-label='menu'
           sx={{ mr: 2 }}
           onClick={() => handleClick()}
+          style={{ color: 'white' }}
         >
           <MenuIcon />
         </IconButton>
-      </div>
-
-      {/* サイドバー */}
-      {/* 三項演算子で、「showSidebar」がtrueの時は「sidebar-show」
-                                      falseの時は「sidebar-hidden」*/}
-      <div
-        className={
-          showSidebar ? 'sidebar sidebar-show' : 'sidebar sidebar-hidden'
-        }
-      >
-        <h2>Sidebar</h2>
       </div>
     </div>
   );

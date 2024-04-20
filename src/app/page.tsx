@@ -2,12 +2,14 @@
 
 import React from 'react';
 import Link from 'next/link';
-import MenuTabHeader from './components/common/MenuTabHeader';
+import MenuTab from './components/common/MenuTab';
+import Sidebar from './components/sidebar/Sidebar';
 
 export default function Home() {
   return (
     <>
-      <MenuTabHeader />
+      <MenuTab />
+      <Sidebar />
       <div className='bg-rose-200 font-kosugi'>
         <div className='flex justify-end items-center gap-2 p-6'>
           <Link href={`/login/`} className='text-white underline text-[20px]'>
