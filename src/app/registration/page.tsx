@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { Cognito } from '../../../utils/cognito';
 import { useRouter } from 'next/navigation';
-import { tree } from 'next/dist/build/templates/app-page';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
