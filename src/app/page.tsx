@@ -8,7 +8,7 @@ import Sidebar from './components/sidebar/Sidebar';
 export default function Home() {
   return (
     <>
-      <div className='Home'>
+      <div className='relative'>
         <Sidebar />
         <div className='bg-rose-200 font-kosugi'>
           <div className='flex justify-end items-center gap-2 p-6'>
