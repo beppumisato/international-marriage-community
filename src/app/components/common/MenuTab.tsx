@@ -2,11 +2,10 @@
 
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Sidebar from '../sidebar/Sidebar';
 
 export default function MenuTab() {
   return (
-    <div>
+    <div className='bg-rose-200 pl-2 h-0'>
       <IconButton
         size='large'
         edge='start'
