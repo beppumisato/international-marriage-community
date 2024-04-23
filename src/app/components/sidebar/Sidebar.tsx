@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SidebarData } from './SidebarData';
 import CloseIcon from '@mui/icons-material/Close';
+import Link from 'next/link';
 
 interface Props {
   onClick: () => void;
@@ -20,16 +21,14 @@ export default function Sidebar(props: Props) {
         <ul className='h-auto w-full p-0 pt-4'>
           {SidebarData.map((value, key) => {
             return (
-              <li
+              <Link
+                href={value.link}
                 key={key}
-                // id={(window.location.pathname = value.link ? 'active' : '')}
                 className='flex w-100 h-6 hover:bg-rose-500 cursor-pointer justify-start items-center'
               >
-                <div id='id' className='mr-2 ml-2'>
-                  {value.icon}
-                </div>
-                <div id='icon'>{value.title}</div>
-              </li>
+                <div className='mr-2 ml-2'>{value.icon}</div>
+                <div>{value.title}</div>
+              </Link>
             );
           })}
         </ul>
