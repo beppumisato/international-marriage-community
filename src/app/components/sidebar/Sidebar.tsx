@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import { SidebarData } from './SidebarData';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default function Sidebar() {
+interface Props {
+  onClick: () => void;
+}
+
+export default function Sidebar(props: Props) {
   return (
     <div className='absolute top-0 right-0 z-50'>
       <div className='w-24 h-screen bg-rose-300 text-white text-[20px]'>
-        <CloseIcon sx={{ fontSize: 40, color: 'white' }} />
+        <CloseIcon
+          onClick={props.onClick}
+          sx={{ fontSize: 40, color: 'white' }}
+        />
         <h1 className='text-[28px] border-b-2 flex justify-center text-white'>
           MENU
         </h1>
