@@ -1,15 +1,31 @@
+'use client';
+
 import Link from 'next/link';
+import MenuIcon from '@mui/icons-material/Menu';
+import Sidebar from '../sidebar/Sidebar';
+import { useState } from 'react';
 
 interface Props {
   title: string;
   url: string;
 }
 
-export default function Header(props: Props) {
+export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className='flex text-rose-400 bg-rose-200 h-8 text-[24px] mb-4 p-2'>
-      <Link href={props.url}>＜</Link>
-      <div className='ml-56'>{props.title}</div>
+    <div className='relative'>
+      {isOpen && <Sidebar onClick={() => setIsOpen(false)} />}
+
+      <div className='bg-rose-200 pl-2 h-6 flex justify-between items-center px-2'>
+        <Link href={`/`}>
+          <h1 className='text-white'>タイトル</h1>
+        </Link>
+        <MenuIcon
+          onClick={() => setIsOpen(true)}
+          sx={{ fontSize: 40, color: 'white' }}
+        />
+      </div>
     </div>
   );
 }

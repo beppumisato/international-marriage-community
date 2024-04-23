@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { Cognito } from '../../../../utils/cognito';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Header from '@/app/components/common/Header';
 
 interface CodeForm {
   code: string;
@@ -31,27 +32,36 @@ export default function RegistrationConfirmationPage() {
   };
 
   return (
-    <div className='p-24'>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='flex flex-col'>
-          <label htmlFor='email' className='text-[16px]'>
-            認証コードを入力してください
-          </label>
-          <input
-            className='text-[12px] h-6 pl-3 border w-40'
-            id='code'
-            type='number'
-            {...register('code')}
-          />
-          <p>{errors.code?.message as React.ReactNode}</p>
-        </div>
-        <button
-          type='submit'
-          className='text-[12px] border bg-blue-400 text-white p-2 rounded-md mt-4'
-        >
-          認証する
-        </button>
-      </form>
+    <div className='font-kosugi'>
+      <div className='p-14 pt-4'>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className='flex flex-col'>
+            <label htmlFor='email' className='text-[22px] text-rose-400 p-2'>
+              認証コードを入力してください
+            </label>
+            <div className='border-b border-rose-400 w-60'></div>
+            <div className='text-[16px] text-rose-400 m-2'>
+              <p>認証コードをご登録のメールアドレスにお送りいたしました。</p>
+              <p>
+                届いた６桁の認証コードをご入力いただき、「認証する」ボタンを押してください。
+              </p>
+            </div>
+            <input
+              className='ml-2 mt-2 text-[14px] h-6 w-28 border-2 border-rose-400 p-2'
+              id='code'
+              type='number'
+              {...register('code')}
+            />
+            <p>{errors.code?.message as React.ReactNode}</p>
+          </div>
+          <button
+            type='submit'
+            className='ml-2 text-[20px] text-white bg-rose-400 hover:bg-rose-500 p-1 w-28'
+          >
+            認証する
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

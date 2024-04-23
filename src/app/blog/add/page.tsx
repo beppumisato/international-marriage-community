@@ -34,7 +34,7 @@ export default function BlogPage() {
 
   return (
     <div className='font-kosugi'>
-      <Header title='新規投稿' url='/mypage/' />
+      <Header title='新規投稿' url='/timeline/allblog/' />
 
       <form onSubmit={handleSubmit}>
         <div className='flex justify-center'>
