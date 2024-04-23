@@ -2,22 +2,12 @@
 
 import React from 'react';
 import Link from 'next/link';
-import MenuTab from './components/common/MenuTab';
-import Sidebar from './components/sidebar/Sidebar';
 
 export default function Home() {
   return (
     <>
       <div className='relative'>
-        <Sidebar />
         <div className='bg-rose-200 font-kosugi'>
-          <div className='flex justify-end items-center gap-2 p-6'>
-            <Link href={`/login/`} className='text-white underline text-[20px]'>
-              新規会員登録 / ログイン
-            </Link>
-            <img src='top/airplan_1.png' width={30}></img>
-          </div>
-
           {/* メインの世界地図とキャ土フレーズ */}
           <div className='bg-white flex justify-center w-full'>
             <img className=' object-contain' src='top/main.png' width={700} />
