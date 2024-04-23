@@ -17,13 +17,13 @@ export default function Header() {
     <div className='relative'>
       {isOpen && <Sidebar onClick={() => setIsOpen(false)} />}
 
-      <div className='bg-rose-200 pl-2 h-6 flex justify-between items-center px-2'>
+      <div className='bg-rose-50 h-6 flex justify-between items-center px-4'>
         <Link href={`/`}>
-          <h1 className='text-white'>タイトル</h1>
+          <img width={160} src='/icon/title.png/'></img>
         </Link>
         <MenuIcon
           onClick={() => setIsOpen(true)}
-          sx={{ fontSize: 40, color: 'white' }}
+          sx={{ fontSize: 40, color: '#fda4af' }}
         />
       </div>
     </div>
