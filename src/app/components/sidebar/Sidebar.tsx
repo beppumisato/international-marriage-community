@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { sidebarData } from './SidebarData';
+import { sidebarDataLogin, sidebarDataNotLogin } from './sidebarData';
+import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 
 interface Props {
   onClick: () => void;
 }
 
 export default function Sidebar(props: Props) {
+  const { user } = useContext(CurrentUserContext);
+
+  const isLogin = user != null;
+  const sidebarData = isLogin ? sidebarDataLogin : sidebarDataNotLogin;
+
   return (
     <div className='absolute top-0 right-0 z-50'>
       <div className='w-24 h-screen bg-rose-300 text-white text-[20px]'>

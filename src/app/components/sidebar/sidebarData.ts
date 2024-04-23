@@ -1,11 +1,18 @@
-export const sidebarData = [
-  {
-    title: 'ログイン',
-    link: '/login',
-  },
+export const sidebarDataLogin = [
   {
     title: 'プロフィール',
     link: '/mypage',
+  },
+  {
+    title: 'タイムライン',
+    link: '/timeline',
+  },
+];
+
+export const sidebarDataNotLogin = [
+  {
+    title: 'ログイン',
+    link: '/login',
   },
   {
     title: 'タイムライン',
