@@ -14,3 +14,7 @@ body {
 input[type='file'] {
   display: none;
 }
+
+body {
+  background-color: rgb(255 228 230);
+}
