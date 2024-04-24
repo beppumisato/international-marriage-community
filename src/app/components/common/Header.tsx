@@ -17,7 +17,7 @@ export default function Header() {
     <div className='font-kosugi'>
       {isOpen && <Sidebar onClick={() => setIsOpen(false)} />}
 
-      <div className='bg-orange-300 h-6 flex justify-between items-center px-4'>
+      <div className='bg-orange-400 h-6 flex justify-between items-center px-4'>
         <Link href={`/`} className='text-white text-[20px]'>
           国際結婚の輪
         </Link>
