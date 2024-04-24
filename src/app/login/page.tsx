@@ -51,12 +51,12 @@ export default function LoginPage() {
             <div className='flex flex-col'>
               <label
                 htmlFor='email'
-                className='text-yellow-600 text-[16px] mt-4'
+                className='text-yellow-600 text-[18px] mt-4 -ml-6'
               >
                 メールアドレス
               </label>
               <input
-                className='text-[12px] h-6 pl-3'
+                className='text-[12px] h-6 items-center -ml-6 p-2'
                 id='email'
                 type='email'
                 placeholder='メールアドレスを入力してください'
@@ -74,12 +74,12 @@ export default function LoginPage() {
             <div className='flex flex-col'>
               <label
                 htmlFor='password'
-                className='text-yellow-600  text-[16px] mt-3'
+                className='text-yellow-600 text-[18px] mt-2 -ml-6'
               >
                 パスワード
               </label>
               <input
-                className='text-[12px] h-6 pl-3'
+                className='text-[12px] h-6 items-center -ml-6 p-2'
                 id='password'
                 // type='password' // マスクされるとわかりづらいので一旦解除
                 placeholder='パスワードを入力して下さい'
@@ -93,34 +93,24 @@ export default function LoginPage() {
             )}
 
             {/* ログインボタンの実装 */}
-            <div className='flex justify-center m-4'>
-              <button
-                type='submit'
-                className='text-[15px] border-4 border-white text-white bg-orange-400 hover:bg-orange-500 p-1 w-24'
-              >
-                ログイン
-              </button>
+            <div className='button hover:bg-orange-500 mt-3'>
+              <button type='submit'>ログイン</button>
             </div>
           </form>
 
           {/* 新規会員登録フォームへ */}
-          <div className='flex flex-col text-yellow-600 text-[18px]'>
-            <div className='flex justify-center mt-4'>初めてご利用になる方</div>
-            <div className='flex justify-center'>
+          <div className='text-yellow-600'>
+            <h1 className='ml-2 mt-4 text-[20px]'>初めてご利用になる方</h1>
+            <p className='-ml-3 m-1 text-[18px]'>
               ご利用になるには会員登録が必要です
-            </div>
+            </p>
           </div>
-          <div className='flex justify-center mt-1.5'>
-            <Link
-              href={'/registration/'}
-              className='text-[15px] border-4 border-white text-white bg-orange-400 hover:bg-orange-500 p-1 w-24 text-center'
-            >
-              新規会員登録
-            </Link>
+          <div className='button hover:bg-orange-500 mt-3'>
+            <Link href={'/registration/'}>新規会員登録</Link>
           </div>
         </div>
       </section>
-      <img className='mt-8' src='/login/design.png/'></img>
+      <img className='mt-10' src='/login/design.png/'></img>
     </>
   );
 }
