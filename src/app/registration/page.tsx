@@ -40,119 +40,101 @@ export default function RegistrationPage() {
 
   return (
     <>
-      <div className='font-kosugi'>
-        {/* Topへ戻るリンク */}
-        <div className='flex'>
-          <Link
-            href={'/'}
-            className='ml-4 mt-2 text-rose-400 font-bold text-[20px]'
-          >
-            ＜ Top
-          </Link>
-          <div className='ml-2 mt-2 text-rose-400 font-bold text-[20px]'>
-            / 新規会員登録
-          </div>
-        </div>
-
-        {/* 新規会員登録機能 */}
-        <section className='p-0 flex justify-center'>
-          <div className='relative'>
-            <img src='/login/bg.png/' width={650}></img>
-          </div>
-          <div className='absolute top-20'>
-            <div className='pl-6 pr-6'>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='flex flex-col'>
-                  <label htmlFor='email' className='text-white text-[16px]'>
-                    メールアドレス
-                  </label>
-                  <input
-                    className='text-[12px] h-6 pl-3'
-                    id='email'
-                    type='email'
-                    placeholder='メールアドレスを入力してください'
-                    {...register('email', { required: true })}
-                  />
-                  {errors.email && (
-                    <span className='text-[14px] text-red-500'>
-                      ※正しいメールアドレスを入力してください
-                    </span>
-                  )}
-                  {/* <p>{errors.email?.message as React.ReactNode}</p> */}
-                </div>
-
-                <div className='flex flex-col'>
-                  <label
-                    htmlFor='password'
-                    className='text-white text-[16px] mt-2'
-                  >
-                    パスワード
-                  </label>
-                  <input
-                    className='text-[12px] h-6 pl-3'
-                    id='password'
-                    // type='password' // マスクされるとわかりづらいので一旦解除
-                    placeholder='パスワードを入力して下さい'
-                    {...register('password', {
-                      pattern: {
-                        value: /^([a-zA-Z0-9]{8,})$/,
-                        message: '',
-                      },
-                    })}
-                  />
-                  {errors.password && (
-                    <span className='text-[14px] text-red-500'>
-                      ※半角英数字、8文字以上で作成してください
-                    </span>
-                  )}
-                  {/* <p>{errors.username?.message as React.ReactNode}</p> */}
-                </div>
-                <div className='flex flex-col'>
-                  <label
-                    htmlFor='username'
-                    className='text-white text-[16px] mt-2'
-                  >
-                    ニックネーム
-                  </label>
-                  <input
-                    className='text-[12px] h-6 pl-3'
-                    id='username'
-                    type='text'
-                    placeholder='ニックネームを入力して下さい'
-                    {...register('username')}
-                  />
-                  <p>{errors.password?.message as React.ReactNode}</p>
-                </div>
-
-                {/* 新規会員登録ボタンの実装 */}
-                <div className='flex justify-center mt-2'>
-                  <button
-                    type='submit'
-                    className='text-[15px] border-4 border-white text-white bg-rose-400 hover:bg-rose-500 p-1 w-24'
-                  >
-                    新規会員登録
-                  </button>
-                </div>
-                <div className='flex-col text-white text-[18px] mt-1'>
-                  <div className='flex justify-center'>
-                    国際結婚は様々な問題や悩みを抱えることがあります。
-                  </div>
-                  <div className='flex justify-center'>
-                    当サイトでは、同じく国際結婚をした人と繋がり、
-                  </div>
-                  <div className='flex justify-center'>
-                    支え合うコミュニティを提供しています。
-                  </div>
-                  <div className='flex justify-center'>
-                    {' '}
-                    一緒に、国際結婚生活を豊かにする仲間を見つけましょう！
-                  </div>
-                </div>
-              </form>
+      {/* 新規会員登録機能 */}
+      <section className='flex justify-center'>
+        <div className='font-kosugi'>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='flex flex-col'>
+              <label
+                htmlFor='email'
+                className='text-yellow-600 text-[16px] mt-4'
+              >
+                メールアドレス
+              </label>
+              <input
+                className='text-[12px] h-6 pl-3'
+                id='email'
+                type='email'
+                placeholder='メールアドレスを入力してください'
+                {...register('email', { required: true })}
+              />
+              {errors.email && (
+                <span className='text-[14px] text-red-500'>
+                  ※正しいメールアドレスを入力してください
+                </span>
+              )}
             </div>
-          </div>
-        </section>
-      </div>
+
+            <div className='flex flex-col'>
+              <label
+                htmlFor='password'
+                className='text-yellow-600 text-[16px] mt-2'
+              >
+                パスワード
+              </label>
+              <input
+                className='text-[12px] h-6 pl-3'
+                id='password'
+                // type='password' // マスクされるとわかりづらいので一旦解除
+                placeholder='パスワードを入力して下さい'
+                {...register('password', {
+                  pattern: {
+                    value: /^([a-zA-Z0-9]{8,})$/,
+                    message: '',
+                  },
+                })}
+              />
+              {errors.password && (
+                <span className='text-[14px] text-red-500'>
+                  ※半角英数字、8文字以上で作成してください
+                </span>
+              )}
+            </div>
+            <div className='flex flex-col'>
+              <label
+                htmlFor='username'
+                className='text-yellow-600 text-[16px] mt-2'
+              >
+                ニックネーム
+              </label>
+              <input
+                className='text-[12px] h-6 pl-3'
+                id='username'
+                type='text'
+                placeholder='ニックネームを入力して下さい'
+                {...register('username')}
+              />
+              <p>{errors.password?.message as React.ReactNode}</p>
+            </div>
+
+            {/* 新規会員登録ボタンの実装 */}
+            <div className='flex justify-center mt-4'>
+              <button
+                type='submit'
+                className='text-[15px] border-4 border-white text-white bg-orange-400 hover:bg-orange-500 p-1 w-24'
+              >
+                新規会員登録
+              </button>
+            </div>
+            <div className='flex-col text-yellow-600 text-[18px] mt-2'>
+              <div className='flex justify-center m-1'>
+                国際結婚は様々な問題や悩みを抱えることがあります。
+              </div>
+              <div className='flex justify-center m-1'>
+                当サイトでは、同じく国際結婚をした人と繋がり、
+              </div>
+              <div className='flex justify-center m-1'>
+                支え合うコミュニティを提供しています。
+              </div>
+              <div className='flex justify-center m-1'>
+                {' '}
+                一緒に、国際結婚生活を豊かにする仲間を見つけましょう！
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <img className='mt-2' src='/login/design.png/'></img>
     </>
   );
 }
