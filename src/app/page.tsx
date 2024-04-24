@@ -12,10 +12,10 @@ export default function Home() {
           <img
             className=' object-contain items-center'
             src='top/main.png'
-            width={700}
+            width={600}
           />
         </div>
-        <div className='text-yellow-600 text-[18px] text-nowrap m-6'>
+        <div className='text-yellow-700 text-[18px] text-nowrap m-6'>
           <p className='flex justify-center p-1'>
             国際結婚は様々な問題や悩みを抱えることがあります。
           </p>
