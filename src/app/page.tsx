@@ -8,14 +8,14 @@ export default function Home() {
     <>
       <div className='relative font-kosugi'>
         {/* メインの世界地図とキャ土フレーズ */}
-        <div className='pt-4 bg-white flex justify-center w-full mt-8'>
+        <div className='pt-4 bg-white flex justify-center w-full mt-4'>
           <img
             className=' object-contain items-center'
             src='top/main.png'
             width={700}
           />
         </div>
-        <div className='text-white text-[18px] text-nowrap m-6'>
+        <div className='text-yellow-600 text-[18px] text-nowrap m-6'>
           <p className='flex justify-center p-1'>
             国際結婚は様々な問題や悩みを抱えることがあります。
           </p>
