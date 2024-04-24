@@ -14,16 +14,16 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='relative'>
+    <div className='font-kosugi'>
       {isOpen && <Sidebar onClick={() => setIsOpen(false)} />}
 
-      <div className='bg-rose-50 h-6 flex justify-between items-center px-4'>
-        <Link href={`/`}>
-          <img width={160} src='/icon/title.png/'></img>
+      <div className='bg-orange-300 h-6 flex justify-between items-center px-4'>
+        <Link href={`/`} className='text-white text-[20px]'>
+          国際結婚の輪
         </Link>
         <MenuIcon
           onClick={() => setIsOpen(true)}
-          sx={{ fontSize: 40, color: '#fda4af' }}
+          sx={{ fontSize: 40, color: 'white' }}
         />
       </div>
     </div>
