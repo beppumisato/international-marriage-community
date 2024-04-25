@@ -96,7 +96,9 @@ export default function EditPage({ params }: { params: { id: number } }) {
           >
             削除
           </button>
-          {modalOpen && <Modal setOpenModal={setModalOpen} />}
+          {modalOpen && (
+            <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
+          )}
           <button
             type='submit'
             className='text-white bg-orange-400 rounded-md hover:bg-orange-500 w-16 h-6 ml-1'

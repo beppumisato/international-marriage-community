@@ -1,12 +1,18 @@
 import React from 'react';
 
-export default function Modal({ setOpenModal }: { setOpenModal: any }) {
+interface Props {
+  setOpenModal: (status: boolean) => void;
+  onYes: () => void;
+}
+
+export default function Modal(props: Props) {
   return (
     <div className='w-100 h-100 bg-rose-200'>
       <div className='flex justify-center'>
         <button
           onClick={() => {
-            setOpenModal(false);
+            props.onYes();
+            props.setOpenModal(false);
           }}
         >
           X
@@ -18,7 +24,7 @@ export default function Modal({ setOpenModal }: { setOpenModal: any }) {
       <div className='text-white'>
         <button
           onClick={() => {
-            setOpenModal(false);
+            props.setOpenModal(false);
           }}
         >
           いいえ
