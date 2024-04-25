@@ -47,12 +47,12 @@ export default function RegistrationPage() {
             <div className='flex flex-col'>
               <label
                 htmlFor='email'
-                className='text-yellow-600 text-[18px] mt-6 -ml-6'
+                className='text-yellow-600 text-[18px] mt-6 -ml-8'
               >
                 メールアドレス
               </label>
               <input
-                className='text-[12px] h-6 w-40 items-center -ml-6 p-2'
+                className='text-[12px] h-6 w-40 items-center -ml-8 p-2'
                 id='email'
                 type='email'
                 placeholder='メールアドレスを入力してください'
@@ -68,12 +68,12 @@ export default function RegistrationPage() {
             <div className='flex flex-col'>
               <label
                 htmlFor='password'
-                className='text-yellow-600 text-[18px] mt-2 -ml-6'
+                className='text-yellow-600 text-[18px] mt-2 -ml-8'
               >
                 パスワード
               </label>
               <input
-                className='text-[12px] h-6 w-40 items-center -ml-6 p-2'
+                className='text-[12px] h-6 w-40 items-center -ml-8 p-2'
                 id='password'
                 // type='password' // マスクされるとわかりづらいので一旦解除
                 placeholder='パスワードを入力して下さい'
@@ -93,12 +93,12 @@ export default function RegistrationPage() {
             <div className='flex flex-col'>
               <label
                 htmlFor='username'
-                className='text-yellow-600 text-[18px] mt-2 -ml-6'
+                className='text-yellow-600 text-[18px] mt-2 -ml-8'
               >
                 ニックネーム
               </label>
               <input
-                className='text-[12px] h-6 w-40 items-center -ml-6 p-2'
+                className='text-[12px] h-6 w-40 items-center -ml-8 p-2'
                 id='username'
                 type='text'
                 placeholder='ニックネームを入力して下さい'
