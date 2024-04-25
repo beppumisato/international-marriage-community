@@ -1,10 +1,7 @@
 'use client';
 
-import { Post, User } from '@prisma/client';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BlogDisplayPage from '../components/timeline/blog/BlogDisplay';
-import ProfileDisplay from '../components/mypage/ProfileDisplay';
 import ProfileDisplayPage from '../components/timeline/profile/ProgileDisplay';
 
 export default function TimelinePage() {
