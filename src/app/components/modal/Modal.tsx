@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Modal({ setOpenModal }: { setOpenModal: any }) {
+export default function Modal({ setOpenModal }: { setOpenModal: any }) {
   return (
     <div className='w-100 h-100 bg-rose-200'>
       <div className='flex justify-center'>
@@ -28,5 +28,3 @@ function Modal({ setOpenModal }: { setOpenModal: any }) {
     </div>
   );
 }
-
-export default Modal;
