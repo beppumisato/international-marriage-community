@@ -14,3 +14,21 @@ body {
 input[type='file'] {
   display: none;
 }
+
+body {
+  background-color: #fff7ed;
+}
+
+/* ログイン、新規会員登録ボタン */
+.button {
+  color: white;
+  font-size: 15px;
+  border-width: 4px;
+  border-color: white;
+  background-color: #fb923c;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  width: 6rem;
+  height: 1.2rem;
+}

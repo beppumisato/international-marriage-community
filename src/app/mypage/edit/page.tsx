@@ -61,7 +61,6 @@ export default function EditPage() {
 
   return (
     <div className='font-kosugi'>
-      <Header title='プロフィール編集' url='/mypage/' />
       <div className='p-4'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <ImageForm
@@ -73,6 +72,7 @@ export default function EditPage() {
           <ProfileForm register={register} />
         </form>
       </div>
+      <img className='mt-8' src='/login/design.png/'></img>
     </div>
   );
 }

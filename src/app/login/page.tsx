@@ -44,103 +44,73 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className='font-kosugi'>
-        {/* Topへ戻るリンク */}
-        <div className='flex'>
-          <Link
-            href={'/'}
-            className='ml-4 mt-2 text-rose-400 font-bold text-[20px]'
-          >
-            ＜ Top
-          </Link>
-          <div className='ml-2 mt-2 text-rose-400 font-bold text-[20px]'>
-            / ログイン
+      {/* ログイン機能 */}
+      <section className='flex justify-center'>
+        <div className='font-kosugi'>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='flex flex-col'>
+              <label
+                htmlFor='email'
+                className='text-yellow-600 text-[18px] mt-4 -ml-6'
+              >
+                メールアドレス
+              </label>
+              <input
+                className='text-[12px] h-6 items-center -ml-6 p-2'
+                id='email'
+                type='email'
+                placeholder='メールアドレスを入力してください'
+                {...register('email', {
+                  validate: (value) => value === getValues('email'),
+                })}
+              />
+            </div>
+            {errors.email && (
+              <span className='text-[14px] text-red-500'>
+                メールアドレスが正しくありません
+              </span>
+            )}
+
+            <div className='flex flex-col'>
+              <label
+                htmlFor='password'
+                className='text-yellow-600 text-[18px] mt-2 -ml-6'
+              >
+                パスワード
+              </label>
+              <input
+                className='text-[12px] h-6 items-center -ml-6 p-2'
+                id='password'
+                // type='password' // マスクされるとわかりづらいので一旦解除
+                placeholder='パスワードを入力して下さい'
+                {...register('password', { minLength: 8 })}
+              />
+            </div>
+            {errors.password && (
+              <span className='text-[14px] text-red-500'>
+                ※パスワードが正しくありません
+              </span>
+            )}
+
+            {/* ログインボタンの実装 */}
+            <div className='button hover:bg-orange-500 mt-3'>
+              <button type='submit'>ログイン</button>
+            </div>
+          </form>
+
+          {/* 新規会員登録フォームへ */}
+          <div className='text-yellow-600'>
+            <h1 className='ml-2 mt-4 text-[20px]'>初めてご利用になる方</h1>
+            <p className='-ml-3 m-1 text-[18px]'>
+              ご利用になるには会員登録が必要です
+            </p>
+          </div>
+          <div className='button hover:bg-orange-500 mt-3'>
+            <Link href={'/registration/'}>新規会員登録</Link>
           </div>
         </div>
-
-        {/* ログイン機能 */}
-        <section className='p-0 flex justify-center'>
-          <div className='relative'>
-            <img src='/login/bg.png/' width={650}></img>
-          </div>
-          <div className='absolute top-20'>
-            <div className='pl-6 pr-6'>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='flex flex-col'>
-                  <label htmlFor='email' className='text-white text-[16px]'>
-                    メールアドレス
-                  </label>
-                  <input
-                    className='text-[12px] h-6 pl-3'
-                    id='email'
-                    type='email'
-                    placeholder='メールアドレスを入力してください'
-                    {...register('email', {
-                      validate: (value) => value === getValues('email'),
-                    })}
-                  />
-                  {/* <p>{errors.email?.message as React.ReactNode}</p> */}
-                </div>
-                {errors.email && (
-                  <span className='text-[14px] text-red-500'>
-                    メールアドレスが正しくありません
-                  </span>
-                )}
-
-                <div className='flex flex-col'>
-                  <label
-                    htmlFor='password'
-                    className='text-white text-[16px] mt-5'
-                  >
-                    パスワード
-                  </label>
-                  <input
-                    className='text-[12px] h-6 pl-3'
-                    id='password'
-                    // type='password' // マスクされるとわかりづらいので一旦解除
-                    placeholder='パスワードを入力して下さい'
-                    {...register('password', { minLength: 8 })}
-                  />
-                  {/* <p>{errors.password?.message as React.ReactNode}</p> */}
-                </div>
-                {errors.password && (
-                  <span className='text-[14px] text-red-500'>
-                    ※パスワードが正しくありません
-                  </span>
-                )}
-
-                {/* ログインボタンの実装 */}
-                <div className='flex justify-center m-3'>
-                  <button
-                    type='submit'
-                    className='text-[15px] border-4 border-white text-white bg-rose-400 hover:bg-rose-500 p-1 w-24'
-                  >
-                    ログイン
-                  </button>
-                </div>
-              </form>
-
-              {/* 新規会員登録フォームへ */}
-              <div className='flex flex-col text-white text-[15px]'>
-                <div className='flex justify-center mt-1'>
-                  初めてご利用になる方
-                </div>
-                <div className='flex justify-center'>
-                  ご利用になるには会員登録が必要です
-                </div>
-              </div>
-              <div className='flex justify-center mt-1.5'>
-                <Link
-                  href={'/registration/'}
-                  className='text-[15px] border-4 border-white text-white bg-rose-400 hover:bg-rose-500 p-1 w-24 text-center'
-                >
-                  新規会員登録
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+      </section>
+      <img className='mt-10' src='/login/design.png/'></img>
     </>
   );
 }

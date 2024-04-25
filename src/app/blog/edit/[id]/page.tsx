@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Anybody } from 'next/font/google';
 import { apiHeaders } from '../../../../../utils/api';
+import Modal from '@/app/components/modal/Modal';
 
 const editBlog = async (
   title: string | undefined,
@@ -39,6 +38,7 @@ export default function EditPage({ params }: { params: { id: number } }) {
   const router = useRouter();
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ export default function EditPage({ params }: { params: { id: number } }) {
       params.id,
     );
 
-    router.push('/timeline/allblog');
+    // router.push('/timeline/');
   };
 
   const handleDelete = async () => {
@@ -69,44 +69,45 @@ export default function EditPage({ params }: { params: { id: number } }) {
   }, []);
 
   return (
-    <div className='font-kosugi'>
-      <div className='flex text-rose-400 bg-rose-200 h-6 text-[24px] mb-4 p-2'>
-        <Link href={`/timeline/allblog/`}>＜</Link>
-        <div className='ml-60'>投稿編集</div>
-      </div>
-
+    <div className='font-kosugi text-[24px]'>
       <form onSubmit={handleSubmit}>
-        <div className='flex justify-center'>
+        <div className='flex justify-center m-4'>
           <input
             ref={titleRef}
             placeholder='タイトルを入力する'
             type='text'
-            className='p-2 m-4 w-4/5 h-10 rounded-md border-2 border-rose-200 text-[20px]'
+            className='border-2 border-yellow-700 rounded-md h-8 w-3/5 p-2'
           />
         </div>
-        <div className='flex justify-center'>
+        <div className='flex justify-center m-4'>
           <textarea
             ref={descriptionRef}
             placeholder='詳細記事を入力'
-            className='p-2 m-4 w-4/5 h-40 rounded-md border-2 border-rose-400 text-[20px]'
+            className='border-2 border-yellow-700 rounded-md h-28 w-3/5 p-2'
           />
         </div>
-        <div className='flex justify-center'>
+        <div className='flex justify-center ml-48'>
           <button
-            onClick={handleDelete}
-            className='text-[24px] bg-sky-400 text-white rounded-md hover:bg-sky-500 w-12 h-6 m-2'
+            // onClick={handleDelete}
+            onClick={() => {
+              setModalOpen(true);
+            }}
+            className='text-white bg-sky-300 rounded-md hover:bg-sky-400 w-16 h-6'
           >
             削除
           </button>
-
+          {modalOpen && (
+            <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
+          )}
           <button
             type='submit'
-            className='text-[24px] bg-rose-400 text-white rounded-md hover:bg-rose-500 w-12 h-6 m-2'
+            className='text-white bg-orange-400 rounded-md hover:bg-orange-500 w-16 h-6 ml-1'
           >
             完了
           </button>
         </div>
       </form>
+      <img className='mt-8' src='/login/design.png/'></img>
     </div>
   );
 }
