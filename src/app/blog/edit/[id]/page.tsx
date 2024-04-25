@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Anybody } from 'next/font/google';
 import { apiHeaders } from '../../../../../utils/api';
+import Modal from '@/app/components/modal/Modal';
 
 const editBlog = async (
   title: string | undefined,
@@ -39,6 +38,7 @@ export default function EditPage({ params }: { params: { id: number } }) {
   const router = useRouter();
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ export default function EditPage({ params }: { params: { id: number } }) {
       params.id,
     );
 
-    router.push('/timeline/');
+    // router.push('/timeline/');
   };
 
   const handleDelete = async () => {
@@ -88,12 +88,15 @@ export default function EditPage({ params }: { params: { id: number } }) {
         </div>
         <div className='flex justify-center ml-48'>
           <button
-            onClick={handleDelete}
+            // onClick={handleDelete}
+            onClick={() => {
+              setModalOpen(true);
+            }}
             className='text-white bg-sky-300 rounded-md hover:bg-sky-400 w-16 h-6'
           >
             削除
           </button>
-
+          {modalOpen && <Modal setOpenModal={setModalOpen} />}
           <button
             type='submit'
             className='text-white bg-orange-400 rounded-md hover:bg-orange-500 w-16 h-6 ml-1'
