@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 interface Props {
@@ -11,7 +12,6 @@ export default function Modal(props: Props) {
       <div className='flex justify-center'>
         <button
           onClick={() => {
-            props.onYes();
             props.setOpenModal(false);
           }}
         >
@@ -29,7 +29,16 @@ export default function Modal(props: Props) {
         >
           いいえ
         </button>
-        <button>はい</button>
+        <Link href={'/timeline/'}>
+          <button
+            onClick={() => {
+              props.onYes();
+              props.setOpenModal(true);
+            }}
+          >
+            はい
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { apiHeaders } from '../../../../../utils/api';
 import Modal from '@/app/components/modal/Modal';
+import Link from 'next/link';
 
 const editBlog = async (
   title: string | undefined,
@@ -48,8 +49,6 @@ export default function EditPage({ params }: { params: { id: number } }) {
       descriptionRef.current?.value,
       params.id,
     );
-
-    // router.push('/timeline/');
   };
 
   const handleDelete = async () => {
@@ -88,7 +87,6 @@ export default function EditPage({ params }: { params: { id: number } }) {
         </div>
         <div className='flex justify-center ml-48'>
           <button
-            // onClick={handleDelete}
             onClick={() => {
               setModalOpen(true);
             }}
@@ -99,12 +97,14 @@ export default function EditPage({ params }: { params: { id: number } }) {
           {modalOpen && (
             <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
           )}
-          <button
-            type='submit'
-            className='text-white bg-orange-400 rounded-md hover:bg-orange-500 w-16 h-6 ml-1'
-          >
-            完了
-          </button>
+          <Link href={'/timeline/'}>
+            <button
+              type='submit'
+              className='text-white bg-orange-400 rounded-md hover:bg-orange-500 w-16 h-6 ml-1'
+            >
+              完了
+            </button>
+          </Link>
         </div>
       </form>
       <img className='mt-8' src='/login/design.png/'></img>
