@@ -3,7 +3,6 @@
 import { useForm } from 'react-hook-form';
 import { Cognito } from '../../../../utils/cognito';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Header from '@/app/components/common/Header';
 
 interface CodeForm {
   code: string;

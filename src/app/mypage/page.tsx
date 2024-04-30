@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import ProfileDisplay from '../components/mypage/ProfileDisplay';
 
 const returnTop = () => {

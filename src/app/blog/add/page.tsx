@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Header from '../../components/common/Header';
 import { useRouter } from 'next/navigation';
 import { apiHeaders } from '../../../../utils/api';
 
