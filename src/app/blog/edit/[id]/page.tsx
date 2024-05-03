@@ -2,38 +2,9 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { apiHeaders } from '../../../../../utils/api';
 import Modal from '@/app/components/modal/Modal';
 import Link from 'next/link';
-
-const editBlog = async (
-  title: string | undefined,
-  description: string | undefined,
-  id: number,
-) => {
-  const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
-    method: 'PUT',
-    headers: await apiHeaders(),
-    body: JSON.stringify({ title, description, id }),
-  });
-
-  return res.json();
-};
-
-const getBlogById = async (id: number) => {
-  const res = await fetch(`http://localhost:3000/api/blog/${id}`);
-  const data = await res.json();
-  return data.post;
-};
-
-const deleteBlog = async (id: number) => {
-  const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
-    method: 'DELETE',
-    headers: await apiHeaders(),
-  });
-
-  return res.json();
-};
+import { deleteBlog, editBlog, getBlogById } from '@/app/repositories/blog';
 
 export default function EditPage({ params }: { params: { id: number } }) {
   const router = useRouter();

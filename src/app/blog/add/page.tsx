@@ -2,20 +2,7 @@
 
 import React, { useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { apiHeaders } from '../../../../utils/api';
-
-const postBlog = async (
-  title: string | undefined,
-  description: string | undefined,
-) => {
-  const res = await fetch(`http://localhost:3000/api/blog`, {
-    method: 'POST',
-    headers: await apiHeaders(),
-    body: JSON.stringify({ title, description }),
-  });
-
-  return res.json();
-};
+import { postBlog } from '@/app/repositories/blog';
 
 export default function BlogPage() {
   const router = useRouter();
