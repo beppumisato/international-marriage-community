@@ -7,11 +7,15 @@ import React, { useEffect, useState } from 'react';
 
 type Blog = Post & { author: User };
 
-export default function TimelineBlogDisplay() {
+type Props = {
+  isMyPost: boolean;
+};
+
+export default function TimelineBlogDisplay(props: Props) {
   const [posts, setPosts] = useState<Blog[]>([]);
 
   useEffect(() => {
-    fetchAllBlogs(false).then((posts) => {
+    fetchAllBlogs(props.isMyPost).then((posts) => {
       setPosts(posts);
     });
   }, []);
