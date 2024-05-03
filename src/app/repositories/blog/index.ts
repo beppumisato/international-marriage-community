@@ -51,6 +51,7 @@ export const fetchAllBlogs = async (isMyPost: boolean) => {
   const res = await fetch(`${url}`, {
     method: 'GET',
     cache: 'no-store', //SSR
+    headers: await apiHeaders(),
   });
 
   const data = await res.json();
