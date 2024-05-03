@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getCurrentUser } from '../common';
 
 const prisma = new PrismaClient();
@@ -13,15 +13,35 @@ export async function main() {
 }
 
 //ブログ前記事取得API
-export const GET = async (req: Request, res: NextResponse) => {
+export const GET = async (req: NextRequest, res: NextResponse) => {
   try {
+    const searchParams = req.nextUrl.searchParams;
+    const isMyPost = searchParams.get('mypost');
+
     await main();
-    const posts = await prisma.post.findMany({
-      include: {
-        author: true,
-      },
-    });
-    return NextResponse.json({ message: 'Success', posts }, { status: 200 });
+
+    if (isMyPost) {
+      const currentUser = await getCurrentUser();
+
+      // 自分のだけ
+      const posts = await prisma.post.findMany({
+        where: {
+          authorId: currentUser?.id,
+        },
+        include: {
+          author: true,
+        },
+      });
+      return NextResponse.json({ message: 'Success', posts }, { status: 200 });
+    } else {
+      // 全部
+      const posts = await prisma.post.findMany({
+        include: {
+          author: true,
+        },
+      });
+      return NextResponse.json({ message: 'Success', posts }, { status: 200 });
+    }
   } catch (err) {
     return NextResponse.json({ message: 'Error', err }, { status: 500 });
   } finally {
