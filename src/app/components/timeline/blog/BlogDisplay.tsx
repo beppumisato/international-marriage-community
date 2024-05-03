@@ -1,21 +1,13 @@
 'use client';
 
+import { fetchAllBlogs } from '@/app/repositories/blog';
 import { Post, User } from '@prisma/client';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-async function fetchAllBlogs() {
-  const res = await fetch(`http://localhost:3000/api/blog`, {
-    cache: 'no-store', //SSR
-  });
-
-  const data = await res.json();
-  return data.posts;
-}
-
 type Blog = Post & { author: User };
 
-export default function BlogDisplayPage() {
+export default function TimelineBlogDisplay() {
   const [posts, setPosts] = useState<Blog[]>([]);
 
   useEffect(() => {

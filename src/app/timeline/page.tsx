@@ -1,11 +1,16 @@
 'use client';
 
-import React from 'react';
-import BlogDisplayPage from '../components/timeline/blog/BlogDisplay';
-import ProfileDisplayPage from '../components/timeline/profile/ProgileDisplay';
+import React, { useContext } from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import TimelineProfileDisplay from '../components/timeline/profile/ProgileDisplay';
+import TimelineBlogDisplay from '../components/timeline/blog/BlogDisplay';
 
 export default function TimelinePage() {
-  // // Topへスクロー機能
+  const { user } = useContext(CurrentUserContext);
+
+  const isLogin = user != null;
+
+  // // Topへスクロー機能コンポーネント化して使い回す。
   // const returnTop = () => {
   //   window.scrollTo({
   //     top: 0,
@@ -15,9 +20,9 @@ export default function TimelinePage() {
 
   return (
     <>
-      <div className='font-kosugi p-4 flex'>
-        <ProfileDisplayPage />
-        <BlogDisplayPage />
+      <div className='font-kosugi p-4 flex justify-center'>
+        {isLogin && <TimelineProfileDisplay />}
+        <TimelineBlogDisplay />
       </div>
     </>
   );

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { Cognito } from '../../../utils/cognito';
 import { useRouter } from 'next/navigation';

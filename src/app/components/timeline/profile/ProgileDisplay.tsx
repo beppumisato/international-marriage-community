@@ -3,7 +3,7 @@
 import { useContext } from 'react';
 import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 
-export default function ProfileDisplayPage() {
+export default function TimelineProfileDisplay() {
   const { user } = useContext(CurrentUserContext);
 
   return (
