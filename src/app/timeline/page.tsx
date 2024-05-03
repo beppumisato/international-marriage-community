@@ -10,7 +10,7 @@ export default function TimelinePage() {
 
   const isLogin = user != null;
 
-  // // Topへスクロー機能
+  // // Topへスクロー機能コンポーネント化して使い回す。
   // const returnTop = () => {
   //   window.scrollTo({
   //     top: 0,
