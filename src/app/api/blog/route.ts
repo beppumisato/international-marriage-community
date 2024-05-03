@@ -21,16 +21,19 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     await main();
 
     if (isMyPost) {
-      console.log('自分だけ');
+      const currentUser = await getCurrentUser();
+
       // 自分のだけ
       const posts = await prisma.post.findMany({
+        where: {
+          authorId: currentUser?.id,
+        },
         include: {
           author: true,
         },
       });
       return NextResponse.json({ message: 'Success', posts }, { status: 200 });
     } else {
-      console.log('全部');
       // 全部
       const posts = await prisma.post.findMany({
         include: {
