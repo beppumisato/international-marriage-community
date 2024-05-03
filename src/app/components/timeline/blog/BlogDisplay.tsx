@@ -11,7 +11,7 @@ export default function TimelineBlogDisplay() {
   const [posts, setPosts] = useState<Blog[]>([]);
 
   useEffect(() => {
-    fetchAllBlogs().then((posts) => {
+    fetchAllBlogs(false).then((posts) => {
       setPosts(posts);
     });
   }, []);

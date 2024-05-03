@@ -42,8 +42,14 @@ export const deleteBlog = async (id: number) => {
   return res.json();
 };
 
-export const fetchAllBlogs = async () => {
-  const res = await fetch(`http://localhost:3000/api/blog`, {
+// クエリパラメータで制御
+export const fetchAllBlogs = async (isMyPost: boolean) => {
+  const url = isMyPost
+    ? 'http://localhost:3000/api/blog?mypost=true'
+    : 'http://localhost:3000/api/blog';
+
+  const res = await fetch(`${url}`, {
+    method: 'GET',
     cache: 'no-store', //SSR
   });
 
