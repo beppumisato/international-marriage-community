@@ -20,7 +20,7 @@ export default function TimelinePage() {
 
   return (
     <>
-      <div className='font-kosugi p-4 flex'>
+      <div className='font-kosugi p-4 flex justify-center'>
         {isLogin && <TimelineProfileDisplay />}
         <TimelineBlogDisplay />
       </div>
