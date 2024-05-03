@@ -30,33 +30,33 @@ export default function TimelineBlogDisplay(props: Props) {
         <form onSubmit={handleSubmit}>
           {posts.map((post) => (
             <div key={post.id}>
-              <div className='p-1 m-4 mb-0'>
-                <div className='flex'>
+              <div className='p-1 m-4 mb-0 flex justify-between'>
+                {/* アイコンと名前 */}
+                <div>
                   <img
                     width={50}
                     className='rounded-full max-w-full h-auto align-middle border-2 border-yellow-700'
                     src={post.author.iconImageUrl}
                   ></img>
-                  <div className='absolute text-[18px] mt-6'>
-                    {post.author.nickname}
-                  </div>
+                  <div className='text-[18px] mt-1'>{post.author.nickname}</div>
+                </div>
 
-                  <div className='absolute left-56'>
-                    <div className='text-[14px] text-slate-500'>
-                      {new Date(post.createdAt).toDateString()}
-                    </div>
-                    <h1 className='text-[20px]'>{post.title}</h1>
-                    <h2 className='text-[18px]'>{post.description}</h2>
+                {/* 投稿内容 */}
+                <div className='w-72'>
+                  <div className='text-[14px] text-slate-500'>
+                    {new Date(post.createdAt).toDateString()}
                   </div>
+                  <h1 className='text-[20px]'>{post.title}</h1>
+                  <h2 className='text-[18px]'>{post.description}</h2>
                 </div>
-                <div className='flex justify-end'>
-                  <Link
-                    href={`/blog/edit/${post.id}`}
-                    className='text-yellow-700 text-[20px]'
-                  >
-                    ...
-                  </Link>
-                </div>
+
+                {/* 編集アイコン */}
+                <Link
+                  href={`/blog/edit/${post.id}`}
+                  className='text-yellow-700 text-[20px]'
+                >
+                  ...
+                </Link>
               </div>
               <div className='border-b border-yellow-700'></div>
             </div>
