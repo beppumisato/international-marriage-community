@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { Cognito } from '../../../utils/cognito';
+import CommonButton from '../components/common/Button';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
@@ -93,9 +94,13 @@ export default function LoginPage() {
             )}
 
             {/* ログインボタンの実装 */}
-            <div className='button hover:bg-orange-500 mt-3'>
+            <CommonButton label='ログイン' colorType='primary' />
+
+            <CommonButton label='キャンセル' colorType='secondary' />
+            <CommonButton label='削除' colorType='error' />
+            {/* <div className='button hover:bg-orange-500 mt-3'>
               <button type='submit'>ログイン</button>
-            </div>
+            </div> */}
           </form>
 
           {/* 新規会員登録フォームへ */}
