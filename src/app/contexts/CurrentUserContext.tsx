@@ -35,13 +35,14 @@ export default function CurrentUserProvider(props: Props) {
     cognito.getSession().then((session) => {
       // 未ログインの場合
       if (!session) {
-        // TOP、ログイン、新規登録、ログアウトページ以外はログインページへ
+        // 特定のページ以外はログインページへ
         if (
           ![
             '/',
             '/login',
             '/registration',
             '/registration/confirmation',
+            '/timeline',
             '/logout',
           ].includes(pathname)
         ) {

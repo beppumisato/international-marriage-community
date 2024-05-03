@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 
 type Blog = Post & { author: User };
 
-export default function BlogDisplayPage() {
+export default function TimelineBlogDisplay() {
   const [posts, setPosts] = useState<Blog[]>([]);
 
   useEffect(() => {
