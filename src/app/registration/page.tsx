@@ -40,18 +40,17 @@ export default function RegistrationPage() {
   return (
     <>
       {/* 新規会員登録機能 */}
-      <section className='flex justify-center'>
-        <div className='font-kosugi'>
+      <div className='flex justify-center font-kosugi'>
+        <div className='text-yellow-700 text-[16px]'>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='flex flex-col'>
-              <label
-                htmlFor='email'
-                className='text-yellow-600 text-[18px] mt-6 -ml-8'
-              >
-                メールアドレス
-              </label>
+            <div className='flex flex-col items-center'>
+              <div className='mt-20'>
+                <label htmlFor='email' className='label mr-48'>
+                  メールアドレス
+                </label>
+              </div>
               <input
-                className='text-[12px] h-6 w-40 items-center -ml-8 p-2'
+                className='input'
                 id='email'
                 type='email'
                 placeholder='メールアドレスを入力してください'
@@ -62,17 +61,12 @@ export default function RegistrationPage() {
                   ※正しいメールアドレスを入力してください
                 </span>
               )}
-            </div>
 
-            <div className='flex flex-col'>
-              <label
-                htmlFor='password'
-                className='text-yellow-600 text-[18px] mt-2 -ml-8'
-              >
+              <label htmlFor='password' className='label mr-56'>
                 パスワード
               </label>
               <input
-                className='text-[12px] h-6 w-40 items-center -ml-8 p-2'
+                className='input'
                 id='password'
                 // type='password' // マスクされるとわかりづらいので一旦解除
                 placeholder='パスワードを入力して下さい'
@@ -88,16 +82,12 @@ export default function RegistrationPage() {
                   ※半角英数字、8文字以上で作成してください
                 </span>
               )}
-            </div>
-            <div className='flex flex-col'>
-              <label
-                htmlFor='username'
-                className='text-yellow-600 text-[18px] mt-2 -ml-8'
-              >
+
+              <label htmlFor='username' className='label mr-52'>
                 ニックネーム
               </label>
               <input
-                className='text-[12px] h-6 w-40 items-center -ml-8 p-2'
+                className='input'
                 id='username'
                 type='text'
                 placeholder='ニックネームを入力して下さい'
@@ -107,27 +97,20 @@ export default function RegistrationPage() {
             </div>
 
             {/* 新規会員登録ボタンの実装 */}
-            <div className='button hover:bg-orange-500 mt-3'>
-              <button type='submit'>新規会員登録</button>
+            <div className='mt-20 flex justify-center'>
+              <button type='submit' className='button'>
+                新規会員登録
+              </button>
             </div>
-            <div className='text-yellow-600 text-[18px] text-center'>
-              <p className='m-1 mt-3 -ml-10'>
-                国際結婚は様々な問題や悩みを抱えることがあります。
-              </p>
-              <p className='m-1 -ml-10'>
-                当サイトでは、同じく国際結婚をした人と繋がり、
-              </p>
-              <p className='m-1 -ml-10'>
-                支え合うコミュニティを提供しています。
-              </p>
-              <p className='m-1 -ml-10'>
-                一緒に、国際結婚生活を豊かにする仲間を見つけましょう！
-              </p>
+            <div className='text-center mt-10'>
+              <p>国際結婚は様々な問題や悩みを抱えることがあります。</p>
+              <p>当サイトでは、同じく国際結婚をした人と繋がり、</p>
+              <p>支え合うコミュニティを提供しています。</p>
+              <p>一緒に、国際結婚生活を豊かにする仲間を見つけましょう！</p>
             </div>
           </form>
         </div>
-      </section>
-      <img src='/login/design.png/'></img>
+      </div>
     </>
   );
 }

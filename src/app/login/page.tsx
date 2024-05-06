@@ -48,10 +48,12 @@ export default function LoginPage() {
       <div className='flex justify-center font-kosugi'>
         <div className='text-yellow-700 text-[16px]'>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='flex flex-col mt-20'>
-              <label htmlFor='email' className='label'>
-                メールアドレス
-              </label>
+            <div className='flex flex-col'>
+              <div className='mt-20'>
+                <label htmlFor='email' className='label'>
+                  メールアドレス
+                </label>
+              </div>
               <input
                 className='input'
                 id='email'
@@ -61,14 +63,13 @@ export default function LoginPage() {
                   validate: (value) => value === getValues('email'),
                 })}
               />
-            </div>
-            {errors.email && (
-              <span className='text-[14px] text-red-500'>
-                メールアドレスが正しくありません
-              </span>
-            )}
 
-            <div className='flex flex-col'>
+              {errors.email && (
+                <span className='text-[14px] text-red-500'>
+                  メールアドレスが正しくありません
+                </span>
+              )}
+
               <label htmlFor='password' className='label'>
                 パスワード
               </label>
