@@ -45,18 +45,15 @@ export default function LoginPage() {
   return (
     <>
       {/* ログイン機能 */}
-      <section className='flex justify-center'>
-        <div className='font-kosugi'>
+      <div className='flex justify-center font-kosugi'>
+        <div className='text-yellow-700 text-[16px]'>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='flex flex-col'>
-              <label
-                htmlFor='email'
-                className='text-yellow-600 text-[18px] mt-4 -ml-6'
-              >
+            <div className='flex flex-col mt-20'>
+              <label htmlFor='email' className='label'>
                 メールアドレス
               </label>
               <input
-                className='text-[12px] h-6 items-center -ml-6 p-2'
+                className='input'
                 id='email'
                 type='email'
                 placeholder='メールアドレスを入力してください'
@@ -72,14 +69,11 @@ export default function LoginPage() {
             )}
 
             <div className='flex flex-col'>
-              <label
-                htmlFor='password'
-                className='text-yellow-600 text-[18px] mt-2 -ml-6'
-              >
+              <label htmlFor='password' className='label'>
                 パスワード
               </label>
               <input
-                className='text-[12px] h-6 items-center -ml-6 p-2'
+                className='input'
                 id='password'
                 // type='password' // マスクされるとわかりづらいので一旦解除
                 placeholder='パスワードを入力して下さい'
@@ -91,26 +85,31 @@ export default function LoginPage() {
                 ※パスワードが正しくありません
               </span>
             )}
-
             {/* ログインボタンの実装 */}
-            <div className='button hover:bg-orange-500 mt-3'>
-              <button type='submit'>ログイン</button>
+            <div className='mt-20 flex justify-center'>
+              <button type='submit' className='button hover:bg-orange-500'>
+                ログイン
+              </button>
             </div>
           </form>
 
           {/* 新規会員登録フォームへ */}
-          <div className='text-yellow-600'>
+          <div className='text-center mt-10'>
             <h1 className='ml-2 mt-4 text-[20px]'>初めてご利用になる方</h1>
-            <p className='-ml-3 m-1 text-[18px]'>
+            <h2 className='-ml-3 m-1 text-[16px]'>
               ご利用になるには会員登録が必要です
-            </p>
+            </h2>
           </div>
-          <div className='button hover:bg-orange-500 mt-3'>
-            <Link href={'/registration/'}>新規会員登録</Link>
+          <div className='flex justify-center mt-2'>
+            <Link
+              href={'/registration/'}
+              className='button hover:bg-orange-500 p-3'
+            >
+              新規会員登録
+            </Link>
           </div>
         </div>
-      </section>
-      <img className='mt-10' src='/login/design.png/'></img>
+      </div>
     </>
   );
 }
