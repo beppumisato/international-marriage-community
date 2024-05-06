@@ -11,42 +11,45 @@ export default function ProfileForm(props: Props) {
   const { user } = useContext(CurrentUserContext);
 
   return (
-    <div className='text-yellow-700 text-[24px]'>
-      <div className='mt-4 ml-2 font-bold'>ニックネーム</div>
-      <input
-        defaultValue={user?.nickname}
-        {...props.register('nickname')}
-        type='text'
-        className='border-2 border-yellow-700 rounded-md p-2 text-black'
-      />
-      <div className='mt-2 ml-2 font-bold'>国籍</div>
-      <div className='flex gap-x-2'>
-        <input
-          defaultValue={user?.myNationality}
-          {...props.register('myNationality')}
-          placeholder='妻の国籍'
-          type='text'
-          className='border-2 border-yellow-700 rounded-md w-1/2 p-2 text-black'
-        />
-        <input
-          defaultValue={user?.partnerNationality}
-          {...props.register('partnerNationality')}
-          placeholder='夫の国籍'
-          type='text'
-          className='border-2 border-yellow-700 rounded-md w-1/2 p-2 text-black'
-        />
+    <div>
+      <div className='text-[20px] p-4 border-b-2'>
+        <div className='border-b-2 mt-4'></div>
+        <div className='flex gap-20'>
+          <div className='m-6 text-yellow-700'>ニックネーム</div>
+          <input
+            defaultValue={user?.nickname}
+            {...props.register('nickname')}
+            type='text'
+          />
+        </div>
+        <div className='border-b-2'></div>
+        <div className='flex gap-40'>
+          <div className='m-6 text-yellow-700'>国籍</div>
+          <input
+            defaultValue={user?.myNationality}
+            {...props.register('myNationality')}
+            placeholder='あなた'
+            type='text'
+          />
+          <input
+            defaultValue={user?.partnerNationality}
+            {...props.register('partnerNationality')}
+            placeholder='お相手'
+            type='text'
+          />
+        </div>
+        <div className='border-b-2'></div>
+        <div className='flex gap-28 text-center'>
+          <div className='m-6 text-yellow-700'>自己紹介</div>
+          <input
+            defaultValue={user?.introduction}
+            {...props.register('introduction')}
+            type='text'
+          />
+        </div>
       </div>
-      <div className='mt-2 ml-2 font-bold'>自己紹介</div>
-      <textarea
-        defaultValue={user?.introduction}
-        {...props.register('introduction')}
-        className='border-2 border-yellow-700 rounded-md h-20 w-full p-2 text-black'
-      />
-      <div className='flex justify-end mt-3'>
-        <button
-          type='submit'
-          className='bg-orange-400 text-white rounded-md hover:bg-orange-500 w-16 h-6'
-        >
+      <div className='flex justify-center mt-20'>
+        <button type='submit' className='button hover:bg-orange-500'>
           保存
         </button>
       </div>

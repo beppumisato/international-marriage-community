@@ -33,7 +33,7 @@ export default function ImageForm(props: Props) {
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
         }}
-        className='relative bg-slate-300 border-2 border-yellow-700 w-full h-32 p-2'
+        className='bg-slate-300 w-full h-40 flex'
       >
         <label className='file__label'>
           <input
@@ -47,32 +47,32 @@ export default function ImageForm(props: Props) {
           <img
             src='/icon/camera.png'
             width={80}
-            className='absolute right-0 bottom-0'
+            className='mt-20 flex justify-end'
           ></img>
         </label>
-      </div>
-      <div
-        style={{
-          backgroundImage: `url(${props.iconImage ? window.URL.createObjectURL(props.iconImage) : user?.iconImageUrl})`,
-          backgroundSize: 'contain',
-        }}
-        className='absolute left-60 top-24 border-yellow-700 border-2 rounded-full w-14 h-14'
-      >
-        <label className='file__label'>
-          <input
-            type='file'
-            id='formFile'
-            accept='image/*'
-            onChange={(e) => {
-              handleChangeIconImage(e);
-            }}
-          />
-          <img
-            src='/icon/camera.png'
-            width={80}
-            className='absolute left-8 top-8'
-          ></img>
-        </label>
+        <div
+          style={{
+            backgroundImage: `url(${props.iconImage ? window.URL.createObjectURL(props.iconImage) : user?.iconImageUrl})`,
+            backgroundSize: 'contain',
+          }}
+          className='items-center border-2 border-white rounded-full w-28 h-28'
+        >
+          <label className='file__label'>
+            <input
+              type='file'
+              id='formFile'
+              accept='image/*'
+              onChange={(e) => {
+                handleChangeIconImage(e);
+              }}
+            />
+            <img
+              src='/icon/camera.png'
+              width={70}
+              className='ml-14 mt-12'
+            ></img>
+          </label>
+        </div>
       </div>
     </>
   );
