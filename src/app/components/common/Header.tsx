@@ -17,13 +17,13 @@ export default function Header() {
     <div className='font-kosugi'>
       {isOpen && <Sidebar onClick={() => setIsOpen(false)} />}
 
-      <div className='bg-orange-400 h-6 flex justify-between items-center px-4'>
-        <Link href={`/`} className='text-white text-[20px]'>
+      <div className='bg-white shadow flex justify-between items-center h-10 px-8'>
+        <Link href={`/`} className='text-yellow-700 text-[18px]'>
           国際結婚の輪
         </Link>
         <MenuIcon
           onClick={() => setIsOpen(true)}
-          sx={{ fontSize: 40, color: 'white' }}
+          sx={{ fontSize: 32, color: '#a16207' }}
         />
       </div>
     </div>
