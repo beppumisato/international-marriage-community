@@ -98,7 +98,7 @@ export default function RegistrationPage() {
 
             {/* 新規会員登録ボタンの実装 */}
             <div className='mt-20 flex justify-center'>
-              <button type='submit' className='button'>
+              <button type='submit' className='button hover:bg-orange-500'>
                 新規会員登録
               </button>
             </div>
