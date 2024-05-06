@@ -9,8 +9,8 @@ interface Props {
 
 export default function Modal(props: Props) {
   return (
-    <div className='fixed h-20 w-4 top-32 right-64'>
-      <div className='p-2 h-20 w-40 bg-slate-200 rounded-md text-[16px] flex-col'>
+    <div className='fixed h-60 w-96 top-60'>
+      <div className='p-2 h-60 w-96 bg-white shadow shadow-slate-400 text-[16px] flex-col'>
         <div className='flex justify-end'>
           <button
             onClick={() => {
@@ -20,17 +20,15 @@ export default function Modal(props: Props) {
             <CloseIcon sx={{ fontSize: 30 }} />
           </button>
         </div>
-        <div className='mt-2'>
-          <h1>この投稿を本当に削除してもよろしいですか？</h1>
-        </div>
-        <div className='flex justify-between m-3'>
+        <h1 className='text-center'>この投稿を本当に削除しますか？</h1>
+        <div className='flex gap-4 justify-center mt-10'>
           <button
             onClick={() => {
               props.setOpenModal(false);
             }}
-            className='text-red-500 ml-6 text-[20px] underline'
+            className='text-slate-500 border-2 border-slate-500 rounded hover:bg-slate-400 w-32 h-8'
           >
-            いいえ
+            キャンセル
           </button>
           <Link href={'/timeline/'}>
             <button
@@ -38,9 +36,9 @@ export default function Modal(props: Props) {
                 props.onYes();
                 props.setOpenModal(true);
               }}
-              className='mr-6 text-[20px] underline'
+              className='text-white bg-red-500 rounded hover:bg-red-700 w-32 h-8'
             >
-              はい
+              削除
             </button>
           </Link>
         </div>

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Modal from '@/app/components/modal/Modal';
 import Link from 'next/link';
 import { deleteBlog, editBlog, getBlogById } from '@/app/repositories/blog';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export default function EditPage({ params }: { params: { id: number } }) {
   const router = useRouter();
@@ -39,46 +40,43 @@ export default function EditPage({ params }: { params: { id: number } }) {
   }, []);
 
   return (
-    <div className='font-kosugi text-[24px]'>
+    <div className='font-kosugi p-10'>
       <form onSubmit={handleSubmit}>
-        <div className='flex justify-center m-4'>
-          <input
-            ref={titleRef}
-            placeholder='タイトルを入力する'
-            type='text'
-            className='border-2 border-yellow-700 rounded-md h-8 w-3/5 p-2'
-          />
+        <div className='flex mt-20'>
+          <div className='text-yellow-700 justify-start w-28 h-12'>
+            タイトル
+          </div>
+          <input ref={titleRef} type='text' className='w-full' />
         </div>
-        <div className='flex justify-center m-4'>
-          <textarea
-            ref={descriptionRef}
-            placeholder='詳細記事を入力'
-            className='border-2 border-yellow-700 rounded-md h-28 w-3/5 p-2'
-          />
+        <div className='border-b-2'></div>
+
+        <div className='flex mt-10'>
+          <div className='text-yellow-700 justify-start mt-10 w-32 h-12'>
+            キャプション
+          </div>
+          <textarea ref={descriptionRef} className='w-full' />
         </div>
-        <div className='flex justify-center ml-48'>
+        <div className='border-b-2'></div>
+        <div className='flex justify-center mt-20'>
+          <Link href={'/timeline/'}>
+            <button type='submit' className='button hover:bg-orange-600'>
+              編集内容を保存
+            </button>
+          </Link>
+        </div>
+        <div className='grid place-items-end mt-10'>
           <button
             onClick={() => {
               setModalOpen(true);
             }}
-            className='text-white bg-sky-300 rounded-md hover:bg-sky-400 w-16 h-6'
           >
-            削除
+            <DeleteForeverIcon sx={{ fontSize: 80, color: '#d1d5db' }} />
           </button>
           {modalOpen && (
             <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
           )}
-          <Link href={'/timeline/'}>
-            <button
-              type='submit'
-              className='text-white bg-orange-400 rounded-md hover:bg-orange-500 w-16 h-6 ml-1'
-            >
-              完了
-            </button>
-          </Link>
         </div>
       </form>
-      <img className='mt-8' src='/login/design.png/'></img>
     </div>
   );
 }
