@@ -28,7 +28,7 @@ export default function TimelineBlogDisplay(props: Props) {
 
   return (
     <>
-      <div className='bg-white p-6 ml-2 w-4/5'>
+      <div className='bg-white w-4/5'>
         <form onSubmit={handleSubmit}>
           {posts.map((post) => (
             <div key={post.id}>
