@@ -19,33 +19,28 @@ export default function BlogPage() {
   };
 
   return (
-    <div className='font-kosugi text-[24px]'>
+    <div className='font-kosugi p-10'>
       <form onSubmit={handleSubmit}>
-        <div className='flex justify-center m-4'>
-          <input
-            ref={titleRef}
-            placeholder='タイトルを入力する'
-            type='text'
-            className='border-2 border-yellow-700 rounded-md h-8 w-3/5 p-2'
-          />
+        <div className='flex mt-20'>
+          <div className='text-yellow-700 justify-start w-20 h-12'>
+            タイトル
+          </div>
+          <input ref={titleRef} type='text' className='w-full' />
         </div>
-        <div className='flex justify-center m-4'>
-          <textarea
-            ref={descriptionRef}
-            placeholder='詳細記事を入力'
-            className='border-2 border-yellow-700 rounded-md h-28 w-3/5 p-2'
-          />
+        <div className='border-b-2'></div>
+        <div className='flex mt-10'>
+          <div className='text-yellow-700 justify-start mt-10 w-32 h-12'>
+            キャプション
+          </div>
+          <textarea ref={descriptionRef} className='w-full' />
         </div>
-        <div className='flex justify-center ml-64'>
-          <button
-            type='submit'
-            className='text-white bg-orange-400 rounded-md hover:bg-orange-500 w-16 h-6'
-          >
-            投稿
+        <div className='border-b-2'></div>
+        <div className='flex justify-center mt-20'>
+          <button type='submit' className='button hover:bg-orange-500'>
+            投稿する
           </button>
         </div>
       </form>
-      <img className='mt-8' src='/login/design.png/'></img>
     </div>
   );
 }
