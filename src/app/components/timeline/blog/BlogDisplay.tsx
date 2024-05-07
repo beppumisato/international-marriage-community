@@ -32,7 +32,7 @@ export default function TimelineBlogDisplay(props: Props) {
         <form onSubmit={handleSubmit}>
           {posts.map((post) => (
             <div key={post.id}>
-              <div className='shadow flex justify-between m-4'>
+              <div className='shadow flex justify-between m-4 rounded-md'>
                 <div className='p-6'>
                   <img
                     width={50}

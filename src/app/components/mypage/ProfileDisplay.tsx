@@ -11,7 +11,10 @@ export default function ProfileDisplay() {
   return (
     <div className='font-kosugi p-10'>
       <div>
-        <img className='relative w-full h-40' src={user?.headerImageUrl}></img>
+        <img
+          className='relative w-full h-40 rounded-md'
+          src={user?.headerImageUrl}
+        ></img>
         <img
           className='absolute rounded-full max-w-full h-auto align-middle shadow shadow-slate-400 top-40 m-4'
           width={100}
