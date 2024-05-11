@@ -46,7 +46,7 @@ export default function LoginPage() {
     <>
       {/* ログイン機能 */}
       <div className='flex justify-center font-kosugi'>
-        <div className='text-yellow-700 text-[16px]'>
+        <div className='text-[16px]'>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='flex flex-col'>
               <div className='mt-20'>
@@ -88,7 +88,7 @@ export default function LoginPage() {
             )}
             {/* ログインボタンの実装 */}
             <div className='mt-20 flex justify-center'>
-              <button type='submit' className='button hover:bg-orange-500'>
+              <button type='submit' className='button hover:bg-orange-200'>
                 ログイン
               </button>
             </div>
@@ -104,7 +104,7 @@ export default function LoginPage() {
           <div className='flex justify-center mt-2'>
             <Link
               href={'/registration/'}
-              className='button hover:bg-orange-500 p-3'
+              className='button hover:bg-orange-200 p-3'
             >
               新規会員登録
             </Link>

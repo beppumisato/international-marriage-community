@@ -22,8 +22,7 @@ export default function Home() {
           </div>
         </div>
  */}
-        <img src={'/top/top.jpg/'} className='relative object-cover' />
-        <div className='absolute top-60 left-24 text-white'>
+        <div className='absolute top-60 left-24 text-black'>
           <h1 className='text-[50px]'>国際結婚の輪</h1>
           <h2 className='text-[30px]'>
             グローバルな愛を支える、国際結婚コミュニティ。

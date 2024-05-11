@@ -27,7 +27,7 @@ export default function ProfileDisplay() {
           <div className='text-[24px] ml-3 mt-6'>{user?.nickname}</div>
           <Link
             href={`/mypage/edit/`}
-            className='w-36 h-10 bg-orange-400 rounded hover:bg-orange-500 text-white text-[14px] flex items-center justify-center'
+            className='w-36 h-10 bg-rose-400 rounded hover:bg-orange-200 text-white text-[14px] flex items-center justify-center'
           >
             プロフィール編集
           </Link>

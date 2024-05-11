@@ -22,21 +22,17 @@ export default function BlogPage() {
     <div className='font-kosugi p-10'>
       <form onSubmit={handleSubmit}>
         <div className='flex mt-20'>
-          <div className='text-yellow-700 justify-start w-20 h-12'>
-            タイトル
-          </div>
+          <div className='justify-start w-20 h-12'>タイトル</div>
           <input ref={titleRef} type='text' className='w-full' />
         </div>
         <div className='border-b-2'></div>
         <div className='flex mt-10'>
-          <div className='text-yellow-700 justify-start mt-10 w-32 h-12'>
-            キャプション
-          </div>
+          <div className=' justify-start mt-10 w-32 h-12'>キャプション</div>
           <textarea ref={descriptionRef} className='w-full' />
         </div>
         <div className='border-b-2'></div>
         <div className='flex justify-center mt-20'>
-          <button type='submit' className='button hover:bg-orange-500'>
+          <button type='submit' className='button hover:bg-orange-200'>
             投稿する
           </button>
         </div>

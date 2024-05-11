@@ -20,13 +20,13 @@ export default function Modal(props: Props) {
             <CloseIcon sx={{ fontSize: 30 }} />
           </button>
         </div>
-        <h1 className='text-center'>この投稿を本当に削除しますか？</h1>
+        <h1 className='text-center mt-10'>この投稿を本当に削除しますか？</h1>
         <div className='flex gap-4 justify-center mt-10'>
           <button
             onClick={() => {
               props.setOpenModal(false);
             }}
-            className='text-slate-500 border-2 border-slate-500 rounded hover:bg-slate-400 w-32 h-8'
+            className='text-slate-500 border-2 border-slate-500 rounded hover:bg-sky-300 w-32 h-8'
           >
             キャンセル
           </button>
@@ -36,7 +36,7 @@ export default function Modal(props: Props) {
                 props.onYes();
                 props.setOpenModal(true);
               }}
-              className='text-white bg-red-500 rounded hover:bg-red-700 w-32 h-8'
+              className='text-white bg-red-500 rounded hover:bg-yellow-300 w-32 h-8'
             >
               削除
             </button>

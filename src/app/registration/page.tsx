@@ -41,7 +41,7 @@ export default function RegistrationPage() {
     <>
       {/* 新規会員登録機能 */}
       <div className='flex justify-center font-kosugi'>
-        <div className='text-yellow-700 text-[16px]'>
+        <div className='text-[16px]'>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='flex flex-col items-center'>
               <div className='mt-20'>
@@ -98,7 +98,7 @@ export default function RegistrationPage() {
 
             {/* 新規会員登録ボタンの実装 */}
             <div className='mt-20 flex justify-center'>
-              <button type='submit' className='button hover:bg-orange-500'>
+              <button type='submit' className='button hover:bg-orange-200'>
                 新規会員登録
               </button>
             </div>

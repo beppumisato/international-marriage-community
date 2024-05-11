@@ -40,7 +40,7 @@ export default function Sidebar(props: Props) {
         transition={{ duration: 0.3 }}
       >
         <div className='absolute top-0 right-0 z-50'>
-          <div className='w-56 h-screen bg-orange-400 text-white text-[20px]'>
+          <div className='w-56 h-screen bg-rose-300 text-white text-[20px]'>
             <div className='flex justify-end p-2'>
               <CloseIcon
                 onClick={props.onClick}
