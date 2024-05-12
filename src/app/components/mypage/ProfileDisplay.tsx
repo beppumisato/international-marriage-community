@@ -9,31 +9,25 @@ export default function ProfileDisplay() {
   const { user } = useContext(CurrentUserContext);
 
   return (
-    <div className='font-kosugi p-10'>
+    <div className='font-kosugi px-32 mt-10'>
+      <img className='w-full h-60 rounded-md' src={user?.headerImageUrl}></img>
+      <Link href={`/mypage/edit/`} className='absolute top-60 right-52'>
+        <button className='border-2 border-white rounded hover:bg-orange-200 text-white text-[14px] w-40 h-10'>
+          プロフィールを編集
+        </button>
+      </Link>
       <div>
         <img
-          className='relative w-full h-40 rounded-md'
-          src={user?.headerImageUrl}
-        ></img>
-        <img
-          className='absolute rounded-full max-w-full h-auto align-middle shadow shadow-slate-400 top-40 m-4'
+          className='absolute rounded-full w-32 h-auto align-middle border-2 border-white top-60 left-52'
           width={100}
           src={user?.iconImageUrl}
         ></img>
       </div>
 
-      <div className='p-4 border-b-2'>
-        <div className='flex justify-between'>
-          <div className='text-[24px] ml-3 mt-6'>{user?.nickname}</div>
-          <Link
-            href={`/mypage/edit/`}
-            className='w-36 h-10 bg-rose-400 rounded hover:bg-orange-200 text-white text-[14px] flex items-center justify-center'
-          >
-            プロフィール編集
-          </Link>
-        </div>
-        <div className='ml-3 my-2'>
-          <div className='flex gap-x-4 text-[20px] mb-2'>
+      <div className='border-b-2 p-10'>
+        <div className='mx-14 my-4'>
+          <div className='text-[30px]'>{user?.nickname}</div>
+          <div className='flex gap-x-6 text-[20px] my-4'>
             <div>
               <PublicIcon sx={{ fontSize: 20, color: '#f472b6' }} />
               {user?.myNationality}
