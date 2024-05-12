@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 interface Props {
   headerImage: File | undefined;
@@ -26,14 +27,14 @@ export default function ImageForm(props: Props) {
   };
 
   return (
-    <>
+    <div className='px-32 mt-6'>
       <div
         style={{
           backgroundImage: `url(${props.headerImage ? window.URL.createObjectURL(props.headerImage) : user?.headerImageUrl})`,
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
         }}
-        className='bg-slate-300 w-full h-40 flex'
+        className='bg-slate-300 w-full h-60 flex'
       >
         <label className='file__label'>
           <input
@@ -44,18 +45,14 @@ export default function ImageForm(props: Props) {
               handleChangeHeaderImage(e);
             }}
           />
-          <img
-            src='/icon/camera.png'
-            width={80}
-            className='mt-20 flex justify-end'
-          ></img>
+          <CameraAltIcon sx={{ fontSize: 50, color: 'white' }} />
         </label>
         <div
           style={{
             backgroundImage: `url(${props.iconImage ? window.URL.createObjectURL(props.iconImage) : user?.iconImageUrl})`,
             backgroundSize: 'contain',
           }}
-          className='items-center border-2 border-white rounded-full w-28 h-28'
+          className='border-2 border-white rounded-full w-32 h-32'
         >
           <label className='file__label'>
             <input
@@ -66,14 +63,10 @@ export default function ImageForm(props: Props) {
                 handleChangeIconImage(e);
               }}
             />
-            <img
-              src='/icon/camera.png'
-              width={70}
-              className='ml-14 mt-12'
-            ></img>
+            <CameraAltIcon sx={{ fontSize: 30, color: 'white' }} />
           </label>
         </div>
       </div>
-    </>
+    </div>
   );
 }
