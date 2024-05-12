@@ -21,7 +21,7 @@ export default function BlogPage() {
   return (
     <div className='font-kosugi p-10'>
       <form onSubmit={handleSubmit}>
-        <div className='flex mt-20'>
+        <div className='flex mt-28'>
           <div className='justify-start w-20 h-12'>タイトル</div>
           <input ref={titleRef} type='text' className='w-full' />
         </div>
@@ -31,7 +31,10 @@ export default function BlogPage() {
           <textarea ref={descriptionRef} className='w-full' />
         </div>
         <div className='border-b-2'></div>
-        <div className='flex justify-center mt-20'>
+        <div className='flex justify-center gap-10 mt-28'>
+          <button type='submit' className='buttonC hover:bg-sky-300'>
+            キャンセル
+          </button>
           <button type='submit' className='button hover:bg-orange-200'>
             投稿する
           </button>

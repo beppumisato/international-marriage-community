@@ -42,7 +42,7 @@ export default function EditPage({ params }: { params: { id: number } }) {
   return (
     <div className='font-kosugi p-10'>
       <form onSubmit={handleSubmit}>
-        <div className='flex mt-20'>
+        <div className='flex mt-28'>
           <div className='justify-start w-28 h-12'>タイトル</div>
           <input ref={titleRef} type='text' className='w-full' />
         </div>
@@ -53,10 +53,15 @@ export default function EditPage({ params }: { params: { id: number } }) {
           <textarea ref={descriptionRef} className='w-full' />
         </div>
         <div className='border-b-2'></div>
-        <div className='flex justify-center mt-20'>
+        <div className='flex justify-center gap-10 mt-28'>
+          <Link href={'/timeline/'}>
+            <button type='submit' className='buttonC hover:bg-sky-300'>
+              キャンセル
+            </button>
+          </Link>
           <Link href={'/timeline/'}>
             <button type='submit' className='button hover:bg-orange-200'>
-              編集内容を保存
+              変更を保存
             </button>
           </Link>
         </div>
@@ -66,7 +71,7 @@ export default function EditPage({ params }: { params: { id: number } }) {
               setModalOpen(true);
             }}
           >
-            <DeleteForeverIcon sx={{ fontSize: 80, color: '#d1d5db' }} />
+            <DeleteForeverIcon sx={{ fontSize: 70, color: '#d1d5db' }} />
           </button>
           {modalOpen && (
             <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
