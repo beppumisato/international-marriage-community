@@ -12,20 +12,18 @@ export default function ProfileForm(props: Props) {
   const { user } = useContext(CurrentUserContext);
 
   return (
-    <div>
-      <div className='text-[20px] p-4 border-b-2'>
-        <div className='border-b-2 mt-4'></div>
-        <div className='flex gap-20'>
-          <div className='m-6'>ニックネーム</div>
+    <div className='px-32 mt-10'>
+      <div className='w-full h-full shadow text-[20px] p-10 rounded'>
+        <div className='flex gap-x-20 p-4 border-dotted border-b-2'>
+          ニックネーム
           <input
             defaultValue={user?.nickname}
             {...props.register('nickname')}
             type='text'
           />
         </div>
-        <div className='border-b-2'></div>
-        <div className='flex gap-40'>
-          <div className='m-6'>国籍</div>
+        <div className='flex gap-x-40 p-4 border-dotted border-b-2'>
+          国籍
           <input
             defaultValue={user?.myNationality}
             {...props.register('myNationality')}
@@ -39,9 +37,8 @@ export default function ProfileForm(props: Props) {
             type='text'
           />
         </div>
-        <div className='border-b-2'></div>
-        <div className='flex gap-28 text-center'>
-          <div className='m-6'>自己紹介</div>
+        <div className='flex gap-x-28 p-4 mb-4 border-dotted border-b-2'>
+          自己紹介
           <input
             defaultValue={user?.introduction}
             {...props.register('introduction')}
@@ -49,6 +46,7 @@ export default function ProfileForm(props: Props) {
           />
         </div>
       </div>
+      {/* ボタン */}
       <div className='flex justify-center gap-10 mt-20'>
         <Link href={'/mypage/'}>
           <button className='buttonC hover:bg-sky-300'>キャンセル</button>

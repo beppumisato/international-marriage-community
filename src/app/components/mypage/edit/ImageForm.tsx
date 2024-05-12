@@ -27,14 +27,14 @@ export default function ImageForm(props: Props) {
   };
 
   return (
-    <div className='px-32 mt-6'>
+    <div className='px-32'>
       <div
         style={{
           backgroundImage: `url(${props.headerImage ? window.URL.createObjectURL(props.headerImage) : user?.headerImageUrl})`,
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
         }}
-        className='bg-slate-300 w-full h-60 flex'
+        className='bg-slate-300 w-full h-60 flex rounded'
       >
         <label className='file__label'>
           <input
