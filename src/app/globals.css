@@ -8,6 +8,25 @@ body {
   background-color: white;
 }
 
+/* タイトルのアニメーションとスタイル */
+.tittle {
+  color: white;
+  font-weight: 100;
+  filter: drop-shadow(4px 3px 5px #cbd5e1);
+  animation-name: textanime; /*keyname*/
+  animation-duration: 5s; /*最大再生時間*/
+}
+
+@keyframes textanime {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 /* カメラアイコンをクリックし画像のアップロード */
 input[type='file'] {
   display: none;

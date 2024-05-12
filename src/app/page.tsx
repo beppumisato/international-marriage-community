@@ -22,9 +22,10 @@ export default function Home() {
           </div>
         </div>
  */}
-        <div className='absolute top-60 left-24 text-black'>
-          <h1 className='text-[50px]'>国際結婚の輪</h1>
-          <h2 className='text-[30px]'>
+        <img src={'/top/top.jpg/'} className='relative' />
+        <div className='absolute top-60 left-24'>
+          <h1 className='tittle text-[50px]'>国際結婚の輪</h1>
+          <h2 className='tittle mt-4 text-[30px]'>
             グローバルな愛を支える、国際結婚コミュニティ。
           </h2>
         </div>
