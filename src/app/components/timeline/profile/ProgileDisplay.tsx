@@ -2,6 +2,7 @@
 
 import { useContext } from 'react';
 import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
+import Link from 'next/link';
 
 export default function TimelineProfileDisplay() {
   const { user } = useContext(CurrentUserContext);
@@ -13,13 +14,13 @@ export default function TimelineProfileDisplay() {
           プロフィール
         </div>
         <div className='flex mt-10'>
-          <div className='ml-4'>
+          <Link href={'/mypage/'} className='ml-4'>
             <img
               className='rounded-full max-w-full h-auto align-middle top-6 shadow shadow-slate-300'
               width={80}
               src={user?.iconImageUrl}
             ></img>
-          </div>
+          </Link>
           <div className='ml-4'>
             <div className='text-[14px]'>{user?.nickname}</div>
             <div className='text-[10px]'>{user?.introduction}</div>
