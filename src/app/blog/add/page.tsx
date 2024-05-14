@@ -22,14 +22,21 @@ export default function BlogPage() {
   return (
     <>
       <div className='font-kosugi px-32 mt-10'>
-        <div className='w-full h-full shadow text-[18px] p-10 rounded'>
-          <div className='flex border-dotted border-b-2'>
-            <div className='w-40'>タイトル</div>
-            <input ref={titleRef} type='text' className='w-full h-10' />
+        <div className='w-full h-full border-2 shadow text-[20px] p-10 rounded'>
+          <div className='flex gap-x-10 p-4'>
+            <div className='w-44 p-2'>タイトル</div>
+            <input
+              ref={titleRef}
+              type='text'
+              className='border-dotted border-b-2 w-full p-2 px-4'
+            />
           </div>
-          <div className='flex border-dotted border-b-2 mt-6'>
-            <div className='w-40 mt-8'>キャプション</div>
-            <textarea ref={descriptionRef} className='w-full h-20' />
+          <div className='flex gap-x-10 p-4'>
+            <div className='w-44 p-2 pt-10'>キャプション</div>
+            <textarea
+              ref={descriptionRef}
+              className='border-dotted border-b-2 w-full p-2 px-4'
+            />
           </div>
         </div>
       </div>
