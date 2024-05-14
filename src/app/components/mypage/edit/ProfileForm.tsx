@@ -13,36 +13,40 @@ export default function ProfileForm(props: Props) {
 
   return (
     <div className='px-32 mt-10'>
-      <div className='w-full h-full shadow text-[20px] p-10 rounded'>
-        <div className='flex gap-x-20 p-4 border-dotted border-b-2'>
-          ニックネーム
+      <div className='w-full h-full border-2 shadow text-[20px] p-10 rounded'>
+        <div className='flex gap-x-4 p-4'>
+          <div className='w-40 p-2'>ニックネーム</div>
           <input
             defaultValue={user?.nickname}
             {...props.register('nickname')}
             type='text'
+            className='border-dotted border-b-2 w-full p-2 px-4'
           />
         </div>
-        <div className='flex gap-x-40 p-4 border-dotted border-b-2'>
-          国籍
+        <div className='flex gap-x-20 p-4'>
+          <div className='w-40 p-2'>国籍</div>
           <input
             defaultValue={user?.myNationality}
             {...props.register('myNationality')}
             placeholder='あなた'
             type='text'
+            className='border-dotted border-b-2 w-full p-2 px-4'
           />
           <input
             defaultValue={user?.partnerNationality}
             {...props.register('partnerNationality')}
             placeholder='お相手'
             type='text'
+            className='border-dotted border-b-2 w-full p-2 px-4'
           />
         </div>
-        <div className='flex gap-x-28 p-4 mb-4 border-dotted border-b-2'>
-          自己紹介
+        <div className='flex gap-x-4 p-4'>
+          <div className='w-40 p-2'>自己紹介</div>
           <input
             defaultValue={user?.introduction}
             {...props.register('introduction')}
             type='text'
+            className='border-dotted border-b-2 w-full p-2 px-4'
           />
         </div>
       </div>
