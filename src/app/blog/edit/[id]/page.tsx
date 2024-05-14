@@ -40,25 +40,32 @@ export default function EditPage({ params }: { params: { id: number } }) {
   }, []);
 
   return (
-    <div className='font-kosugi p-10'>
+    <div className='font-kosugi px-32 mt-10'>
       <form onSubmit={handleSubmit}>
-        <div className='flex mt-28'>
-          <div className='justify-start w-28 h-12'>タイトル</div>
-          <input ref={titleRef} type='text' className='w-full' />
+        <div className='w-full h-full border-2 shadow text-[20px] p-10 rounded'>
+          <div className='flex gap-x-10 p-4'>
+            <div className='w-44 p-2'>タイトル</div>
+            <input
+              ref={titleRef}
+              type='text'
+              className='border-dotted border-b-2 w-full p-2 px-4'
+            />
+          </div>
+          <div className='flex gap-x-10 p-4'>
+            <div className='w-44 p-2 pt-10'>キャプション</div>
+            <textarea
+              ref={descriptionRef}
+              className='border-dotted border-b-2 w-full p-2 px-4'
+            />
+          </div>
         </div>
-        <div className='border-b-2'></div>
-
-        <div className='flex mt-10'>
-          <div className='justify-start mt-10 w-32 h-12'>キャプション</div>
-          <textarea ref={descriptionRef} className='w-full' />
-        </div>
-        <div className='border-b-2'></div>
         <div className='flex justify-center gap-10 mt-28'>
           <Link href={'/timeline/'}>
-            <button type='submit' className='buttonC hover:bg-sky-300'>
-              キャンセル
-            </button>
+            <button className='buttonC hover:bg-sky-300'>キャンセル</button>
           </Link>
+          {modalOpen && (
+            <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
+          )}
           <Link href={'/timeline/'}>
             <button type='submit' className='button hover:bg-orange-200'>
               変更を保存
@@ -73,9 +80,6 @@ export default function EditPage({ params }: { params: { id: number } }) {
           >
             <DeleteForeverIcon sx={{ fontSize: 70, color: '#d1d5db' }} />
           </button>
-          {modalOpen && (
-            <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
-          )}
         </div>
       </form>
     </div>
