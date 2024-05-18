@@ -8,7 +8,6 @@ import { deleteBlog, editBlog, getBlogById } from '@/app/repositories/blog';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export default function EditPage({ params }: { params: { id: number } }) {
-  const router = useRouter();
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -39,6 +38,8 @@ export default function EditPage({ params }: { params: { id: number } }) {
       .catch((err) => {});
   }, []);
 
+  const router = useRouter();
+
   return (
     <div className='font-kosugi px-32 mt-10'>
       <form onSubmit={handleSubmit}>
@@ -66,11 +67,16 @@ export default function EditPage({ params }: { params: { id: number } }) {
           {modalOpen && (
             <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
           )}
-          <Link href={'/timeline/'}>
-            <button type='submit' className='button hover:bg-orange-200'>
-              変更を保存
-            </button>
-          </Link>
+          <button
+            onClick={() => {
+              setModalOpen(true);
+              router.back();
+            }}
+            type='submit'
+            className='button hover:bg-orange-200'
+          >
+            変更を保存
+          </button>
         </div>
         <div className='grid place-items-end mt-10'>
           <button
