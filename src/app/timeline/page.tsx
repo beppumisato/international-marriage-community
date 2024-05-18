@@ -5,6 +5,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import TimelineProfileDisplay from '../components/timeline/profile/ProgileDisplay';
 import TimelineBlogDisplay from '../components/timeline/blog/BlogDisplay';
 import ScrollTop from '../components/scroll/ScrollTop';
+import Header from '../components/common/Header';
 
 export default function TimelinePage() {
   const { user } = useContext(CurrentUserContext);
@@ -13,6 +14,7 @@ export default function TimelinePage() {
 
   return (
     <>
+      <Header />
       <div className='font-kosugi p-10 flex justify-center'>
         {isLogin && <TimelineProfileDisplay />}
         <TimelineBlogDisplay isMyPost={false} />

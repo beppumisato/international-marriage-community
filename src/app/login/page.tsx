@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { Cognito } from '../../../utils/cognito';
+import Header from '../components/common/Header';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
@@ -44,6 +45,7 @@ export default function LoginPage() {
 
   return (
     <>
+      <Header />
       {/* ログイン機能 */}
       <div className='flex justify-center font-kosugi'>
         <div className='text-[16px]'>

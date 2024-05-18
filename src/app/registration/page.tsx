@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { Cognito } from '../../../utils/cognito';
 import { useRouter } from 'next/navigation';
+import Header from '../components/common/Header';
 
 // ログインフォームのデータ型を定義
 interface LoginForm {
@@ -39,6 +40,7 @@ export default function RegistrationPage() {
 
   return (
     <>
+      <Header />
       {/* 新規会員登録機能 */}
       <div className='flex justify-center font-kosugi'>
         <div className='text-[16px]'>
