@@ -8,11 +8,17 @@ body {
   background-color: white;
 }
 
+.topHeader {
+  color: white;
+  font-size: 20px;
+  filter: drop-shadow(0px 0px 1px #40392a);
+}
+
 /* タイトルのアニメーションとスタイル */
 .tittle {
   color: white;
   font-weight: 100;
-  filter: drop-shadow(4px 3px 5px #cbd5e1);
+  filter: drop-shadow(0px 0px 3px #3e3e29);
   animation-name: textanime; /*keyname*/
   animation-duration: 5s; /*最大再生時間*/
 }
