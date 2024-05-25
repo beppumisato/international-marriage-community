@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 interface Props {
   headerImage: File | undefined;
@@ -26,14 +27,14 @@ export default function ImageForm(props: Props) {
   };
 
   return (
-    <>
+    <div className='px-32'>
       <div
         style={{
           backgroundImage: `url(${props.headerImage ? window.URL.createObjectURL(props.headerImage) : user?.headerImageUrl})`,
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
         }}
-        className='relative bg-slate-300 border-2 border-yellow-700 w-full h-32 p-2'
+        className='bg-slate-300 w-full h-60 flex rounded'
       >
         <label className='file__label'>
           <input
@@ -44,36 +45,28 @@ export default function ImageForm(props: Props) {
               handleChangeHeaderImage(e);
             }}
           />
-          <img
-            src='/icon/camera.png'
-            width={80}
-            className='absolute right-0 bottom-0'
-          ></img>
+          <CameraAltIcon sx={{ fontSize: 50, color: 'white' }} />
         </label>
+        <div
+          style={{
+            backgroundImage: `url(${props.iconImage ? window.URL.createObjectURL(props.iconImage) : user?.iconImageUrl})`,
+            backgroundSize: 'contain',
+          }}
+          className='border-2 border-white rounded-full w-32 h-32'
+        >
+          <label className='file__label'>
+            <input
+              type='file'
+              id='formFile'
+              accept='image/*'
+              onChange={(e) => {
+                handleChangeIconImage(e);
+              }}
+            />
+            <CameraAltIcon sx={{ fontSize: 30, color: 'white' }} />
+          </label>
+        </div>
       </div>
-      <div
-        style={{
-          backgroundImage: `url(${props.iconImage ? window.URL.createObjectURL(props.iconImage) : user?.iconImageUrl})`,
-          backgroundSize: 'contain',
-        }}
-        className='absolute left-60 top-24 border-yellow-700 border-2 rounded-full w-14 h-14'
-      >
-        <label className='file__label'>
-          <input
-            type='file'
-            id='formFile'
-            accept='image/*'
-            onChange={(e) => {
-              handleChangeIconImage(e);
-            }}
-          />
-          <img
-            src='/icon/camera.png'
-            width={80}
-            className='absolute left-8 top-8'
-          ></img>
-        </label>
-      </div>
-    </>
+    </div>
   );
 }

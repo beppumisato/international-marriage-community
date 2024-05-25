@@ -3,23 +3,21 @@
 import React from 'react';
 import ProfileDisplay from '../components/mypage/ProfileDisplay';
 import TimelineBlogDisplay from '../components/timeline/blog/BlogDisplay';
-
-const returnTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-};
+import ScrollTop from '../components/scroll/ScrollTop';
+import Header from '../components/common/Header';
 
 export default function MyPage() {
   return (
-    <div className='font-kosugi'>
-      <ProfileDisplay />
+    <>
+      <Header />
+      <div className='font-kosugi'>
+        <ProfileDisplay />
 
-      <div className='flex justify-center'>
-        <TimelineBlogDisplay isMyPost={true} />
+        <div className='flex justify-center'>
+          <TimelineBlogDisplay isMyPost={true} />
+        </div>
       </div>
-      {/* <img src='/icon/airplan_2.png' onClick={returnTop}></img> */}
-    </div>
+      <ScrollTop />
+    </>
   );
 }

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 import { ProfileFormType } from '@/app/mypage/edit/page';
 import { UseFormRegister } from 'react-hook-form';
+import Link from 'next/link';
 
 interface Props {
   register: UseFormRegister<ProfileFormType>;
@@ -11,43 +12,51 @@ export default function ProfileForm(props: Props) {
   const { user } = useContext(CurrentUserContext);
 
   return (
-    <div className='text-yellow-700 text-[24px]'>
-      <div className='mt-4 ml-2 font-bold'>ニックネーム</div>
-      <input
-        defaultValue={user?.nickname}
-        {...props.register('nickname')}
-        type='text'
-        className='border-2 border-yellow-700 rounded-md p-2 text-black'
-      />
-      <div className='mt-2 ml-2 font-bold'>国籍</div>
-      <div className='flex gap-x-2'>
-        <input
-          defaultValue={user?.myNationality}
-          {...props.register('myNationality')}
-          placeholder='妻の国籍'
-          type='text'
-          className='border-2 border-yellow-700 rounded-md w-1/2 p-2 text-black'
-        />
-        <input
-          defaultValue={user?.partnerNationality}
-          {...props.register('partnerNationality')}
-          placeholder='夫の国籍'
-          type='text'
-          className='border-2 border-yellow-700 rounded-md w-1/2 p-2 text-black'
-        />
+    <div className='px-32 mt-10'>
+      <div className='w-full h-full border-2 shadow text-[20px] p-10 rounded'>
+        <div className='flex gap-x-4 p-4'>
+          <div className='w-40 p-2'>ニックネーム</div>
+          <input
+            defaultValue={user?.nickname}
+            {...props.register('nickname')}
+            type='text'
+            className='border-dotted border-b-2 w-full p-2 px-4'
+          />
+        </div>
+        <div className='flex gap-x-20 p-4'>
+          <div className='w-40 p-2'>国籍</div>
+          <input
+            defaultValue={user?.myNationality}
+            {...props.register('myNationality')}
+            placeholder='あなた'
+            type='text'
+            className='border-dotted border-b-2 w-full p-2 px-4'
+          />
+          <input
+            defaultValue={user?.partnerNationality}
+            {...props.register('partnerNationality')}
+            placeholder='お相手'
+            type='text'
+            className='border-dotted border-b-2 w-full p-2 px-4'
+          />
+        </div>
+        <div className='flex gap-x-4 p-4'>
+          <div className='w-40 p-2'>自己紹介</div>
+          <input
+            defaultValue={user?.introduction}
+            {...props.register('introduction')}
+            type='text'
+            className='border-dotted border-b-2 w-full p-2 px-4'
+          />
+        </div>
       </div>
-      <div className='mt-2 ml-2 font-bold'>自己紹介</div>
-      <textarea
-        defaultValue={user?.introduction}
-        {...props.register('introduction')}
-        className='border-2 border-yellow-700 rounded-md h-20 w-full p-2 text-black'
-      />
-      <div className='flex justify-end mt-3'>
-        <button
-          type='submit'
-          className='bg-orange-400 text-white rounded-md hover:bg-orange-500 w-16 h-6'
-        >
-          保存
+      {/* ボタン */}
+      <div className='flex justify-center gap-10 mt-20'>
+        <Link href={'/mypage/'}>
+          <button className='buttonC hover:bg-sky-300'>キャンセル</button>
+        </Link>
+        <button type='submit' className='button hover:bg-orange-200'>
+          変更を保存
         </button>
       </div>
     </div>

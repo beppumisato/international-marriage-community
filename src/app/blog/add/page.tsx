@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { postBlog } from '@/app/repositories/blog';
+import Link from 'next/link';
 
 export default function BlogPage() {
   const router = useRouter();
@@ -19,33 +20,36 @@ export default function BlogPage() {
   };
 
   return (
-    <div className='font-kosugi text-[24px]'>
+    <>
+      <div className='font-kosugi px-32 mt-10'>
+        <div className='w-full h-full border-2 shadow text-[20px] p-10 rounded'>
+          <div className='flex gap-x-10 p-4'>
+            <div className='w-44 p-2'>タイトル</div>
+            <input
+              ref={titleRef}
+              type='text'
+              className='border-dotted border-b-2 w-full p-2 px-4'
+            />
+          </div>
+          <div className='flex gap-x-10 p-4'>
+            <div className='w-44 p-2 pt-10'>キャプション</div>
+            <textarea
+              ref={descriptionRef}
+              className='border-dotted border-b-2 w-full p-2 px-4'
+            />
+          </div>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
-        <div className='flex justify-center m-4'>
-          <input
-            ref={titleRef}
-            placeholder='タイトルを入力する'
-            type='text'
-            className='border-2 border-yellow-700 rounded-md h-8 w-3/5 p-2'
-          />
-        </div>
-        <div className='flex justify-center m-4'>
-          <textarea
-            ref={descriptionRef}
-            placeholder='詳細記事を入力'
-            className='border-2 border-yellow-700 rounded-md h-28 w-3/5 p-2'
-          />
-        </div>
-        <div className='flex justify-center ml-64'>
-          <button
-            type='submit'
-            className='text-white bg-orange-400 rounded-md hover:bg-orange-500 w-16 h-6'
-          >
-            投稿
+        <div className='flex justify-center gap-10 mt-28'>
+          <Link href={'/timeline/'} className='buttonC hover:bg-sky-300 p-2'>
+            キャンセル
+          </Link>
+          <button type='submit' className='button hover:bg-orange-200'>
+            投稿する
           </button>
         </div>
       </form>
-      <img className='mt-8' src='/login/design.png/'></img>
-    </div>
+    </>
   );
 }

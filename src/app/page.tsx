@@ -1,35 +1,36 @@
 'use client';
 
+import Link from 'next/link';
 import React from 'react';
 
 export default function Home() {
   return (
     <>
-      <div className='relative font-kosugi'>
-        {/* メインの世界地図とキャ土フレーズ */}
-        <div className='pt-4 bg-white flex justify-center w-full mt-4'>
-          <img
-            className=' object-contain items-center'
-            src='top/main.png'
-            width={600}
-          />
-        </div>
-        <div className='text-yellow-700 text-[18px] text-nowrap m-6'>
-          <p className='flex justify-center p-1'>
-            国際結婚は様々な問題や悩みを抱えることがあります。
-          </p>
-          <p className='flex justify-center p-1'>
-            当サイトでは、同じく国際結婚をした人と繋がり、支え合うコミュニティを提供しています。
-          </p>
-          <p className='flex justify-center p-1'>
-            一緒に、国際結婚生活を豊かにする仲間を見つけましょう！
-          </p>
-        </div>
+      <img src={'/top/top.jpg/'} className='relative' />
 
-        {/* ３つの項目を画像で挿入 */}
-        <div className='flex justify-center object-contain'>
-          <img src='/top/sentence.png' width={700} />
+      <div className='absolute topHeader top-8 left-10'>
+        <div>国際結婚の輪</div>
+      </div>
+
+      <div className='absolute topHeader top-8 right-10 flex'>
+        <div className='flex gap-x-10'>
+          <Link href={'/timeline/'} className='hover:underline'>
+            タイムライン
+          </Link>
+          <Link href={'/login/'} className='hover:underline'>
+            ログイン
+          </Link>
+          <Link href={'/registration/'} className='hover:underline'>
+            新規会登録
+          </Link>
         </div>
+      </div>
+
+      <div className='font-kosugi absolute top-60 left-20'>
+        <h1 className='tittle text-[50px]'>国際結婚の輪</h1>
+        <h2 className='tittle mt-4 text-[30px]'>
+          グローバルな愛を支える、国際結婚コミュニティ。
+        </h2>
       </div>
     </>
   );
