@@ -9,7 +9,7 @@ export default function TimelineProfileDisplay() {
 
   return (
     <>
-      <div className='bg-white w-1/5 shadow mx-2 rounded-lg'>
+      <div className='bg-white w-1/5 h-60 shadow mx-2 rounded-lg'>
         <div className='bg-rose-300 rounded-t-lg shadow w-full h-10 text-white text-[18px] text-center p-2'>
           プロフィール
         </div>
