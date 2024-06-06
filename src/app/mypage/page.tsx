@@ -13,7 +13,7 @@ export default function MyPage() {
       <div className='font-kosugi'>
         <ProfileDisplay />
 
-        <div className='flex justify-center'>
+        <div className='flex justify-center mt-10'>
           <TimelineBlogDisplay isMyPost={true} />
         </div>
       </div>

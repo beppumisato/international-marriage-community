@@ -27,7 +27,7 @@ export default function ProfileDisplay() {
       <div className='border-b-2 p-10'>
         <div className='mx-14 my-4'>
           <div className='text-[30px]'>{user?.nickname}</div>
-          <div className='flex gap-x-6 text-[20px] my-4'>
+          <div className='flex gap-x-6 text-[20px] my-3'>
             <div>
               <PublicIcon sx={{ fontSize: 20, color: '#f472b6' }} />
               {user?.myNationality}

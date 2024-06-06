@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { postBlog } from '@/app/repositories/blog';
 import Link from 'next/link';
+import HeaderTimeline from '@/app/components/common/HeaderTimeline';
 
 export default function BlogPage() {
   const router = useRouter();
@@ -21,26 +22,24 @@ export default function BlogPage() {
 
   return (
     <>
-      <div className='font-kosugi px-32 mt-10'>
-        <div className='w-full h-full border-2 shadow text-[20px] p-10 rounded'>
-          <div className='flex gap-x-10 p-4'>
-            <div className='w-44 p-2'>タイトル</div>
-            <input
-              ref={titleRef}
-              type='text'
-              className='border-dotted border-b-2 w-full p-2 px-4'
-            />
-          </div>
-          <div className='flex gap-x-10 p-4'>
-            <div className='w-44 p-2 pt-10'>キャプション</div>
-            <textarea
-              ref={descriptionRef}
-              className='border-dotted border-b-2 w-full p-2 px-4'
-            />
-          </div>
-        </div>
+      <HeaderTimeline />
+      <div className='font-kosugi px-32'>
+        <input
+          ref={titleRef}
+          type='text'
+          className='w-full h-10 border-2 text-[20px] p-2 rounded mt-10'
+        />
+        <input
+          ref={titleRef}
+          type='text'
+          className='w-full h-10 border-2 text-[20px] p-2 rounded mt-3'
+        />
+        <textarea
+          ref={descriptionRef}
+          className='w-full h-80 border-2 text-[18px] p-2 rounded mt-3'
+        />
       </div>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <div className='flex justify-center gap-10 mt-28'>
           <Link href={'/timeline/'} className='buttonC hover:bg-sky-300 p-2'>
             キャンセル
@@ -49,7 +48,7 @@ export default function BlogPage() {
             投稿する
           </button>
         </div>
-      </form>
+      </form> */}
     </>
   );
 }

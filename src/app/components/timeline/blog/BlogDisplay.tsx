@@ -28,12 +28,12 @@ export default function TimelineBlogDisplay(props: Props) {
 
   return (
     <>
-      <div className='bg-white w-4/5'>
+      <div className='bg-white w-4/6'>
         <form onSubmit={handleSubmit}>
           {posts.map((post) => (
             <div key={post.id}>
-              <div className='shadow flex justify-between m-4 rounded-md'>
-                <div className='p-6'>
+              <div className='shadow flex justify-between mx-4 mb-4 rounded-md h-40 p-4'>
+                <div>
                   <img
                     width={50}
                     className='rounded-full max-w-full h-auto align-middle'
@@ -42,16 +42,16 @@ export default function TimelineBlogDisplay(props: Props) {
                 </div>
 
                 <div className='w-5/6 p-2'>
-                  <div className='flex'>
-                    <div className='text-[14px]'>{post.author.nickname}</div>
-                    <div className='text-[12px] text-slate-400 ml-4'>
-                      {new Date(post.createdAt).toDateString()}
-                    </div>
+                  <div className='text-[14px]'>{post.author.nickname}</div>
+                  <div className='text-[12px] text-slate-400'>
+                    {new Date(post.createdAt).toDateString()}
                   </div>
-                  <h1 className='text-[18px] mt-2'>{post.title}</h1>
-                  <h2 className='text-[14px]'>{post.description}</h2>
+                  <div>
+                    <h1 className='mt-2 text-[24px]'>{post.title}</h1>
+                    <div className='text-[14px] mt-4'>関連タグ</div>
+                  </div>
                 </div>
-                <div className='mt-14 p-2 text-slate-400 flex gap-x-4'>
+                <div className='text-slate-400 flex gap-x-4 items-end'>
                   <FavoriteBorder sx={{ fontSize: 20, color: 'slate-400' }} />
                   <ChatBubbleOutline
                     sx={{ fontSize: 20, color: 'slate-400' }}
