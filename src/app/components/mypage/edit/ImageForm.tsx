@@ -27,34 +27,38 @@ export default function ImageForm(props: Props) {
   };
 
   return (
-    <div className='px-32'>
-      <div
-        style={{
-          backgroundImage: `url(${props.headerImage ? window.URL.createObjectURL(props.headerImage) : user?.headerImageUrl})`,
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-        }}
+    <div className='mx-32 relative'>
+      <img
+        src={
+          props.headerImage
+            ? window.URL.createObjectURL(props.headerImage)
+            : user?.headerImageUrl
+        }
         className='bg-slate-300 w-full h-60 flex rounded'
-      >
-        <label className='file__label'>
-          <input
-            type='file'
-            id='formFile'
-            accept='image/*'
-            onChange={(e) => {
-              handleChangeHeaderImage(e);
-            }}
-          />
-          <CameraAltIcon sx={{ fontSize: 50, color: 'white' }} />
-        </label>
-        <div
-          style={{
-            backgroundImage: `url(${props.iconImage ? window.URL.createObjectURL(props.iconImage) : user?.iconImageUrl})`,
-            backgroundSize: 'contain',
+      />
+      <label className='file__label absolute bottom-0 right-2'>
+        <input
+          type='file'
+          id='formFile'
+          accept='image/*'
+          onChange={(e) => {
+            handleChangeHeaderImage(e);
           }}
-          className='border-2 border-white rounded-full w-32 h-32'
-        >
-          <label className='file__label'>
+        />
+        <CameraAltIcon sx={{ fontSize: 50, color: 'white' }} />
+      </label>
+      <div className='absolute top-0 w-full h-full flex justify-center items-center'>
+        <div className='relative'>
+          <img
+            src={
+              props.iconImage
+                ? window.URL.createObjectURL(props.iconImage)
+                : user?.iconImageUrl
+            }
+            className='border-2 border-white rounded-full w-40 h-40'
+          />
+
+          <label className='file__label absolute bottom-0 right-0'>
             <input
               type='file'
               id='formFile'
@@ -63,7 +67,7 @@ export default function ImageForm(props: Props) {
                 handleChangeIconImage(e);
               }}
             />
-            <CameraAltIcon sx={{ fontSize: 30, color: 'white' }} />
+            <CameraAltIcon sx={{ fontSize: 50, color: 'white' }} />
           </label>
         </div>
       </div>
