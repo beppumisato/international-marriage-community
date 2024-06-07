@@ -19,8 +19,8 @@ export default function Home() {
 
   return (
     <>
-      <img src={'/top/top.jpg/'} className='relative' />
       {isOpen && <Sidebar onClick={() => setIsOpen(false)} />}
+      <img src={'/top/top.jpg/'} className='relative' />
       <div className='absolute topHeader top-8 left-10'>
         <div>国際結婚の輪</div>
       </div>
