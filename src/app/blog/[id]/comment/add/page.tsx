@@ -5,9 +5,8 @@ import { useRouter } from 'next/navigation';
 import Modal from '@/app/components/modal/Modal';
 import Link from 'next/link';
 import { deleteBlog, editBlog, getBlogById } from '@/app/repositories/blog';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-export default function CommentEditPage({
+export default function CommentAddtPage({
   params,
 }: {
   params: { id: number };
@@ -68,9 +67,6 @@ export default function CommentEditPage({
           <Link href={'/timeline/'}>
             <button className='buttonC hover:bg-sky-300'>キャンセル</button>
           </Link>
-          {modalOpen && (
-            <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
-          )}
           <button
             onClick={() => {
               setModalOpen(true);
@@ -80,15 +76,6 @@ export default function CommentEditPage({
             className='button hover:bg-orange-200'
           >
             変更を保存
-          </button>
-        </div>
-        <div className='grid place-items-end mt-10'>
-          <button
-            onClick={() => {
-              setModalOpen(true);
-            }}
-          >
-            <DeleteForeverIcon sx={{ fontSize: 70, color: '#d1d5db' }} />
           </button>
         </div>
       </form>
