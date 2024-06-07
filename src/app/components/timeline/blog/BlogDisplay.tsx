@@ -53,9 +53,11 @@ export default function TimelineBlogDisplay(props: Props) {
                 </div>
                 <div className='text-slate-400 flex gap-x-4 items-end'>
                   <FavoriteBorder sx={{ fontSize: 20, color: 'slate-400' }} />
-                  <ChatBubbleOutline
-                    sx={{ fontSize: 20, color: 'slate-400' }}
-                  />
+                  <a href={'/blog/[id]/comment/edit/edit_[id]/'}>
+                    <ChatBubbleOutline
+                      sx={{ fontSize: 20, color: 'slate-400' }}
+                    />
+                  </a>
                   <Link href={`/blog/edit/${post.id}`}>...</Link>
                 </div>
               </div>
