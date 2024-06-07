@@ -41,25 +41,25 @@ export default function EditPage({ params }: { params: { id: number } }) {
   const router = useRouter();
 
   return (
-    <div className='font-kosugi px-32 mt-10'>
+    <div className='font-kosugi px-32'>
       <form onSubmit={handleSubmit}>
-        <div className='w-full h-full border-2 shadow text-[20px] p-10 rounded'>
-          <div className='flex gap-x-10 p-4'>
-            <div className='w-44 p-2'>タイトル</div>
-            <input
-              ref={titleRef}
-              type='text'
-              className='border-dotted border-b-2 w-full p-2 px-4'
-            />
-          </div>
-          <div className='flex gap-x-10 p-4'>
-            <div className='w-44 p-2 pt-10'>キャプション</div>
-            <textarea
-              ref={descriptionRef}
-              className='border-dotted border-b-2 w-full p-2 px-4'
-            />
-          </div>
-        </div>
+        <input
+          ref={titleRef}
+          type='text'
+          placeholder='記事タイトル'
+          className='w-full h-10 border-2 text-[20px] p-2 rounded mt-10'
+        />
+        <input
+          type='text'
+          placeholder='タグを入力してください。◯個まで入力できます。'
+          className='w-full h-10 border-2 text-[20px] p-2 rounded mt-3'
+        />
+        <textarea
+          ref={descriptionRef}
+          placeholder='国際結婚にまつわる問題や悩みにおいて、あなたの経験から役立つと思う情報を書いて共有しよう。'
+          className='w-full h-80 border-2 text-[18px] p-2 rounded mt-3'
+        />
+
         <div className='flex justify-center gap-10 mt-28'>
           <Link href={'/timeline/'}>
             <button className='buttonC hover:bg-sky-300'>キャンセル</button>
