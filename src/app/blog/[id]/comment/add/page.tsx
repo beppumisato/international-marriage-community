@@ -3,8 +3,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { Post, User } from '@prisma/client';
-import { fetchAllBlogs } from '@/app/repositories/blog/fetchAllBlogs';
 import { useRouter } from 'next/navigation';
+import { getBlogById } from '@/app/repositories/blog';
 
 type Blog = Post & { author: User };
 
@@ -12,15 +12,18 @@ type Props = {
   isMyPost: boolean;
 };
 
-export default function TimelineBlogDisplay(props: Props) {
-  const [posts, setPosts] = useState<Blog[]>([]);
+export default function CommentAddPage({ params }: { params: { id: number } }) {
+  const [post, setPost] = useState<Blog | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    fetchAllBlogs(props.isMyPost).then((posts) => {
-      setPosts(posts);
-    });
+    getBlogById(params.id)
+      .then((data) => {
+        console.log(data);
+        setPost(data);
+      })
+      .catch((err) => {});
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,8 +34,9 @@ export default function TimelineBlogDisplay(props: Props) {
 
   return (
     <div className='font-kosugi px-32'>
-      <form onSubmit={handleSubmit}>
-        {posts.map((post) => (
+      {/* post(Blog)が取れた時だけ表示する */}
+      {post && (
+        <form onSubmit={handleSubmit}>
           <div key={post.id}>
             <div className='w-full h-10 border-2 text-[20px] p-2 rounded mt-10'>
               {post.title}
@@ -43,10 +47,10 @@ export default function TimelineBlogDisplay(props: Props) {
             <textarea
               ref={descriptionRef}
               placeholder='疑問に思ったことがあれば質問して聞いてみよう。'
-              className='w-full h-80 border-2 border-rose-400 text-[18px] p-2 rounded mt-3'
+              className='w-full h-80 border-2 border-slate-500 text-[18px] p-2 rounded mt-3'
             />
 
-            <div className='flex justify-center gap-10 mt-28'>
+            <div className='flex justify-center gap-10 mt-10'>
               <Link href={'/timeline/'}>
                 <button className='buttonC hover:bg-sky-300'>キャンセル</button>
               </Link>
@@ -58,12 +62,12 @@ export default function TimelineBlogDisplay(props: Props) {
                 type='submit'
                 className='button hover:bg-orange-200'
               >
-                変更を保存
+                コメントする
               </button>
             </div>
           </div>
-        ))}
-      </form>
+        </form>
+      )}
     </div>
   );
 }
