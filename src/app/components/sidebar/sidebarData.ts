@@ -16,10 +16,6 @@ export const sidebarDataLogin = [
     link: '/blog/add',
   },
   {
-    title: 'コメント編集',
-    link: '/blog/[id]/comment/edit/edit_[id]/',
-  },
-  {
     title: 'ログアウト',
     link: '/logout',
   },
