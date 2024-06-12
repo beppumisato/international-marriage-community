@@ -1,3 +1,5 @@
+//ファイル名の確認 [comment_id]
+
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
