@@ -1,11 +1,11 @@
 'use client';
 
-import { fetchAllBlogs } from '@/app/repositories/blog/fetchAllBlogs';
 import { Post, User } from '@prisma/client';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutline from '@mui/icons-material/ChatBubbleOutline';
+import { fetchAllBlogs } from '@/app/repositories/blog';
 
 type Blog = Post & { author: User };
 
