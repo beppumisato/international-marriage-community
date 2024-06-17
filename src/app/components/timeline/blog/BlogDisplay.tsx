@@ -36,7 +36,7 @@ export default function TimelineBlogDisplay(props: Props) {
                 <div>
                   <img
                     width={50}
-                    className='rounded-full max-w-full h-auto align-middle'
+                    className='rounded-full w-14 h-14 align-middle'
                     src={post.author.iconImageUrl}
                   ></img>
                 </div>

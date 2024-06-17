@@ -18,7 +18,7 @@ export default function ProfileDisplay() {
       </Link>
       <div>
         <img
-          className='absolute rounded-full w-32 h-auto align-middle border-2 border-white top-60 left-52'
+          className='absolute rounded-full w-32 h-32 align-middle border-2 border-white top-60 left-52'
           width={100}
           src={user?.iconImageUrl}
         ></img>
