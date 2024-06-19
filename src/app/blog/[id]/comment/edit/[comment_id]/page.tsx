@@ -61,7 +61,6 @@ export default function CommentEditPage({
           className='w-full h-80 border-2 text-[18px] p-2 rounded mt-3'
         />
         <textarea
-          ref={descriptionRef}
           placeholder='疑問に思ったことがあれば質問して聞いてみよう。'
           className='w-full h-80 border-2 border-rose-400 text-[18px] p-2 rounded mt-3'
         />
