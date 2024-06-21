@@ -1,3 +1,4 @@
+import { getCurrentUser } from '@/app/api/common';
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -12,11 +13,22 @@ export async function main() {
 }
 
 //コメント全記事取得API
-export const GET = async (req: NextRequest, res: NextResponse) => {
+export const GET = async (
+  req: NextRequest,
+  { params }: { params: { id: string } },
+  res: NextResponse,
+) => {
+  const postId = Number(params.id);
+
   try {
     await main();
-    const posts = await prisma.comment.findMany();
-    return NextResponse.json({ message: 'Success', posts }, { status: 200 });
+
+    const comments = await prisma.comment.findMany({
+      where: {
+        postId,
+      },
+    });
+    return NextResponse.json({ message: 'Success', comments }, { status: 200 });
   } catch (err) {
     return NextResponse.json({ message: 'Error', err }, { status: 500 });
   } finally {
@@ -25,13 +37,26 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 };
 
 //コメント投稿用API
-export const POST = async (req: NextRequest, res: NextResponse) => {
+export const POST = async (
+  req: NextRequest,
+  { params }: { params: { id: string } },
+  res: NextResponse,
+) => {
+  const postId = Number(params.id);
   try {
     const { description } = await req.json();
 
     await main();
-    const post = await prisma.comment.create({ data: { description } });
-    return NextResponse.json({ message: 'Success', post }, { status: 201 });
+    const currentUser = await getCurrentUser();
+    if (!currentUser) {
+      return NextResponse.json({ message: 'Error' }, { status: 400 });
+    }
+    const authorId = currentUser.id;
+
+    const comment = await prisma.comment.create({
+      data: { description: description, authorId: authorId, postId: postId },
+    });
+    return NextResponse.json({ message: 'Success', comment }, { status: 201 });
   } catch (err) {
     return NextResponse.json({ message: 'Error', err }, { status: 500 });
   } finally {
