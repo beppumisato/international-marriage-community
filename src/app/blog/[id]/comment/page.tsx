@@ -35,7 +35,7 @@ export default function CommentDisplay({ params }: { params: { id: number } }) {
           </div>
         )}
       </div>
-      <CommentDisplay />
+      {/* <CommentDisplay /> */}
     </>
   );
 }
