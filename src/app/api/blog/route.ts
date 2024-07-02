@@ -12,7 +12,7 @@ export async function main() {
   }
 }
 
-//ブログ前記事取得API
+//ブログ全記事取得API
 export const GET = async (req: NextRequest, res: NextResponse) => {
   try {
     const searchParams = req.nextUrl.searchParams;

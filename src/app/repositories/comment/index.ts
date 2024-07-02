@@ -30,21 +30,15 @@ export const editComment = async (
   return res.json();
 };
 
-export const fetchAllComments = async (
-  description: string | undefined,
-  blogId: number,
-  commentId: number,
-) => {
-  const res = await fetch(
-    `http://localhost:3000/api/blog/${blogId}/comment/${commentId}`,
-    {
-      method: 'GET',
-      headers: await apiHeaders(),
-      body: JSON.stringify({ description, blogId, commentId }),
-    },
-  );
+export const fetchAllComments = async (blogId: number) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${blogId}/comment/`, {
+    method: 'GET',
+    cache: 'no-store', //SSR
+    headers: await apiHeaders(),
+  });
 
-  return res.json();
+  const data = await res.json();
+  return data.comments;
 };
 
 export const getCommentById = async (blogId: number, commentId: number) => {
