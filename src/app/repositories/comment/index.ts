@@ -1,22 +1,13 @@
 import { apiHeaders } from '../../../../utils/api';
 
-export const postComment = async (
-  description: string | undefined,
-  authorId: number,
-  postId: number,
-) => {
-  const res = await fetch(
-    `http://localhost:3000/api/blog/${authorId}/comment`,
-    {
-      method: 'POST',
-      headers: await apiHeaders(),
-      body: JSON.stringify({
-        description: description,
-        authorId: authorId,
-        postId: postId,
-      }),
-    },
-  );
+export const postComment = async (description: string | undefined) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${blogId}/comment`, {
+    method: 'POST',
+    headers: await apiHeaders(),
+    body: JSON.stringify({
+      description: description,
+    }),
+  });
 
   return res.json();
 };
@@ -27,7 +18,7 @@ export const editComment = async (
   postId: number,
 ) => {
   const res = await fetch(
-    `http://localhost:3000/api/blog/${authorId}/comment/${postId}`,
+    `http://localhost:3000/api/blog/${blogId}/comment/${commentId}`,
     {
       method: 'PUT',
       headers: await apiHeaders(),
@@ -42,32 +33,43 @@ export const editComment = async (
   return res.json();
 };
 
-export const fetchAllComments = async (isMyPost: boolean) => {
-  const url = isMyPost;
-  // ? 'http://localhost:3000/api/blog/[id]/comment/?mypost=true'
-  // : 'http://localhost:3000/api/blog/[id]/comment//comment/[comment_id]';
+export const fetchAllComments = async (
+  description: string | undefined,
+  authorId: number,
+  postId: number,
+) => {
+  const res = await fetch(
+    `http://localhost:3000/api/blog/${blogId}/comment/${commentId}`,
+    {
+      method: 'GET',
+      headers: await apiHeaders(),
+      body: JSON.stringify({
+        description: description,
+        authorId: authorId,
+        postId: postId,
+      }),
+    },
+  );
 
-  const res = await fetch(`${url}`, {
-    method: 'GET',
-    cache: 'no-store', //SSR
-    headers: await apiHeaders(),
-  });
-
-  const data = await res.json();
-  return data.comments;
+  return res.json();
 };
 
 export const getCommentById = async (postId: number) => {
-  const res = await fetch(`http://localhost:3000/api/blog/${postId}`);
+  const res = await fetch(
+    `http://localhost:3000/api/blog/${blogId}/comment/${commentId}`,
+  );
   const data = await res.json();
   return data.comments;
 };
 
 export const deleteComment = async (postId: number) => {
-  const res = await fetch(`http://localhost:3000/api/blog/${postId}`, {
-    method: 'DELETE',
-    headers: await apiHeaders(),
-  });
+  const res = await fetch(
+    `http://localhost:3000/api/blog/${blogId}/comment/${commentId}`,
+    {
+      method: 'DELETE',
+      headers: await apiHeaders(),
+    },
+  );
 
   return res.json();
 };
