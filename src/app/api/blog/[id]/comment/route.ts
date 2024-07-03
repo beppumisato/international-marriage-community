@@ -27,6 +27,9 @@ export const GET = async (
       where: {
         postId,
       },
+      include: {
+        author: true,
+      },
     });
     return NextResponse.json({ message: 'Success', comments }, { status: 200 });
   } catch (err) {

@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 //コメント詳細記事取得API
 export const GET = async (req: NextRequest, res: NextResponse) => {
   try {
-    const id: number = parseInt(req.url.split('/comment/')[1]);
+    const id: number = parseInt(req.url.split('/comment/')[1]); //fetchのURL(apiのディレクトリ構成が要)から抽出
     await main();
     const post = await prisma.comment.findFirst({ where: { id } });
     return NextResponse.json({ message: 'Success', post }, { status: 200 });
