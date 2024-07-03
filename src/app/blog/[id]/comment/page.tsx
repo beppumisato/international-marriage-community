@@ -1,13 +1,14 @@
 'use client';
 
 import AddComment from '@/app/components/comment/add/AddComment';
+import CommentDisplay from '@/app/components/comment/comment/CommentDisplay';
 import { getBlogById } from '@/app/repositories/blog';
 import { Post, User } from '@prisma/client';
 import React, { useEffect, useState } from 'react';
 
 type Blog = Post & { author: User };
 
-export default function CommentDisplay({ params }: { params: { id: number } }) {
+export default function CommentPage({ params }: { params: { id: number } }) {
   const [post, setPost] = useState<Blog | null>(null);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function CommentDisplay({ params }: { params: { id: number } }) {
 
   return (
     <>
-      <AddComment />
+      <AddComment blogId={params.id} />
       <div className='font-kosugi px-32'>
         {/* post(Blog)が取れた時だけ表示する */}
         {post && (
@@ -35,7 +36,7 @@ export default function CommentDisplay({ params }: { params: { id: number } }) {
           </div>
         )}
       </div>
-      {/* <CommentDisplay /> */}
+      <CommentDisplay blogId={params.id} />
     </>
   );
 }

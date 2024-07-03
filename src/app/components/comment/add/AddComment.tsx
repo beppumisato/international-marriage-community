@@ -1,16 +1,21 @@
 'use client';
 
+import { postComment } from '@/app/repositories/comment';
 import { useRouter } from 'next/navigation';
 import React, { useRef } from 'react';
 
-export default function AddComment() {
+type Props = {
+  blogId: number;
+};
+
+export default function AddComment(props: Props) {
   const router = useRouter();
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // await postComment(descriptionRef.current?.value);
+    await postComment(descriptionRef.current?.value, props.blogId);
 
     // router.push('/timeline/');
   };
