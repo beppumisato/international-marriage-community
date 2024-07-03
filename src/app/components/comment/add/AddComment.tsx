@@ -22,7 +22,7 @@ export default function AddComment(props: Props) {
 
   return (
     <>
-      <div className='font-kosugi fixed bg-white border-t-2 w-full h-60 bottom-0'>
+      <div className='font-kosugi fixed bg-white border-t-2 w-full h-60 bottom-0 p-1 px-2'>
         <div className='flex justify-center gap-x-2 p-10'>
           <textarea
             ref={descriptionRef}
