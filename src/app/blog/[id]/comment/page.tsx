@@ -35,7 +35,11 @@ export default function CommentPage({ params }: { params: { id: number } }) {
             </div>
           </div>
         )}
-        <CommentDisplay blogId={params.id} />
+        <CommentDisplay
+          blogId={blogId}
+          comments={comments}
+          setComments={setComments}
+        />
       </div>
     </>
   );

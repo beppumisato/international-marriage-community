@@ -4,9 +4,9 @@ import { postComment } from '@/app/repositories/comment';
 import { useRouter } from 'next/navigation';
 import React, { useRef } from 'react';
 
-type Props = {
+interface Props {
   blogId: number;
-};
+}
 
 export default function AddComment(props: Props) {
   const router = useRouter();
@@ -16,8 +16,6 @@ export default function AddComment(props: Props) {
     e.preventDefault();
 
     await postComment(descriptionRef.current?.value, props.blogId);
-
-    // router.push('/timeline/');
   };
 
   return (

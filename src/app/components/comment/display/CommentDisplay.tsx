@@ -7,24 +7,27 @@ import React, { useEffect, useState } from 'react';
 
 type DisplayComment = Comment & { author: User };
 
-type Props = {
+interface Props {
   blogId: number;
-};
+  comments: DisplayComment[];
+  setComments: React.Dispatch<React.SetStateAction<DisplayComment[]>>;
+}
 
 //comments,setCommentsをcommentPageからpropsでデータを受け渡し表示する書き方に修正 (デザイン案の図を参考に)
 // comments: DisplayComment[] でPropsを記述
+
 export default function CommentDisplay(props: Props) {
-  const [comments, setComments] = useState<DisplayComment[]>([]);
+  // const [comments, setComments] = useState<DisplayComment[]>([]);
 
   useEffect(() => {
     fetchAllComments(props.blogId).then((comments) => {
-      setComments(comments);
+      props.setComments(comments);
     });
   }, []);
 
   return (
     <>
-      {comments.map((comment) => (
+      {props.comments.map((comment) => (
         <div key={comment.id}>
           <div className='flex justify-between shadow mb-4 rounded-md w-full h-28 p-5'>
             <div className='h-4/5'>
