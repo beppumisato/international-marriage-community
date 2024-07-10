@@ -13,15 +13,12 @@ interface Props {
   setComments: React.Dispatch<React.SetStateAction<DisplayComment[]>>;
 }
 
-//comments,setCommentsをcommentPageからpropsでデータを受け渡し表示する書き方に修正 (デザイン案の図を参考に)
-// comments: DisplayComment[] でPropsを記述
-
 export default function CommentDisplay(props: Props) {
-  // const [comments, setComments] = useState<DisplayComment[]>([]);
+  const [comments, setComments] = useState<DisplayComment[]>([]);
 
   useEffect(() => {
     fetchAllComments(props.blogId).then((comments) => {
-      props.setComments(comments);
+      setComments(comments);
     });
   }, []);
 

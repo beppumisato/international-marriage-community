@@ -7,9 +7,14 @@ import { Post, User } from '@prisma/client';
 import React, { useEffect, useState } from 'react';
 
 type Blog = Post & { author: User };
+type DisplayComment = any;
+type IntrinsicAttributes = any;
+type Props = any;
 
 export default function CommentPage({ params }: { params: { id: number } }) {
   const [post, setPost] = useState<Blog | null>(null);
+  const [comments, setComments] = useState<DisplayComment[]>([]);
+  const [blogId] = useState<IntrinsicAttributes & Props[]>([]);
 
   useEffect(() => {
     getBlogById(params.id)
