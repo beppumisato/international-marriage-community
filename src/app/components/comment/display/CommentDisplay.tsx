@@ -3,7 +3,7 @@
 import { fetchAllComments } from '@/app/repositories/comment';
 import { Comment, User } from '@prisma/client';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 type DisplayComment = Comment & { author: User };
 

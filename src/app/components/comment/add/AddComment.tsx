@@ -1,9 +1,11 @@
 'use client';
 
-import { Comment } from '@prisma/client';
+import { Comment, User } from '@prisma/client';
 import { fetchAllComments, postComment } from '@/app/repositories/comment';
 import { useRouter } from 'next/navigation';
 import React, { useRef } from 'react';
+
+type DisplayComment = Comment & { author: User };
 
 interface Props {
   blogId: number;
