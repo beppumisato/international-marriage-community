@@ -1,11 +1,13 @@
 'use client';
 
-import { postComment } from '@/app/repositories/comment';
+import { Comment } from '@prisma/client';
+import { fetchAllComments, postComment } from '@/app/repositories/comment';
 import { useRouter } from 'next/navigation';
 import React, { useRef } from 'react';
 
 interface Props {
   blogId: number;
+  setComments: React.Dispatch<React.SetStateAction<DisplayComment[]>>;
 }
 
 export default function AddComment(props: Props) {
@@ -16,6 +18,10 @@ export default function AddComment(props: Props) {
     e.preventDefault();
 
     await postComment(descriptionRef.current?.value, props.blogId);
+
+    fetchAllComments(props.blogId).then((comments) => {
+      props.setComments(comments);
+    });
   };
 
   return (
