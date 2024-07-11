@@ -3,7 +3,7 @@
 import AddComment from '@/app/components/comment/add/AddComment';
 import CommentDisplay from '@/app/components/comment/display/CommentDisplay';
 import { getBlogById } from '@/app/repositories/blog';
-import { Post, User } from '@prisma/client';
+import { Comment, Post, User } from '@prisma/client';
 import React, { useEffect, useState } from 'react';
 
 type Blog = Post & { author: User };

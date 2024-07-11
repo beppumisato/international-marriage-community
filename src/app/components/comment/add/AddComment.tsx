@@ -1,7 +1,7 @@
 'use client';
 
+import { Comment, User } from '@prisma/client';
 import { fetchAllComments, postComment } from '@/app/repositories/comment';
-import { User } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import React, { useRef } from 'react';
 
@@ -20,10 +20,11 @@ export default function AddComment(props: Props) {
     e.preventDefault();
 
     await postComment(descriptionRef.current?.value, props.blogId);
+
+    fetchAllComments(props.blogId).then((comments) => {
+      props.setComments(comments);
+    });
   };
-  fetchAllComments(props.blogId).then((comments) => {
-    props.setComments(comments);
-  });
 
   return (
     <>
