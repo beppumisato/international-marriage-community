@@ -3,7 +3,7 @@
 import { fetchAllComments } from '@/app/repositories/comment';
 import { Comment, User } from '@prisma/client';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 type DisplayComment = Comment & { author: User };
 
@@ -14,11 +14,9 @@ interface Props {
 }
 
 export default function CommentDisplay(props: Props) {
-  const [comments, setComments] = useState<DisplayComment[]>([]);
-
   useEffect(() => {
     fetchAllComments(props.blogId).then((comments) => {
-      setComments(comments);
+      props.setComments(comments);
     });
   }, []);
 
