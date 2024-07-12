@@ -12,7 +12,7 @@ export async function main() {
   }
 }
 
-//ブログ前記事取得API
+//ブログ全記事取得API
 export const GET = async (req: NextRequest, res: NextResponse) => {
   try {
     const searchParams = req.nextUrl.searchParams;
@@ -64,7 +64,7 @@ export const POST = async (req: Request, res: NextResponse) => {
     const authorId = currentUser.id;
 
     const post = await prisma.post.create({
-      data: { title, description, authorId },
+      data: { title: title, description: description, authorId: authorId },
     });
     return NextResponse.json({ message: 'Success', post }, { status: 201 });
   } catch (err) {

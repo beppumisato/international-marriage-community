@@ -3,8 +3,6 @@
 import { useContext, useState } from 'react';
 import { CurrentUserContext } from '@/app/contexts/CurrentUserContext';
 import { useRouter } from 'next/navigation';
-
-import Header from '@/app/components/common/Header';
 import ProfileForm from '@/app/components/mypage/edit/ProfileForm';
 import ImageForm from '@/app/components/mypage/edit/ImageForm';
 import { useForm } from 'react-hook-form';

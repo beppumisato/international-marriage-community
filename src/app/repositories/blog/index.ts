@@ -27,6 +27,21 @@ export const editBlog = async (
   return res.json();
 };
 
+export const fetchAllBlogs = async (isMyPost: boolean) => {
+  const url = isMyPost
+    ? 'http://localhost:3000/api/blog?mypost=true'
+    : 'http://localhost:3000/api/blog';
+
+  const res = await fetch(`${url}`, {
+    method: 'GET',
+    cache: 'no-store', //SSR
+    headers: await apiHeaders(),
+  });
+
+  const data = await res.json();
+  return data.posts;
+};
+
 export const getBlogById = async (id: number) => {
   const res = await fetch(`http://localhost:3000/api/blog/${id}`);
   const data = await res.json();

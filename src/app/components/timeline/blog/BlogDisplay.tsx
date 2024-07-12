@@ -1,11 +1,11 @@
 'use client';
 
-import { fetchAllBlogs } from '@/app/repositories/blog/fetchAllBlogs';
 import { Post, User } from '@prisma/client';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutline from '@mui/icons-material/ChatBubbleOutline';
+import { fetchAllBlogs } from '@/app/repositories/blog';
 
 type Blog = Post & { author: User };
 
@@ -36,7 +36,7 @@ export default function TimelineBlogDisplay(props: Props) {
                 <div>
                   <img
                     width={50}
-                    className='rounded-full max-w-full h-auto align-middle'
+                    className='rounded-full w-14 h-14 align-middle'
                     src={post.author.iconImageUrl}
                   ></img>
                 </div>
@@ -53,9 +53,11 @@ export default function TimelineBlogDisplay(props: Props) {
                 </div>
                 <div className='text-slate-400 flex gap-x-4 items-end'>
                   <FavoriteBorder sx={{ fontSize: 20, color: 'slate-400' }} />
-                  <ChatBubbleOutline
-                    sx={{ fontSize: 20, color: 'slate-400' }}
-                  />
+                  <a href={`/blog/${post.id}/comment/`}>
+                    <ChatBubbleOutline
+                      sx={{ fontSize: 20, color: 'slate-400' }}
+                    />
+                  </a>
                   <Link href={`/blog/edit/${post.id}`}>...</Link>
                 </div>
               </div>

@@ -16,7 +16,7 @@ export default function TimelineProfileDisplay() {
         <div className='flex mt-6 justify-center'>
           <Link href={'/mypage/'}>
             <img
-              className='rounded-full max-w-full h-auto align-middle top-6 shadow shadow-slate-300'
+              className='rounded-full w-20 h-20 align-middle top-6 shadow shadow-slate-300'
               width={90}
               src={user?.iconImageUrl}
             ></img>
