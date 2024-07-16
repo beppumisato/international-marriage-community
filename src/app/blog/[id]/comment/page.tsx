@@ -25,14 +25,14 @@ export default function CommentPage({ params }: { params: { id: number } }) {
   return (
     <>
       <AddComment blogId={params.id} setComments={setComments} />
-      <div className='font-kosugi px-32 pb-72'>
+      <div className='font-kosugi px-32 pb-60'>
         {/* post(Blog)が取れた時だけ表示する */}
         {post && (
           <div key={post.id}>
             <div className='w-full h-10 border-2 text-[20px] p-1 px-2 rounded mt-10'>
               {post.title}
             </div>
-            <div className='w-full h-40 border-2 text-[18px] p-2 rounded mt-3'>
+            <div className='w-full h-40 border-2 text-[18px] p-2 rounded mt-3 mb-10'>
               {post.description}
             </div>
           </div>
