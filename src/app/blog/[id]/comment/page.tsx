@@ -32,7 +32,7 @@ export default function CommentPage({ params }: { params: { id: number } }) {
             <div className='w-full h-10 border-2 text-[20px] p-1 px-2 rounded mt-10'>
               {post.title}
             </div>
-            <div className='w-full h-40 border-2 text-[18px] p-2 rounded mt-3 mb-10'>
+            <div className='w-full h-40 border-2 text-[18px] p-2 rounded mt-3 ßmb-10'>
               {post.description}
             </div>
           </div>

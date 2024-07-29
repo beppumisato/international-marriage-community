@@ -1,9 +1,11 @@
 'use client';
 
-import { fetchAllComments } from '@/app/repositories/comment';
+import { deleteComment, fetchAllComments } from '@/app/repositories/comment';
 import { Comment, User } from '@prisma/client';
-import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Modal from '../../modal/Modal';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { deleteBlog } from '@/app/repositories/blog';
 
 type DisplayComment = Comment & { author: User };
 
@@ -14,6 +16,15 @@ interface Props {
 }
 
 export default function CommentDisplay(props: Props) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [commentId, setCommentId] = useState<number | null>(null);
+
+  const handleDelete = async () => {
+    if (commentId) {
+      await deleteComment(props.blogId, commentId);
+    }
+  };
+
   useEffect(() => {
     fetchAllComments(props.blogId).then((comments) => {
       props.setComments(comments);
@@ -33,15 +44,21 @@ export default function CommentDisplay(props: Props) {
               <h1 className='mt-2 text-[20px]'>{comment.description}</h1>
             </div>
             <div className='mt-14 h-1/5'>
-              <Link
-                href={`/blog/${comment.postId}/comment/edit/comment_${comment.id}`}
+              <button
+                onClick={() => {
+                  setModalOpen(true);
+                  setCommentId(comment.id);
+                }}
               >
-                ...
-              </Link>
+                <DeleteForeverIcon sx={{ fontSize: 40, color: 'red' }} />
+              </button>
             </div>
           </div>
         </div>
       ))}
+      {modalOpen && (
+        <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
+      )}
     </>
   );
 }
