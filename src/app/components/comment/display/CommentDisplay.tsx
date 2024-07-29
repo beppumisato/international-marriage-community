@@ -3,7 +3,7 @@
 import { deleteComment, fetchAllComments } from '@/app/repositories/comment';
 import { Comment, User } from '@prisma/client';
 import React, { useEffect, useState } from 'react';
-import Modal from '../../modal/Modal';
+import DeleteModal from '../../modal/DeleteModal';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { deleteBlog } from '@/app/repositories/blog';
 
@@ -57,7 +57,7 @@ export default function CommentDisplay(props: Props) {
         </div>
       ))}
       {modalOpen && (
-        <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
+        <DeleteModal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
       )}
     </>
   );

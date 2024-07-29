@@ -7,7 +7,7 @@ interface Props {
   onYes: () => void;
 }
 
-export default function Modal(props: Props) {
+export default function DeleteModal(props: Props) {
   return (
     <>
       {/* ポップアップ表示中の背景色とほか操作の制限 */}

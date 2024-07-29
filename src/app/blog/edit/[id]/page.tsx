@@ -2,10 +2,10 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Modal from '@/app/components/modal/Modal';
 import Link from 'next/link';
 import { deleteBlog, editBlog, getBlogById } from '@/app/repositories/blog';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteModal from '@/app/components/modal/DeleteModal';
 
 export default function EditPage({ params }: { params: { id: number } }) {
   const titleRef = useRef<HTMLInputElement | null>(null);
@@ -65,7 +65,10 @@ export default function EditPage({ params }: { params: { id: number } }) {
             <button className='buttonC hover:bg-sky-300'>キャンセル</button>
           </Link>
           {modalOpen && (
-            <Modal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
+            <DeleteModal
+              setOpenModal={setModalOpen}
+              onYes={() => handleDelete()}
+            />
           )}
           <button
             onClick={() => {
