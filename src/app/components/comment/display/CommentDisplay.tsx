@@ -5,7 +5,8 @@ import { Comment, User } from '@prisma/client';
 import React, { useEffect, useState } from 'react';
 import DeleteModal from '../../modal/DeleteModal';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { deleteBlog } from '@/app/repositories/blog';
+import CreateIcon from '@mui/icons-material/Create';
+import EditModal from '../../modal/EditModal';
 
 type DisplayComment = Comment & { author: User };
 
@@ -50,7 +51,15 @@ export default function CommentDisplay(props: Props) {
                   setCommentId(comment.id);
                 }}
               >
-                <DeleteForeverIcon sx={{ fontSize: 40, color: 'red' }} />
+                <CreateIcon sx={{ fontSize: 25, color: 'gray' }} />
+              </button>
+              <button
+                onClick={() => {
+                  setModalOpen(true);
+                  setCommentId(comment.id);
+                }}
+              >
+                <DeleteForeverIcon sx={{ fontSize: 30, color: 'red' }} />
               </button>
             </div>
           </div>
@@ -58,6 +67,9 @@ export default function CommentDisplay(props: Props) {
       ))}
       {modalOpen && (
         <DeleteModal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
+      )}
+      {modalOpen && (
+        <EditModal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
       )}
     </>
   );
