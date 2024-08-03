@@ -17,7 +17,8 @@ interface Props {
 }
 
 export default function CommentDisplay(props: Props) {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [commentId, setCommentId] = useState<number | null>(null);
 
   const handleDelete = async () => {
@@ -47,7 +48,7 @@ export default function CommentDisplay(props: Props) {
             <div className='mt-14 h-1/5'>
               <button
                 onClick={() => {
-                  setModalOpen(true);
+                  setEditModalOpen(true);
                   setCommentId(comment.id);
                 }}
               >
@@ -55,7 +56,7 @@ export default function CommentDisplay(props: Props) {
               </button>
               <button
                 onClick={() => {
-                  setModalOpen(true);
+                  setDeleteModalOpen(true);
                   setCommentId(comment.id);
                 }}
               >
@@ -65,11 +66,18 @@ export default function CommentDisplay(props: Props) {
           </div>
         </div>
       ))}
-      {modalOpen && (
-        <DeleteModal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
+      {editModalOpen && (
+        <EditModal
+          setOpenModal={setEditModalOpen}
+          onYes={() => handleDelete()}
+        />
       )}
-      {modalOpen && (
-        <EditModal setOpenModal={setModalOpen} onYes={() => handleDelete()} />
+
+      {deleteModalOpen && (
+        <DeleteModal
+          setOpenModal={setDeleteModalOpen}
+          onYes={() => handleDelete()}
+        />
       )}
     </>
   );
