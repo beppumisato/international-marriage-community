@@ -66,12 +66,7 @@ export default function CommentDisplay(props: Props) {
           </div>
         </div>
       ))}
-      {editModalOpen && (
-        <EditModal
-          setOpenModal={setEditModalOpen}
-          onYes={() => handleDelete()}
-        />
-      )}
+      {editModalOpen && <EditModal setOpenModal={setEditModalOpen} />}
 
       {deleteModalOpen && (
         <DeleteModal
