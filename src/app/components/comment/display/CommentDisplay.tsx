@@ -1,6 +1,10 @@
 'use client';
 
-import { deleteComment, fetchAllComments } from '@/app/repositories/comment';
+import {
+  deleteComment,
+  editComment,
+  fetchAllComments,
+} from '@/app/repositories/comment';
 import { Comment, User } from '@prisma/client';
 import React, { useEffect, useState } from 'react';
 import DeleteModal from '../../modal/DeleteModal';
@@ -19,11 +23,17 @@ interface Props {
 export default function CommentDisplay(props: Props) {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [commentId, setCommentId] = useState<number | null>(null);
+  const [comment, setComment] = useState<DisplayComment | null>(null);
 
   const handleDelete = async () => {
-    if (commentId) {
-      await deleteComment(props.blogId, commentId);
+    if (comment) {
+      await deleteComment(props.blogId, comment.id);
+    }
+  };
+
+  const handleEdit = async (description: string) => {
+    if (comment) {
+      await editComment(description, comment.postId, comment.id);
     }
   };
 
@@ -49,7 +59,7 @@ export default function CommentDisplay(props: Props) {
               <button
                 onClick={() => {
                   setEditModalOpen(true);
-                  setCommentId(comment.id);
+                  setComment(comment);
                 }}
               >
                 <CreateIcon sx={{ fontSize: 25, color: 'gray' }} />
@@ -57,7 +67,7 @@ export default function CommentDisplay(props: Props) {
               <button
                 onClick={() => {
                   setDeleteModalOpen(true);
-                  setCommentId(comment.id);
+                  setComment(comment);
                 }}
               >
                 <DeleteForeverIcon sx={{ fontSize: 30, color: 'red' }} />
@@ -66,7 +76,13 @@ export default function CommentDisplay(props: Props) {
           </div>
         </div>
       ))}
-      {editModalOpen && <EditModal setOpenModal={setEditModalOpen} />}
+      {editModalOpen && comment && (
+        <EditModal
+          commentDescription={comment.description}
+          setOpenModal={setEditModalOpen}
+          onYes={handleEdit}
+        />
+      )}
 
       {deleteModalOpen && (
         <DeleteModal

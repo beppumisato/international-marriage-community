@@ -12,8 +12,8 @@ export default function DeleteModal(props: Props) {
       {/* ポップアップ表示中の背景色とほか操作の制限 */}
       <div className='z-40 w-full h-full fixed inset-0 bg-black opacity-50'></div>
       <div className='z-50 w-full h-full fixed inset-0 flex items-center justify-center'>
-        <div className='w-3/4 lg:w-1/2 bg-white rounded-xl py-12'>
-          <div className='justify-end'>
+        <div className='w-3/4 lg:w-1/2 bg-white rounded-xl p-10'>
+          <div className='flex justify-end'>
             <button
               onClick={() => {
                 props.setOpenModal(false);
@@ -35,7 +35,8 @@ export default function DeleteModal(props: Props) {
             <button
               onClick={() => {
                 props.onYes();
-                props.setOpenModal(true);
+                // 処理実行後、モーダルを閉じる
+                props.setOpenModal(false);
               }}
               className='text-white bg-red-500 rounded hover:bg-yellow-300 w-32 h-8'
             >
