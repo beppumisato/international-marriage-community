@@ -35,7 +35,8 @@ export default function DeleteModal(props: Props) {
             <button
               onClick={() => {
                 props.onYes();
-                props.setOpenModal(true);
+                // 処理実行後、モーダルを閉じる
+                props.setOpenModal(false);
               }}
               className='text-white bg-red-500 rounded hover:bg-yellow-300 w-32 h-8'
             >
