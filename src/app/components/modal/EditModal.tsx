@@ -1,38 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import { User } from '@prisma/client';
-import { editComment, getCommentById } from '@/app/repositories/comment';
 
 interface Props {
+  commentDescription: string;
   setOpenModal: (status: boolean) => void;
-  onYes: () => void;
-}
-
-type DisplayComment = Comment & { author: User };
-
-interface Props {
-  blogId: number;
-  description: string | undefined;
-  comments: DisplayComment[];
-  setComments: React.Dispatch<React.SetStateAction<DisplayComment[]>>;
+  onYes: (description: string) => void;
 }
 
 export default function EditModal(props: Props) {
-  const [commentId, setCommentId] = useState<number | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (commentId) {
-      await editComment(props.description, props.blogId, commentId);
-    }
-  };
+  const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
-    if (commentId) {
-      getCommentById(props.blogId, commentId).then((comments) => {
-        props.setComments(comments);
-      });
-    }
+    // propsのコメントの内容を、テキストエリアの初期値として表示
+    descriptionRef.current!.value = props.commentDescription;
   }, []);
 
   return (
@@ -50,9 +30,12 @@ export default function EditModal(props: Props) {
               <CloseIcon sx={{ fontSize: 30 }} />
             </button>
           </div>
-          <form onSubmit={handleSubmit}>
-            <textarea className='w-full h-40 border-2 text-[18px] p-2 rounded mt-3' />
-            {props.description}
+          <form>
+            <textarea
+              ref={descriptionRef}
+              className='w-full h-40 border-2 text-[18px] p-2 rounded mt-3'
+            />
+
             <div className='flex gap-4 justify-center mt-10'>
               <button
                 onClick={() => {
@@ -64,8 +47,11 @@ export default function EditModal(props: Props) {
               </button>
               <button
                 onClick={() => {
-                  props.onYes();
-                  props.setOpenModal(true);
+                  if (descriptionRef.current?.value) {
+                    props.onYes(descriptionRef.current?.value);
+                    // 処理実行後、モーダルを閉じる
+                    props.setOpenModal(false);
+                  }
                 }}
                 className='text-white bg-rose-400 rounded hover:bg-yellow-300 w-32 h-8'
               >
